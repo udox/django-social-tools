@@ -1,0 +1,16 @@
+.row2 {
+    background-color: #eee;
+}
+
+.column-content {
+    width: 10%;
+}
+
+.message-btns {
+    list-style-type: none;
+    margin: 0;
+}
+
+.message-btns li {
+    margin-bottom: 0.5em;
+}

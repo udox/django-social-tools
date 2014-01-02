@@ -24,26 +24,25 @@ class Command(BaseCommand):
             access_token_secret='ZqMNHKhNQNLfikntnbP6MevM7I1aftHeBtBR0W2Rkibrx',
         )
 
-        try:
-            term = SearchTerm.objects.filter(active=True)[0].term
-        except (SearchTerm.DoesNotExist, IndexError):
-            self.stdout.write('ERROR! Please add an active search term to the admin')
-            sys.exit(1)
+        terms = SearchTerm.objects.filter(active=True)
 
-        search = api.GetSearch(term=term)
+        for term in terms:
 
-        for tweet in search:
-            if len(tweet.media) == 1:
-                obj = Tweet(
-                    created_at=date_parse(tweet.created_at),
-                    uid=tweet.id,
-                    handle=tweet.user.screen_name,
-                    country='GB',
-                    image_url=tweet.media[0]['media_url'],
-                    content=tweet.text,
-                )
-                try:
-                    obj.save()
-                    self.stdout.write("Added %s (%d)" % (obj.uid, obj.id))
-                except IntegrityError:
-                    self.stdout.write("Tweet already exists %s" % obj.uid)
+            self.stdout.write("\nImporting %s tweets" % term.term)
+            search = api.GetSearch(term=term.term)
+
+            for tweet in search:
+                if len(tweet.media) == 1:
+                    obj = Tweet(
+                        created_at=date_parse(tweet.created_at),
+                        uid=tweet.id,
+                        handle=tweet.user.screen_name,
+                        country='GB',
+                        image_url=tweet.media[0]['media_url'],
+                        content=tweet.text,
+                    )
+                    try:
+                        obj.save()
+                        self.stdout.write("Added %s (%d)" % (obj.uid, obj.id))
+                    except IntegrityError:
+                        self.stdout.write("Tweet already exists %s" % obj.uid)

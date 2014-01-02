@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-from tweets.models import Tweet, Photoshop, SearchTerm
+from tweets.models import Tweet, SearchTerm
 
 # Register your models here.
 
@@ -14,8 +14,10 @@ mark_approved.short_description = 'Mark selected tweets as approved'
 
 
 class TweetAdmin(admin.ModelAdmin):
-    list_display = ('created_at', 'get_handle', 'country', 'get_image', 'content', 'complete', 'approved', 'tweeted')
+    list_display = ('created_at', 'get_handle', 'country', 'get_image', 'get_photoshop', 'content', 'approved',
+        'messages', 'tweeted', 'notes')
     list_filter = ('country', 'approved', 'tweeted')
+    list_editable = ('approved', 'notes')
     search_fields = ('handle', 'content',)
     actions = [mark_deleted, mark_approved]
 
@@ -25,10 +27,26 @@ class TweetAdmin(admin.ModelAdmin):
     def get_handle(self, obj):
         return mark_safe('<a href="http://twitter.com/{0}" target="_blank">{0}</a>'.format(obj.handle.encode('utf-8')))
 
-    def complete(self, obj):
-        return obj.photoshop is not None
+    def messages(self, obj):
+        return mark_safe("""
+            <ul class="message-btns">
+                <li><a class="btn btn-danger send_tweet" data-msgtype="tryagain">Try Again</a></li>
+                <li><a class="btn btn-success send_tweet" data-msgtype="imagelink">Image Link</a></li>
+            </ul>
+        """)
+
+    def get_photoshop(self, obj):
+        if obj.photoshop:
+            return mark_safe('<a href="{0}" target="_blank"><img src={0} width=100 /></a>'.format(obj.photoshop.url))
+        else:
+            return ''
+
+    class Media:
+        js = ('js/jquery.modal.min.js', 'js/tweet_admin.js', )
+        css = {
+            'all': ('css/adi051.css', )
+        }
 
 
 admin.site.register(Tweet, TweetAdmin)
-admin.site.register(Photoshop)
 admin.site.register(SearchTerm)
