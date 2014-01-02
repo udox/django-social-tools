@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 import twitter
 import sys
+from dateutil.parser import parse as date_parse
 
 from django.core.management.base import BaseCommand
 from django.db.utils import IntegrityError
+
 from tweets.models import Tweet, SearchTerm
 
 
@@ -33,7 +35,7 @@ class Command(BaseCommand):
         for tweet in search:
             if len(tweet.media) == 1:
                 obj = Tweet(
-                    created_at=tweet.created_at,
+                    created_at=date_parse(tweet.created_at),
                     uid=tweet.id,
                     handle=tweet.user.screen_name,
                     country='GB',
