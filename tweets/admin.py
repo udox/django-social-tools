@@ -42,7 +42,7 @@ class TweetAdmin(admin.ModelAdmin):
             return ''
 
     class Media:
-        js = ('js/jquery.modal.min.js', 'js/tweet_admin.js', )
+        js = ('js/tweet_admin.js', )
         css = {
             'all': ('css/adi051.css', )
         }

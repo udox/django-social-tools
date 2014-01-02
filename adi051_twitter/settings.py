@@ -58,6 +58,10 @@ AUTHENTICATION_BACKENDS  = (
     'redmineauth.backends.Redmine',
 )
 
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'templates'),
+)
+
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'django.contrib.staticfiles.finders.FileSystemFinder',
