@@ -30,12 +30,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'grappelli',
+    'django.contrib.admin',
     'tweets',
 )
 
@@ -52,6 +53,20 @@ ROOT_URLCONF = 'adi051_twitter.urls'
 
 WSGI_APPLICATION = 'adi051_twitter.wsgi.application'
 
+AUTHENTICATION_BACKENDS  = (
+    'django.contrib.auth.backends.ModelBackend',
+    'redmineauth.backends.Redmine',
+)
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.request',
+)
 
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
@@ -81,3 +96,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+REDMINE_URL = 'http://redmine.u-dox.com'
+
+GRAPPELLI_ADMIN_TITLE = 'ADI051 Twitter Activation'
+
