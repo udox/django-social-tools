@@ -18,3 +18,7 @@ a {
 .message-btns li {
     margin-bottom: 0.5em;
 }
+
+.modal-body textarea {
+    width: 95%;
+}
