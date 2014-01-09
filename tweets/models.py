@@ -42,7 +42,7 @@ class Tweet(models.Model):
     tweeted_by = models.ForeignKey(User, related_name='tweeter', blank=True, null=True)
 
     def __unicode__(self):
-        return '{0} - {1} ({2})'.format(self.handle, self.country, self.tweeted)
+        return '{0} - {1} ({2})'.format(self.handle, self.account, self.tweeted)
 
     class Meta:
         # Tweets should be in ascending date order
