@@ -22,3 +22,22 @@ a {
 .modal-body textarea {
     width: 95%;
 }
+
+#changelist .well {
+    /* this is moved into the subnav to affix to the top on scroll */
+    position: relative;
+    left: 0;
+    right: 0;
+    top: 0;
+    padding-top: 5px;
+    height: 40px;
+}
+
+.info-counter {
+    margin-top: 8px;
+}
+
+.navbar-fixed-top .well {
+    width: 1170px;
+    margin: 0 auto;
+}

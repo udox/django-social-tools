@@ -133,12 +133,7 @@ I'm mainly adding in modals here.
             </div><!-- /.nav-collapse -->
           </div>
         </div><!-- /navbar-inner -->
-      </div>
-      <form id="changelist-form" action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %} {% if action_form and actions_on_top and cl.full_result_count %}class="with-top-actions"{% endif %}>{% csrf_token %}
-          {% if cl.formset %}
-              <div>{{ cl.formset.management_form }}</div>
-          {% endif %}
-          {% block result_list %}
+
               {% if action_form and actions_on_top and cl.full_result_count %}
                   <div class="well">
                       <span class="label label-inverse pull-left info-counter">
@@ -159,6 +154,15 @@ I'm mainly adding in modals here.
                       {% admin_actions %}
                   </div>
               {% endif %}
+
+      </div>
+
+      <form id="changelist-form" action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %} {% if action_form and actions_on_top and cl.full_result_count %}class="with-top-actions"{% endif %}>{% csrf_token %}
+          {% if cl.formset %}
+              <div>{{ cl.formset.management_form }}</div>
+          {% endif %}
+          {% block result_list %}
+
               {% result_list cl %}
                 {% if action_form and actions_on_bottom and cl.full_result_count %}
                     <div class="well bottom-actions">
