@@ -1,9 +1,32 @@
 from django.db import models
+from django.contrib.auth.models import User
 from managers import TweetManager
 
 
 class MarketAccount(models.Model):
     handle = models.CharField(max_length=100)
+
+    def __unicode__(self):
+        return self.handle
+
+
+class Message(models.Model):
+    copy = models.CharField(max_length=140)
+    account = models.OneToOneField(MarketAccount)
+
+    class Meta:
+        abstract = True
+
+    def __unicode__(self):
+        return '{0} ({1}...)'.format(self.account, self.copy[:30])
+
+
+class SuccessMessage(Message):
+    pass
+
+
+class FailMessage(Message):
+    pass
 
 
 class Tweet(models.Model):
@@ -19,9 +42,12 @@ class Tweet(models.Model):
     notes = models.TextField(blank=True, null=True)
     notes.verbose_name = 'Internal Notes'
     account = models.ForeignKey(MarketAccount, blank=True, null=True)
+    sent_tweet = models.CharField(max_length=140, blank=True, null=True)
+    artworker = models.ForeignKey(User, related_name='artworker', blank=True, null=True)
+    tweeted_by = models.ForeignKey(User, related_name='tweeter', blank=True, null=True)
 
     def __unicode__(self):
-        return '%s - %s (%s)' % (self.handle, self.country, self.tweeted)
+        return '{0} - {1} ({2})'.format(self.handle, self.country, self.tweeted)
 
     class Meta:
         # Tweets should be in ascending date order
@@ -37,4 +63,4 @@ class SearchTerm(models.Model):
     term = models.CharField(max_length=100)
 
     def __unicode__(self):
-        return '%s (%s)' % (self.term, self.active)
+        return '{0} ({1})'.format(self.term, self.active)

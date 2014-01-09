@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-from models import Tweet, SearchTerm
+from models import Tweet, SearchTerm, SuccessMessage, FailMessage, MarketAccount
 from filters import TwitterImageFilter
 
 # Register your models here.
@@ -15,7 +15,7 @@ mark_approved.short_description = 'Mark selected tweets as approved'
 
 
 class TweetAdmin(admin.ModelAdmin):
-    list_display = ('created_at', 'get_handle', 'account', 'get_image', 'get_photoshop', 'content', 'messages', 'tweeted', 'notes')
+    list_display = ('created_at', 'get_handle', 'account', 'get_image', 'get_photoshop', 'content', 'messages', 'tweeted_by', 'artworker', 'notes')
     list_filter = ('account', 'tweeted', TwitterImageFilter)
     list_editable = ('notes', )
     search_fields = ('handle', 'content',)
@@ -58,3 +58,6 @@ class TweetAdmin(admin.ModelAdmin):
 
 admin.site.register(Tweet, TweetAdmin)
 admin.site.register(SearchTerm)
+admin.site.register(FailMessage)
+admin.site.register(SuccessMessage)
+admin.site.register(MarketAccount)
