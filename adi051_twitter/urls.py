@@ -11,7 +11,7 @@ router.register(r'messages', MessageViewSet)
 router.register(r'accounts', MarketAccountViewSet)
 
 urlpatterns = patterns('',
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^', include(admin.site.urls)),
     url(r'^api/', include(router.urls)),
     url(r'^send-tweet/', TweetUserView.as_view(), name='tweet_user'),
 ) + static.static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
