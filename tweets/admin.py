@@ -7,7 +7,7 @@ from filters import TwitterImageFilter
 
 def mark_deleted(modeladmin, request, queryset):
     queryset.update(deleted=True)
-mark_deleted.short_description = 'Mark selected tweets as deleted'
+mark_deleted.short_description = 'Hide selected tweets'
 
 def mark_approved(modeladmin, request, queryset):
     queryset.update(approved=True)
