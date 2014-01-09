@@ -15,11 +15,22 @@ mark_approved.short_description = 'Mark selected tweets as approved'
 
 
 class TweetAdmin(admin.ModelAdmin):
+    search_fields = ('handle', 'content',)
     list_display = ('created_at', 'get_handle', 'account', 'get_image', 'get_photoshop', 'content', 'messages', 'tweeted_by', 'artworker', 'notes')
     list_filter = ('account', 'tweeted', TwitterImageFilter)
     list_editable = ('notes', )
-    search_fields = ('handle', 'content',)
+
     actions = [mark_deleted, ]
+
+    fieldsets = (
+        ('Attach your photoshop', {
+            'fields': ('photoshop', ),
+        }),
+        ('Tweet data', {
+            'classes': ('collapse', ),
+            'fields': ('created_at', 'handle', 'account', 'content', 'image_url', 'notes', )
+        }),
+    )
 
     def get_image(self, obj):
         if obj.image_url:
