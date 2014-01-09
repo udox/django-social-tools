@@ -7,26 +7,21 @@ class MarketAccount(models.Model):
     handle = models.CharField(max_length=100)
 
     def __unicode__(self):
-        return self.handle
+        return '{0} ({1})'.format(self.handle, self.pk)
 
 
 class Message(models.Model):
-    copy = models.CharField(max_length=140)
-    account = models.OneToOneField(MarketAccount)
+    MESSAGE_TYPES = (
+        ('f', 'Fail'),
+        ('s', 'Success'),
+    )
 
-    class Meta:
-        abstract = True
+    copy = models.CharField(max_length=140)
+    account = models.ForeignKey(MarketAccount)
+    type = models.CharField(max_length=1, choices=MESSAGE_TYPES)
 
     def __unicode__(self):
         return '{0} ({1}...)'.format(self.account, self.copy[:30])
-
-
-class SuccessMessage(Message):
-    pass
-
-
-class FailMessage(Message):
-    pass
 
 
 class Tweet(models.Model):

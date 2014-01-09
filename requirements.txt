@@ -2,8 +2,10 @@ Django==1.6.1
 Pillow==2.2.1
 bootstrap-admin==0.3.0
 django-countries==1.5
+django-filter==0.7
 django-grappelli==2.5.1
 -e git://github.com/tomviner/django-redmineauth.git@75b0617fdc3705827ba6b918f08d5b890f8d51f4#egg=django_redmineauth-dev
+djangorestframework==2.3.10
 httplib2==0.8
 ipython==1.1.0
 oauth2==1.5.211

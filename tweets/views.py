@@ -1,5 +1,8 @@
 import twitter
 from django.views.generic import TemplateView
+from rest_framework import viewsets
+from models import Message, MarketAccount
+from serializers import MessageSerializer, MarketAccountSerializer
 
 class TweetUserView(TemplateView):
     template_name = 'tweet_user.html'
@@ -26,3 +29,13 @@ class TweetUserView(TemplateView):
 
     def get(self, *args, **kwargs):
         return super(TweetUserView, self).get(*args, **kwargs)
+
+
+class MessageViewSet(viewsets.ModelViewSet):
+    queryset = Message.objects.all()
+    serializer_class = MessageSerializer
+    filter_fields = ('type', 'account',)
+
+class MarketAccountViewSet(viewsets.ModelViewSet):
+    queryset = MarketAccount.objects.all()
+    serializer_class = MarketAccountSerializer

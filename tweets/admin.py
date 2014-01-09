@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-from models import Tweet, SearchTerm, SuccessMessage, FailMessage, MarketAccount
+from models import Tweet, SearchTerm, Message, MarketAccount
 from filters import TwitterImageFilter
 
 # Register your models here.
@@ -58,6 +58,5 @@ class TweetAdmin(admin.ModelAdmin):
 
 admin.site.register(Tweet, TweetAdmin)
 admin.site.register(SearchTerm)
-admin.site.register(FailMessage)
-admin.site.register(SuccessMessage)
+admin.site.register(Message)
 admin.site.register(MarketAccount)
