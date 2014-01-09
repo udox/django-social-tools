@@ -1,7 +1,9 @@
 from django.db import models
-from django_countries import CountryField
-
 from managers import TweetManager
+
+
+class MarketAccount(models.Model):
+    handle = models.CharField(max_length=100)
 
 
 class Tweet(models.Model):
@@ -16,7 +18,7 @@ class Tweet(models.Model):
     photoshop = models.ImageField(upload_to='uploads', blank=True, null=True)
     notes = models.TextField(blank=True, null=True)
     notes.verbose_name = 'Internal Notes'
-    country = CountryField()
+    account = models.ForeignKey(MarketAccount, blank=True, null=True)
 
     def __unicode__(self):
         return '%s - %s (%s)' % (self.handle, self.country, self.tweeted)

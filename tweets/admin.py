@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-from tweets.models import Tweet, SearchTerm
+from models import Tweet, SearchTerm
+from filters import TwitterImageFilter
 
 # Register your models here.
 
@@ -14,14 +15,22 @@ mark_approved.short_description = 'Mark selected tweets as approved'
 
 
 class TweetAdmin(admin.ModelAdmin):
-    list_display = ('created_at', 'get_handle', 'country', 'get_image', 'get_photoshop', 'content', 'messages', 'tweeted', 'notes')
-    list_filter = ('country', 'tweeted')
+    list_display = ('created_at', 'get_handle', 'account', 'get_image', 'get_photoshop', 'content', 'messages', 'tweeted', 'notes')
+    list_filter = ('account', 'tweeted', TwitterImageFilter)
     list_editable = ('notes', )
     search_fields = ('handle', 'content',)
     actions = [mark_deleted, ]
 
     def get_image(self, obj):
-        return mark_safe('<a href="{0}" target="_blank"><img src="{0}" width=100 /></a>'.format(obj.image_url))
+        if obj.image_url:
+            if 'twitpic' in obj.image_url:
+                url = 'http://twitpic.com/show/thumb/{}'.format(obj.image_url.split('/')[-1])
+            else:
+                url = obj.image_url
+
+            return mark_safe('<a href="{0}" target="_blank"><img src="{1}" width=100 /></a>'.format(obj.image_url, url))
+        else:
+            return "N/A"
 
     def get_handle(self, obj):
         return mark_safe('<a href="http://twitter.com/{0}" target="_blank">{0}</a>'.format(obj.handle.encode('utf-8')))

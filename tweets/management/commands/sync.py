@@ -32,17 +32,31 @@ class Command(BaseCommand):
             search = api.GetSearch(term=term.term)
 
             for tweet in search:
-                if len(tweet.media) == 1:
-                    obj = Tweet(
-                        created_at=date_parse(tweet.created_at),
-                        uid=tweet.id,
-                        handle=tweet.user.screen_name,
-                        country='GB',
-                        image_url=tweet.media[0]['media_url'],
-                        content=tweet.text,
-                    )
+                try:
+                    image_url = tweet.media[0]['media_url']
+
+                except IndexError:
                     try:
-                        obj.save()
-                        self.stdout.write("Added %s (%d)" % (obj.uid, obj.id))
-                    except IntegrityError:
-                        self.stdout.write("Tweet already exists %s" % obj.uid)
+                        expanded_url = tweet.urls[0].expanded_url
+
+                        if 'twitpic' in expanded_url:
+                            image_url = tweet.urls[0].expanded_url
+                        else:
+                            image_url = None
+
+                    except IndexError:
+                        image_url = None
+
+                obj = Tweet(
+                    created_at=date_parse(tweet.created_at),
+                    uid=tweet.id,
+                    handle=tweet.user.screen_name,
+                    account=None,
+                    image_url=image_url,
+                    content=tweet.text,
+                )
+                try:
+                    obj.save()
+                    self.stdout.write("Added %s (%d)" % (obj.uid, obj.id))
+                except IntegrityError:
+                    self.stdout.write("Tweet already exists %s" % obj.uid)
