@@ -7,7 +7,7 @@ class MarketAccount(models.Model):
     handle = models.CharField(max_length=100)
 
     def __unicode__(self):
-        return '{0} ({1})'.format(self.handle, self.pk)
+        return u'{0} ({1})'.format(self.handle, self.pk)
 
 
 class Message(models.Model):
@@ -21,7 +21,7 @@ class Message(models.Model):
     type = models.CharField(max_length=1, choices=MESSAGE_TYPES)
 
     def __unicode__(self):
-        return '{0} ({1}...)'.format(self.account, self.copy[:30])
+        return u'{0} ({1}...)'.format(self.account, self.copy[:30])
 
 
 class Tweet(models.Model):
@@ -42,7 +42,7 @@ class Tweet(models.Model):
     tweeted_by = models.ForeignKey(User, related_name='tweeter', blank=True, null=True)
 
     def __unicode__(self):
-        return '{0} - {1} ({2})'.format(self.handle, self.account, self.tweeted)
+        return u'{0} - {1} ({2})'.format(self.handle, self.account, self.tweeted)
 
     class Meta:
         # Tweets should be in ascending date order
@@ -58,4 +58,4 @@ class SearchTerm(models.Model):
     term = models.CharField(max_length=100)
 
     def __unicode__(self):
-        return '{0} ({1})'.format(self.term, self.active)
+        return u'{0} ({1})'.format(self.term, self.active)
