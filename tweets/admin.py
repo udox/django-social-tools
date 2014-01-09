@@ -47,7 +47,7 @@ class TweetAdmin(admin.ModelAdmin):
         if obj.photoshop:
             return mark_safe('<a href="{0}" target="_blank"><img src={0} width=100 /></a>'.format(obj.photoshop.url))
         else:
-            return mark_safe('<a class="btn btn-warning" ref="/admin/tweets/tweet/{}">Upload</a>'.format(obj.id))
+            return mark_safe('<a class="btn btn-warning" href="/admin/tweets/tweet/{}">Upload</a>'.format(obj.id))
 
     class Media:
         js = ('js/tweet_admin.js', )
