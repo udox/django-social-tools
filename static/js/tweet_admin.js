@@ -3,10 +3,10 @@
     $(document).ready(function() {
 
         function setSelectOptions(data) {
+            $('#tweet-msgs').html('<option></option>');
             for(var x=0; x<data.length; x++) {
                 var msg = data[x].copy;
                 var option = $('<option></option>').attr('value', msg).text(msg);
-                $('#tweet-msgs').html('<option></option>');
                 $('#tweet-msgs').append(option);
             }
         }
