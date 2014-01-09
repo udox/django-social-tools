@@ -15,6 +15,7 @@ class Tweet(models.Model):
     deleted = models.BooleanField(default=False)
     photoshop = models.ImageField(upload_to='uploads', blank=True, null=True)
     notes = models.TextField(blank=True, null=True)
+    notes.verbose_name = 'Internal Notes'
     country = CountryField()
 
     def __unicode__(self):

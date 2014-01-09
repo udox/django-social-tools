@@ -14,12 +14,11 @@ mark_approved.short_description = 'Mark selected tweets as approved'
 
 
 class TweetAdmin(admin.ModelAdmin):
-    list_display = ('created_at', 'get_handle', 'country', 'get_image', 'get_photoshop', 'content', 'approved',
-        'messages', 'tweeted', 'notes')
-    list_filter = ('country', 'approved', 'tweeted')
-    list_editable = ('approved', 'notes')
+    list_display = ('created_at', 'get_handle', 'country', 'get_image', 'get_photoshop', 'content', 'messages', 'tweeted', 'notes')
+    list_filter = ('country', 'tweeted')
+    list_editable = ('notes', )
     search_fields = ('handle', 'content',)
-    actions = [mark_deleted, mark_approved]
+    actions = [mark_deleted, ]
 
     def get_image(self, obj):
         return mark_safe('<a href="{0}" target="_blank"><img src="{0}" width=100 /></a>'.format(obj.image_url))

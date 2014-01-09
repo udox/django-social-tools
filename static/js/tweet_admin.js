@@ -20,6 +20,9 @@
             $(this).load('/send-tweet/?msg=' + msg + '&target=' + target);
         });
 
+        var textareaPlaceholder = 'Add an internal note (not public)';
+        $('#result_list .vLargeTextField').attr('placeholder', textareaPlaceholder);
+
     });
 
 })(django.jQuery);
