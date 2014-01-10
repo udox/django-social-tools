@@ -73,6 +73,12 @@ class TweetAdmin(admin.ModelAdmin):
             'all': ('css/adi051.css', )
         }
 
+    def get_actions(self, request):
+        actions = super(TweetAdmin, self).get_actions(request)
+        if 'delete_selected' in actions:
+            del actions['delete_selected']
+        return actions
+
 
 admin.site.register(Tweet, TweetAdmin)
 admin.site.register(SearchTerm)
