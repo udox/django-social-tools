@@ -14,6 +14,10 @@ def mark_approved(modeladmin, request, queryset):
 mark_approved.short_description = 'Mark selected tweets as approved'
 
 
+class MessageAdmin(admin.ModelAdmin):
+    list_display = ('account', 'type', 'copy')
+
+
 class TweetAdmin(admin.ModelAdmin):
     search_fields = ('handle', 'content',)
     list_display = ('created_at', 'get_handle', 'account', 'get_image', 'get_photoshop', 'content', 'messages', 'tweeted_by', 'artworker', 'notes')
@@ -82,5 +86,5 @@ class TweetAdmin(admin.ModelAdmin):
 
 admin.site.register(Tweet, TweetAdmin)
 admin.site.register(SearchTerm)
-admin.site.register(Message)
+admin.site.register(Message, MessageAdmin)
 admin.site.register(MarketAccount)
