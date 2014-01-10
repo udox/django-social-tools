@@ -26,17 +26,21 @@ class Message(models.Model):
 
 class Tweet(models.Model):
     created_at = models.DateTimeField()
+    created_at.verbose_name = 'Tweet Date'
     uid = models.CharField(max_length=100, unique=True)
     handle = models.CharField(max_length=100)
     content = models.CharField(max_length=150)
+    content.verbose_name = 'User\'s Tweet'
     image_url = models.URLField(max_length=255, blank=True, null=True)
     tweeted = models.BooleanField(default=False)
+    tweeted.verbose_name = 'Tweet status'
     approved = models.BooleanField(default=False)
     deleted = models.BooleanField(default=False)
     photoshop = models.ImageField(upload_to='uploads', blank=True, null=True)
     notes = models.TextField(blank=True, null=True)
     notes.verbose_name = 'Internal Notes'
     account = models.ForeignKey(MarketAccount, blank=True, null=True)
+    account.verbose_name = 'Adidas\' Handle'
     sent_tweet = models.CharField(max_length=140, blank=True, null=True)
     artworker = models.ForeignKey(User, related_name='artworker', blank=True, null=True)
     tweeted_by = models.ForeignKey(User, related_name='tweeter', blank=True, null=True)
