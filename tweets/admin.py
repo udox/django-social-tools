@@ -45,7 +45,10 @@ class TweetAdmin(admin.ModelAdmin):
     get_image.short_description = 'Original Image'
 
     def get_handle(self, obj):
-        return mark_safe('<a href="http://twitter.com/{0}" target="_blank">{0}</a>'.format(obj.handle.encode('utf-8')))
+        return mark_safe("""
+            <p><a href="http://twitter.com/{0}" target="_blank">{0}</a></p>
+            <p><em>({1} Followers)
+        """.format(obj.handle.encode('utf-8'), obj.followers))
     get_handle.short_description = 'User\'s Handle'
 
     def messages(self, obj):

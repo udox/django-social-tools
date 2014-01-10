@@ -29,6 +29,7 @@ class Tweet(models.Model):
     created_at.verbose_name = 'Tweet Date'
     uid = models.CharField(max_length=100, unique=True)
     handle = models.CharField(max_length=100)
+    followers = models.IntegerField(blank=True, null=True)
     content = models.CharField(max_length=150)
     content.verbose_name = 'User\'s Tweet'
     image_url = models.URLField(max_length=255, blank=True, null=True)
