@@ -1,0 +1,644 @@
+[
+{
+    "pk": 1,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_logentry",
+        "name": "Can add log entry",
+        "content_type": 1
+    }
+},
+{
+    "pk": 2,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_logentry",
+        "name": "Can change log entry",
+        "content_type": 1
+    }
+},
+{
+    "pk": 3,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_logentry",
+        "name": "Can delete log entry",
+        "content_type": 1
+    }
+},
+{
+    "pk": 4,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_permission",
+        "name": "Can add permission",
+        "content_type": 2
+    }
+},
+{
+    "pk": 5,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_permission",
+        "name": "Can change permission",
+        "content_type": 2
+    }
+},
+{
+    "pk": 6,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_permission",
+        "name": "Can delete permission",
+        "content_type": 2
+    }
+},
+{
+    "pk": 7,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_group",
+        "name": "Can add group",
+        "content_type": 3
+    }
+},
+{
+    "pk": 8,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_group",
+        "name": "Can change group",
+        "content_type": 3
+    }
+},
+{
+    "pk": 9,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_group",
+        "name": "Can delete group",
+        "content_type": 3
+    }
+},
+{
+    "pk": 10,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_user",
+        "name": "Can add user",
+        "content_type": 4
+    }
+},
+{
+    "pk": 11,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_user",
+        "name": "Can change user",
+        "content_type": 4
+    }
+},
+{
+    "pk": 12,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_user",
+        "name": "Can delete user",
+        "content_type": 4
+    }
+},
+{
+    "pk": 13,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_contenttype",
+        "name": "Can add content type",
+        "content_type": 5
+    }
+},
+{
+    "pk": 14,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_contenttype",
+        "name": "Can change content type",
+        "content_type": 5
+    }
+},
+{
+    "pk": 15,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_contenttype",
+        "name": "Can delete content type",
+        "content_type": 5
+    }
+},
+{
+    "pk": 16,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_session",
+        "name": "Can add session",
+        "content_type": 6
+    }
+},
+{
+    "pk": 17,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_session",
+        "name": "Can change session",
+        "content_type": 6
+    }
+},
+{
+    "pk": 18,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_session",
+        "name": "Can delete session",
+        "content_type": 6
+    }
+},
+{
+    "pk": 22,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_tweet",
+        "name": "Can add tweet",
+        "content_type": 8
+    }
+},
+{
+    "pk": 23,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_tweet",
+        "name": "Can change tweet",
+        "content_type": 8
+    }
+},
+{
+    "pk": 24,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_tweet",
+        "name": "Can delete tweet",
+        "content_type": 8
+    }
+},
+{
+    "pk": 25,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_searchterm",
+        "name": "Can add search term",
+        "content_type": 9
+    }
+},
+{
+    "pk": 26,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_searchterm",
+        "name": "Can change search term",
+        "content_type": 9
+    }
+},
+{
+    "pk": 27,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_searchterm",
+        "name": "Can delete search term",
+        "content_type": 9
+    }
+},
+{
+    "pk": 28,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_marketaccount",
+        "name": "Can add market account",
+        "content_type": 10
+    }
+},
+{
+    "pk": 29,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_marketaccount",
+        "name": "Can change market account",
+        "content_type": 10
+    }
+},
+{
+    "pk": 30,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_marketaccount",
+        "name": "Can delete market account",
+        "content_type": 10
+    }
+},
+{
+    "pk": 37,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_message",
+        "name": "Can add message",
+        "content_type": 13
+    }
+},
+{
+    "pk": 38,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_message",
+        "name": "Can change message",
+        "content_type": 13
+    }
+},
+{
+    "pk": 39,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_message",
+        "name": "Can delete message",
+        "content_type": 13
+    }
+},
+{
+    "pk": 1,
+    "model": "auth.group",
+    "fields": {
+        "name": "Artworker",
+        "permissions": [
+            22,
+            23
+        ]
+    }
+},
+{
+    "pk": 2,
+    "model": "auth.group",
+    "fields": {
+        "name": "Community Manager",
+        "permissions": [
+            10,
+            11,
+            12,
+            28,
+            29,
+            30,
+            37,
+            38,
+            39,
+            25,
+            26,
+            27,
+            22,
+            23,
+            24
+        ]
+    }
+},
+{
+    "pk": 2,
+    "model": "auth.user",
+    "fields": {
+        "username": "JaymzCampbell",
+        "first_name": "Jaymz",
+        "last_name": "Campbell",
+        "is_active": true,
+        "is_superuser": true,
+        "is_staff": true,
+        "last_login": "2014-01-13T03:13:02.372Z",
+        "groups": [],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$12000$r2Zz8C6tWSXU$2z2TdmRsWNPXYu0WYXiD1x43ic3o3vkuZtpsJ3z70Gw=",
+        "email": "james.campbell@u-dox.com",
+        "date_joined": "2014-01-02T11:34:06.035Z"
+    }
+},
+{
+    "pk": 5,
+    "model": "auth.user",
+    "fields": {
+        "username": "superuser",
+        "first_name": "",
+        "last_name": "",
+        "is_active": true,
+        "is_superuser": true,
+        "is_staff": true,
+        "last_login": "2014-01-13T00:25:56.432Z",
+        "groups": [],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$12000$cX7FJGtoGPh4$ML5bf1whhE4kbuzvnBdelX7BWb6jzhCYqCk2Hoi5zCE=",
+        "email": "",
+        "date_joined": "2014-01-09T14:54:25Z"
+    }
+},
+{
+    "pk": 6,
+    "model": "auth.user",
+    "fields": {
+        "username": "cm_au",
+        "first_name": "",
+        "last_name": "",
+        "is_active": true,
+        "is_superuser": false,
+        "is_staff": true,
+        "last_login": "2014-01-10T18:05:13Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$12000$IJVGSRQLstHG$eLKDC8+G3RKM1XFkhaBZA9AhOXqXfroTBJW6ailt0ro=",
+        "email": "",
+        "date_joined": "2014-01-10T18:05:13Z"
+    }
+},
+{
+    "pk": 7,
+    "model": "auth.user",
+    "fields": {
+        "username": "cm_jp",
+        "first_name": "",
+        "last_name": "",
+        "is_active": true,
+        "is_superuser": false,
+        "is_staff": true,
+        "last_login": "2014-01-10T18:05:39Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$12000$PFWAdmSCRTin$QU9CstucqTU9SXOSchR1OLtMLJ+tseOeqZKokV99V5I=",
+        "email": "",
+        "date_joined": "2014-01-10T18:05:39Z"
+    }
+},
+{
+    "pk": 8,
+    "model": "auth.user",
+    "fields": {
+        "username": "cm_fr",
+        "first_name": "",
+        "last_name": "",
+        "is_active": true,
+        "is_superuser": false,
+        "is_staff": true,
+        "last_login": "2014-01-10T18:05:52Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$12000$6R4K41Yi1d2X$UtG4rJqlIcgRVZYUATBa6dOUlaK6ZhNqr0FVKoW6eHk=",
+        "email": "",
+        "date_joined": "2014-01-10T18:05:52Z"
+    }
+},
+{
+    "pk": 9,
+    "model": "auth.user",
+    "fields": {
+        "username": "cm_us",
+        "first_name": "",
+        "last_name": "",
+        "is_active": true,
+        "is_superuser": false,
+        "is_staff": true,
+        "last_login": "2014-01-10T18:06:07Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$12000$aWx4fQnAYsRn$vAvja9bY8/s2rlZO3eSp1oZNo7PDW0WriMpnGSGvVlY=",
+        "email": "",
+        "date_joined": "2014-01-10T18:06:07Z"
+    }
+},
+{
+    "pk": 10,
+    "model": "auth.user",
+    "fields": {
+        "username": "cm_eu",
+        "first_name": "",
+        "last_name": "",
+        "is_active": true,
+        "is_superuser": false,
+        "is_staff": true,
+        "last_login": "2014-01-10T18:06:25Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$12000$9aErMROVctSj$8/h9af7HUp3bbNRZHOZ+bWUUX/5BeT8FhOLnKTNu8aQ=",
+        "email": "",
+        "date_joined": "2014-01-10T18:06:25Z"
+    }
+},
+{
+    "pk": 11,
+    "model": "auth.user",
+    "fields": {
+        "username": "cm_uk",
+        "first_name": "",
+        "last_name": "",
+        "is_active": true,
+        "is_superuser": false,
+        "is_staff": true,
+        "last_login": "2014-01-10T18:06:42Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$12000$MelhNaJ8lh54$hl2ar5enRSm06y4+9xa/huvA/0yfX5N2jk++KJE9wSw=",
+        "email": "",
+        "date_joined": "2014-01-10T18:06:42Z"
+    }
+},
+{
+    "pk": 12,
+    "model": "auth.user",
+    "fields": {
+        "username": "paul",
+        "first_name": "",
+        "last_name": "",
+        "is_active": true,
+        "is_superuser": false,
+        "is_staff": true,
+        "last_login": "2014-01-13T04:10:22Z",
+        "groups": [
+            1
+        ],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$12000$NWqa11Obvh7A$tP59KTWajC6SrbKjXZyrPmJTQvCJa2aT3wnkVvkn7qU=",
+        "email": "",
+        "date_joined": "2014-01-13T04:10:22Z"
+    }
+},
+{
+    "pk": 13,
+    "model": "auth.user",
+    "fields": {
+        "username": "thuy",
+        "first_name": "",
+        "last_name": "",
+        "is_active": true,
+        "is_superuser": false,
+        "is_staff": true,
+        "last_login": "2014-01-13T04:10:34Z",
+        "groups": [
+            1
+        ],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$12000$4Imx88U1wb1T$aqvqKUvZwCsSeAN/kITuYcRzxRx+DGt7N/glfZn0Uuc=",
+        "email": "",
+        "date_joined": "2014-01-13T04:10:34Z"
+    }
+},
+{
+    "pk": 14,
+    "model": "auth.user",
+    "fields": {
+        "username": "bletch",
+        "first_name": "",
+        "last_name": "",
+        "is_active": true,
+        "is_superuser": false,
+        "is_staff": true,
+        "last_login": "2014-01-13T04:10:46Z",
+        "groups": [
+            1
+        ],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$12000$0HHS0Ykdgjpt$Mi2wYINo/bPh/DMO0K948FI93x5Hl29dHRMeSzKMZ/U=",
+        "email": "",
+        "date_joined": "2014-01-13T04:10:46Z"
+    }
+},
+{
+    "pk": 15,
+    "model": "auth.user",
+    "fields": {
+        "username": "mark",
+        "first_name": "",
+        "last_name": "",
+        "is_active": true,
+        "is_superuser": false,
+        "is_staff": true,
+        "last_login": "2014-01-13T04:10:51Z",
+        "groups": [
+            1
+        ],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$12000$Lz1QFmKgCKVn$zMRNzeQmdnaoJ+IwJ/kXaGAbHDZflUxSzDP38xWh4lE=",
+        "email": "",
+        "date_joined": "2014-01-13T04:10:51Z"
+    }
+},
+{
+    "pk": 16,
+    "model": "auth.user",
+    "fields": {
+        "username": "freelancer",
+        "first_name": "",
+        "last_name": "",
+        "is_active": true,
+        "is_superuser": false,
+        "is_staff": true,
+        "last_login": "2014-01-13T04:11:07Z",
+        "groups": [
+            1
+        ],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$12000$KoswIHO7jVBV$C66xBRNANtzYW42m6AwGNZuZFH6B5fycrOBTfV+OOXQ=",
+        "email": "",
+        "date_joined": "2014-01-13T04:11:07Z"
+    }
+},
+{
+    "pk": 17,
+    "model": "auth.user",
+    "fields": {
+        "username": "thai_artworker_1",
+        "first_name": "",
+        "last_name": "",
+        "is_active": true,
+        "is_superuser": false,
+        "is_staff": true,
+        "last_login": "2014-01-13T04:11:31Z",
+        "groups": [
+            1
+        ],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$12000$eVHDNnUDJlZu$WEZC4klEvhpNqLA17jMsuuySbcosfTxacPWlX7QwqBo=",
+        "email": "",
+        "date_joined": "2014-01-13T04:11:31Z"
+    }
+},
+{
+    "pk": 18,
+    "model": "auth.user",
+    "fields": {
+        "username": "thai_artworker_2",
+        "first_name": "",
+        "last_name": "",
+        "is_active": true,
+        "is_superuser": false,
+        "is_staff": true,
+        "last_login": "2014-01-13T04:11:47Z",
+        "groups": [
+            1
+        ],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$12000$iyQcFJmdSDQc$bvFrbmR5j6u1BYQEfAFZKjyMpQSY+uLu5L2JlFHfPj4=",
+        "email": "",
+        "date_joined": "2014-01-13T04:11:47Z"
+    }
+},
+{
+    "pk": 19,
+    "model": "auth.user",
+    "fields": {
+        "username": "thai_artworker_3",
+        "first_name": "",
+        "last_name": "",
+        "is_active": true,
+        "is_superuser": false,
+        "is_staff": true,
+        "last_login": "2014-01-13T04:12:01Z",
+        "groups": [
+            1
+        ],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$12000$VM2bqNmcYZlt$qwSi7xqHwOk5jp1sw9kaHpo8IkAO6H1GrDl3h97coAY=",
+        "email": "",
+        "date_joined": "2014-01-13T04:12:01Z"
+    }
+},
+{
+    "pk": 20,
+    "model": "auth.user",
+    "fields": {
+        "username": "cm_udox",
+        "first_name": "",
+        "last_name": "",
+        "is_active": true,
+        "is_superuser": false,
+        "is_staff": true,
+        "last_login": "2014-01-13T04:13:36Z",
+        "groups": [
+            1,
+            2
+        ],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$12000$PvFAyCMhstOo$g/KRkV0fhXGvaWkJDeb29Ndz255fYJkQGV57V4x5Cko=",
+        "email": "",
+        "date_joined": "2014-01-13T04:13:36Z"
+    }
+}
+]
