@@ -47,7 +47,7 @@
             $(this).parentsUntil('#modal').find('#tweet-log').load('/send-tweet/?msg=' + escape(msg) + '&tweet_pk=' + tweet_pk);
         });
 
-        var textareaPlaceholder = 'Add an internal note (not public)';
+        var textareaPlaceholder = 'Add an internal note (not public). Remember to click save!';
         $('#result_list .vLargeTextField').attr('placeholder', textareaPlaceholder);
 
     });

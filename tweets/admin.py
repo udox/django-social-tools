@@ -71,6 +71,10 @@ class TweetAdmin(admin.ModelAdmin):
             return mark_safe('<a class="btn btn-warning" href="/tweets/tweet/{}">Upload</a>'.format(obj.id))
     get_photoshop.short_description = 'Tongue Graphic'
 
+    def save_model(self, request, obj, form, change):
+        obj.artworker = request.user
+        obj.save()
+
     class Media:
         js = ('js/tweet_admin.js', )
         css = {
