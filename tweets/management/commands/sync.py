@@ -75,7 +75,7 @@ class Command(BaseCommand):
             self.stdout.write("\nImporting %s tweets" % term.term)
 
             api = self.get_api()
-            search = api.GetSearch(term=term.term, result_type='recent', count=30)
+            search = api.GetSearch(term=term.term, result_type='recent', count=100)
 
             for tweet in search:
 
