@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'rest_framework',
     'tweets',
+    'south',
 )
 
 MIDDLEWARE_CLASSES = (
