@@ -1,0 +1,1438 @@
+[
+{
+    "pk": 1, 
+    "model": "tweets.marketaccount", 
+    "fields": {
+        "consumer_secret": "XEux8kVO0rvj0ls9G6UFIWi4sOSUUrcsP7diPFp4j4", 
+        "consumer_key": "ajbhRNCENw0vw99karnJw", 
+        "access_token_key": "35706371-jG2fupPlVKy0EBmSnvdieZhyQqxcBRw33Iy2BbY6C", 
+        "handle": "adidasUK", 
+        "access_token_secret": "SIDJprJmweZybiox7roLXUshvZHGb50v1aIm4Yg3xpUYG"
+    }
+},
+{
+    "pk": 2, 
+    "model": "tweets.marketaccount", 
+    "fields": {
+        "consumer_secret": "tfdynck1lmGtyVcaxDJYVUYgpwuHMcKpSXwEfgmnNvw", 
+        "consumer_key": "6lQcnN06M0MfmOXVU8bWA", 
+        "access_token_key": "25487201-7wCrukz5xgdfXrofPc5fbcJhVeIdrkylydigsGAeI", 
+        "handle": "adidasFR", 
+        "access_token_secret": "CeCnn7CGaEAEwig2SedHkOarLUKFxngaqPaxJZQqUxmij"
+    }
+},
+{
+    "pk": 3, 
+    "model": "tweets.marketaccount", 
+    "fields": {
+        "consumer_secret": "M9IauRgZKlarE8EqoEY3Hc6BDL8alJiH3RcdSM285FI", 
+        "consumer_key": "W9hkZn7L2r2m0hrkhql20w", 
+        "access_token_key": "176643191-V4qZDI6BuQ3u1nEvybJEtvOqJBbOWsPLRHGs5o14", 
+        "handle": "adioriginals_jp", 
+        "access_token_secret": "uwK9DAOQuwTkTedBWL5khABkGppZ18BgnrGJvdFrVh3Ul"
+    }
+},
+{
+    "pk": 4, 
+    "model": "tweets.marketaccount", 
+    "fields": {
+        "consumer_secret": "TBC", 
+        "consumer_key": "TBC", 
+        "access_token_key": "TBC", 
+        "handle": "adidasAU", 
+        "access_token_secret": "TBC"
+    }
+},
+{
+    "pk": 5, 
+    "model": "tweets.marketaccount", 
+    "fields": {
+        "consumer_secret": "YeSCnrJj6FrE7evKwigB7UcSXrQWuLksAEybzWh3b0", 
+        "consumer_key": "aU3ffnbMUAARAKWgDZ7plw", 
+        "access_token_key": "20348431-zlMJCTcmYucdRe8O3pXtk1re32PbPdZDpjLsHVfUU", 
+        "handle": "adidasoriginals", 
+        "access_token_secret": "7gd8TcWP2LUI6WvfeEf9YNiiL6he3c1JylaJzh9qoxg36"
+    }
+},
+{
+    "pk": 1, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "That's not quite up to the #StanSmith standards! Send a clearer pic and we'll try again\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 2, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "We REALLY wanna Stan you but that's not quite clear enough, send us another shot! #StanSmith\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 3, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "That one's a little too dark, can you try another shot and we'll stan you #StanSmith\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 4, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "If you want to Stan yourself we need a clearer image! Can you send another shot? #StanSmith\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 5, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "Nice shot, but can you send one that's BIGGER?  We need you in full glory on the #StanSmith\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 6, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "If you wanna join the Stan fam we need a bigger shot \u2013 can you send another? #StanSmith\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 7, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "Only the cleanest shots can get the #StanSmith treatment \u2013 can you send another pic?\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 8, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "Nice try\u2026 but only true class graces the #StanSmith. Try another shot\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 9, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "You already know we can't use that. Send us another and we'll reconsider Stan-ing you\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 10, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "The #StanSmith is a classic \u2013 that shot is not. Send another shot and we'll re-consider\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 11, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "OH NO, WE CAN'T EVEN! Send us another shot and we'll reconsider\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 12, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "That's kinda scaring us. Try another shot plz\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 13, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "Shame we can't unsee that. Anyway, try another shot and we might reconsider\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 14, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "That's not quite up to the #StanSmith standards! Send a clearer pic and we'll try again\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 15, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "We REALLY wanna Stan you but that's not quite clear enough, send us another shot! #StanSmith\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 16, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "That one's a little too dark, can you try another shot and we'll stan you #StanSmith\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 17, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "If you want to Stan yourself we need a clearer image! Can you send another shot? #StanSmith\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 18, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "Nice shot, but can you send one that's BIGGER?  We need you in full glory on the #StanSmith\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 19, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "If you wanna join the Stan fam we need a bigger shot \u2013 can you send another? #StanSmith\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 20, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "Only the cleanest shots can get the #StanSmith treatment \u2013 can you send another pic?\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 21, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "Nice try\u2026 but only true class graces the #StanSmith. Try another shot\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 22, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "You already know we can't use that. Send us another and we'll reconsider Stan-ing you\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 23, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "The #StanSmith is a classic \u2013 that shot is not. Send another shot and we'll re-consider\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 24, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "OH NO, WE CAN'T EVEN! Send us another shot and we'll reconsider\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 25, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "That's kinda scaring us. Try another shot plz\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 26, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "Shame we can't unsee that. Anyway, try another shot and we might reconsider\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 27, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "That's not quite up to the #StanSmith standards! Send a clearer pic and we'll try again\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 28, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "We REALLY wanna Stan you but that's not quite clear enough, send us another shot! #StanSmith\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 29, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "That one's a little too dark, can you try another shot and we'll stan you #StanSmith\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 30, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "If you want to Stan yourself we need a clearer image! Can you send another shot? #StanSmith\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 31, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "Nice shot, but can you send one that's BIGGER?  We need you in full glory on the #StanSmith\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 32, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "If you wanna join the Stan fam we need a bigger shot \u2013 can you send another? #StanSmith\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 33, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "Only the cleanest shots can get the #StanSmith treatment \u2013 can you send another pic?\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 34, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "Nice try\u2026 but only true class graces the #StanSmith. Try another shot\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 35, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "You already know we can't use that. Send us another and we'll reconsider Stan-ing you\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 36, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "The #StanSmith is a classic \u2013 that shot is not. Send another shot and we'll re-consider\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 37, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "OH NO, WE CAN'T EVEN! Send us another shot and we'll reconsider\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 38, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "That's kinda scaring us. Try another shot plz\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 39, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "Shame we can't unsee that. Anyway, try another shot and we might reconsider\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 40, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "That's not quite up to the #StanSmith standards! Send a clearer pic and we'll try again\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 41, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "We REALLY wanna Stan you but that's not quite clear enough, send us another shot! #StanSmith\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 42, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "That one's a little too dark, can you try another shot and we'll stan you #StanSmith\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 43, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "If you want to Stan yourself we need a clearer image! Can you send another shot? #StanSmith\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 44, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "Nice shot, but can you send one that's BIGGER?  We need you in full glory on the #StanSmith\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 45, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "If you wanna join the Stan fam we need a bigger shot \u2013 can you send another? #StanSmith\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 46, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "Only the cleanest shots can get the #StanSmith treatment \u2013 can you send another pic?\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 47, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "Nice try\u2026 but only true class graces the #StanSmith. Try another shot\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 48, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "You already know we can't use that. Send us another and we'll reconsider Stan-ing you\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 49, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "The #StanSmith is a classic \u2013 that shot is not. Send another shot and we'll re-consider\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 50, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "OH NO, WE CAN'T EVEN! Send us another shot and we'll reconsider\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 51, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "That's kinda scaring us. Try another shot plz\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 52, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "Shame we can't unsee that. Anyway, try another shot and we might reconsider\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 53, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "That's not quite up to the #StanSmith standards! Send a clearer pic and we'll try again\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 54, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "We REALLY wanna Stan you but that's not quite clear enough, send us another shot! #StanSmith\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 55, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "That one's a little too dark, can you try another shot and we'll stan you #StanSmith\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 56, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "If you want to Stan yourself we need a clearer image! Can you send another shot? #StanSmith\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 57, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "Nice shot, but can you send one that's BIGGER?  We need you in full glory on the #StanSmith\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 58, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "If you wanna join the Stan fam we need a bigger shot \u2013 can you send another? #StanSmith\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 59, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "Only the cleanest shots can get the #StanSmith treatment \u2013 can you send another pic?\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 60, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "Nice try\u2026 but only true class graces the #StanSmith. Try another shot\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 61, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "You already know we can't use that. Send us another and we'll reconsider Stan-ing you\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 62, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "The #StanSmith is a classic \u2013 that shot is not. Send another shot and we'll re-consider\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 63, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "OH NO, WE CAN'T EVEN! Send us another shot and we'll reconsider\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 64, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "That's kinda scaring us. Try another shot plz\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 65, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "Shame we can't unsee that. Anyway, try another shot and we might reconsider\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 66, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "That's not quite up to the #StanSmith standards! Send a clearer pic and we'll try again\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 67, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "We REALLY wanna Stan you but that's not quite clear enough, send us another shot! #StanSmith\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 68, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "That one's a little too dark, can you try another shot and we'll stan you #StanSmith\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 69, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "If you want to Stan yourself we need a clearer image! Can you send another shot? #StanSmith\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 70, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "Nice shot, but can you send one that's BIGGER?  We need you in full glory on the #StanSmith\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 71, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "If you wanna join the Stan fam we need a bigger shot \u2013 can you send another? #StanSmith\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 72, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "Only the cleanest shots can get the #StanSmith treatment \u2013 can you send another pic?\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 73, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "Nice try\u2026 but only true class graces the #StanSmith. Try another shot\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 74, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "You already know we can't use that. Send us another and we'll reconsider Stan-ing you\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 75, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "The #StanSmith is a classic \u2013 that shot is not. Send another shot and we'll re-consider\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 76, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "OH NO, WE CAN'T EVEN! Send us another shot and we'll reconsider\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 77, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "That's kinda scaring us. Try another shot plz\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 78, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "Shame we can't unsee that. Anyway, try another shot and we might reconsider\n", 
+        "type": "f"
+    }
+},
+{
+    "pk": 79, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "The #StanSmith, endorsed by INSERT TWITTER HANDLE\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 80, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "The #StanSmith, endorsed by YOU!\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 81, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "INSERT TWITTER HANDLE is now part of the #adidasOriginals & #StanSmith family\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 82, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "Served straight up \u2013 your #StanSmith endorsement\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 83, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "Game, set and match, your #StanSmith is served\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 84, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "Clean, green and mean! Your #StanSmith endorsement is ready\u2026\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 85, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "Now you're part of the fam! You're #StanSmith endorsement is prepared\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 86, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "You've been Stan-ed - #StanSmith\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 87, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "Did somebody see an icon just walk through the door? #StanSmith\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 88, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "You are officially #StanSmith endorsed!\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 89, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "Your face is now a digital classic - welcome to the #StanSmith family\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 90, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "You just became part of #adidasOriginals heritage \u2013 your very own #StanSmith endorsement\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 91, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "Yet another addition to the #StanSmith family!\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 92, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "You just made history \u2013 welcome to the #StanSmith fam\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 93, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "BOOM - #StanSmith\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 94, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "#StanSmith - In your face\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 95, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "Repping #StanSmith in the next level\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 96, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "WHO NOW? You now. INSERT TWITTER HANDLE with that #StanSmith tint\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 97, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "Filters are so last year \u2013 Stanning yourself's for 2014 #StanSmith\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 98, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "Coming correct! #StanSmith\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 99, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "SMASHED IT - #StanSmith\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 100, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "Someone just became a little more timeless #StanSmith\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 101, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "Presenting your next profile picture (here's hoping)! #StanSmith\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 102, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 1, 
+        "copy": "Now wouldn't this make a good profile pic (NUDGE NUDGE) #StanSmith\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 103, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "The #StanSmith, endorsed by INSERT TWITTER HANDLE\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 104, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "The #StanSmith, endorsed by YOU!\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 105, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "INSERT TWITTER HANDLE is now part of the #adidasOriginals & #StanSmith family\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 106, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "Served straight up \u2013 your #StanSmith endorsement\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 107, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "Game, set and match, your #StanSmith is served\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 108, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "Clean, green and mean! Your #StanSmith endorsement is ready\u2026\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 109, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "Now you're part of the fam! You're #StanSmith endorsement is prepared\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 110, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "You've been Stan-ed - #StanSmith\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 111, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "Did somebody see an icon just walk through the door? #StanSmith\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 112, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "You are officially #StanSmith endorsed!\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 113, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "Your face is now a digital classic - welcome to the #StanSmith family\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 114, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "You just became part of #adidasOriginals heritage \u2013 your very own #StanSmith endorsement\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 115, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "Yet another addition to the #StanSmith family!\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 116, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "You just made history \u2013 welcome to the #StanSmith fam\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 117, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "BOOM - #StanSmith\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 118, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "#StanSmith - In your face\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 119, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "Repping #StanSmith in the next level\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 120, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "WHO NOW? You now. INSERT TWITTER HANDLE with that #StanSmith tint\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 121, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "Filters are so last year \u2013 Stanning yourself's for 2014 #StanSmith\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 122, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "Coming correct! #StanSmith\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 123, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "SMASHED IT - #StanSmith\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 124, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "Someone just became a little more timeless #StanSmith\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 125, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "Presenting your next profile picture (here's hoping)! #StanSmith\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 126, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 2, 
+        "copy": "Now wouldn't this make a good profile pic (NUDGE NUDGE) #StanSmith\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 127, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "The #StanSmith, endorsed by INSERT TWITTER HANDLE\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 128, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "The #StanSmith, endorsed by YOU!\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 129, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "INSERT TWITTER HANDLE is now part of the #adidasOriginals & #StanSmith family\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 130, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "Served straight up \u2013 your #StanSmith endorsement\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 131, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "Game, set and match, your #StanSmith is served\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 132, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "Clean, green and mean! Your #StanSmith endorsement is ready\u2026\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 133, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "Now you're part of the fam! You're #StanSmith endorsement is prepared\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 134, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "You've been Stan-ed - #StanSmith\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 135, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "Did somebody see an icon just walk through the door? #StanSmith\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 136, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "You are officially #StanSmith endorsed!\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 137, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "Your face is now a digital classic - welcome to the #StanSmith family\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 138, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "You just became part of #adidasOriginals heritage \u2013 your very own #StanSmith endorsement\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 139, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "Yet another addition to the #StanSmith family!\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 140, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "You just made history \u2013 welcome to the #StanSmith fam\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 141, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "BOOM - #StanSmith\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 142, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "#StanSmith - In your face\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 143, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "Repping #StanSmith in the next level\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 144, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "WHO NOW? You now. INSERT TWITTER HANDLE with that #StanSmith tint\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 145, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "Filters are so last year \u2013 Stanning yourself's for 2014 #StanSmith\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 146, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "Coming correct! #StanSmith\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 147, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "SMASHED IT - #StanSmith\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 148, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "Someone just became a little more timeless #StanSmith\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 149, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "Presenting your next profile picture (here's hoping)! #StanSmith\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 150, 
+    "model": "tweets.message", 
+    "fields": {
+        "account": 5, 
+        "copy": "Now wouldn't this make a good profile pic (NUDGE NUDGE) #StanSmith\n", 
+        "type": "s"
+    }
+},
+{
+    "pk": 1, 
+    "model": "tweets.tweet", 
+    "fields": {
+        "artworker": 2, 
+        "photoshop": "uploads/stan.jpg", 
+        "account": 2, 
+        "handle": "jaymzcampbell", 
+        "uid": "422566842750615555", 
+        "deleted": false, 
+        "created_at": "2014-01-13T03:12:40Z", 
+        "tweeted_by": 2, 
+        "content": "#adidasoriginals #consortium #stansmith adidas Originals Coming Soon! http://t.co/nwHJgjuPpB", 
+        "tweet_id": "422584114282528768", 
+        "followers": 166, 
+        "notes": "", 
+        "image_url": "", 
+        "sent_tweet": "@jaymzcampbell The #StanSmith, endorsed by YOU!\n", 
+        "tweeted": true, 
+        "approved": false, 
+        "tweeted_at": "2014-01-13T04:23:18.392Z"
+    }
+},
+{
+    "pk": 1, 
+    "model": "tweets.searchterm", 
+    "fields": {
+        "active": true, 
+        "term": "#stansmith"
+    }
+}
+]

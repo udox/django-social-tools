@@ -10,6 +10,8 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import socket
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -77,16 +79,29 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE':'django.db.backends.postgresql_psycopg2',
-        'NAME': 'adi051',
-        'USER': 'jaymz',
-        'PASSWORD': '',
-        'HOST': '/var/run/postgresql',
-        'PORT': '5432',
+if socket.gethostname() == 'koopa':
+    DATABASES = {
+        'default': {
+            'ENGINE':'django.db.backends.postgresql_psycopg2',
+            'NAME': 'adi051',
+            'USER': 'jaymz',
+            'PASSWORD': '',
+            'HOST': '/var/run/postgresql',
+            'PORT': '5432',
+        }
     }
-}
+
+else:
+    DATABASES = {
+        'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
+        }
+    }
 
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/
