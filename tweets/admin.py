@@ -49,7 +49,7 @@ class TweetAdmin(BaseAdmin):
         }),
         ('Tweet data', {
             'classes': ('collapse', ),
-            'fields': ('created_at', 'handle', 'account', 'content', 'image_url', 'uid', 'first_entry')
+            'fields': ('created_at', 'handle', 'account', 'content', 'image_url', 'uid', 'entry_allowed')
         }),
         ('Sent data', {
             'classes': ('collapse', ),
