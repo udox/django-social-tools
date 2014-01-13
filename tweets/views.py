@@ -1,4 +1,5 @@
 import twitter
+from datetime import datetime
 from django.views.generic import TemplateView
 from rest_framework import viewsets
 from models import Message, MarketAccount, Tweet
@@ -32,8 +33,9 @@ class TweetUserView(TemplateView):
             # Update the tweet itself now
             tweet.tweeted = True
             tweet.tweet_id = status.id
-            tweet.send_tweet = msg
+            tweet.sent_tweet = msg
             tweet.tweeted_by = self.request.user
+            tweet.tweeted_at = datetime.now()
             tweet.save()
 
         except twitter.TwitterError:

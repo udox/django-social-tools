@@ -34,6 +34,10 @@ class TweetAdmin(admin.ModelAdmin):
             'classes': ('collapse', ),
             'fields': ('created_at', 'handle', 'account', 'content', 'image_url', 'notes', )
         }),
+        ('Sent data', {
+            'classes': ('collapse', ),
+            'fields': ('artworker', 'tweeted_by', 'tweeted_at', 'tweet_id', 'sent_tweet', )
+        }),
     )
 
     def get_image(self, obj):

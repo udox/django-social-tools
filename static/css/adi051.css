@@ -41,3 +41,7 @@ a {
     width: 1170px;
     margin: 0 auto;
 }
+
+#content-main {
+    margin-top: 30px;
+}

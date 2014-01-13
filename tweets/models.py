@@ -45,6 +45,7 @@ class Tweet(models.Model):
     sent_tweet = models.CharField(max_length=140, blank=True, null=True)
     artworker = models.ForeignKey(User, related_name='artworker', blank=True, null=True)
     tweeted_by = models.ForeignKey(User, related_name='tweeter', blank=True, null=True)
+    tweeted_at = models.DateTimeField(blank=True, null=True)
     tweet_id = models.CharField(max_length=100, blank=True, null=True)
 
     def __unicode__(self):
