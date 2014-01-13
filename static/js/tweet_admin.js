@@ -36,7 +36,7 @@
             // reset modal form
             $('#tweet-msg').val('');
             $('#tweet-log').html('');
-            $('.modal-tweet').val('Send');
+            $('.modal-tweet').val('Send').show();
 
             // TODO: you should be ashamed! pass as obj instead and undupe this!
             if($(this).data('msgtype') == 'tryagain') {
@@ -57,6 +57,8 @@
 
         $('.modal-tweet').on('click', function(e) {
             var msg = $('#tweet-msg').val();
+            $(this).fadeOut();
+            $(this).prev('a').text('Close');
             $(this).parentsUntil('#modal').find('#tweet-log').load('/send-tweet/?msg=' + escape(msg) + '&tweet_pk=' + tweet_pk);
         });
 
