@@ -30,15 +30,15 @@ class Message(models.Model):
 
 class Tweet(models.Model):
     created_at = models.DateTimeField()
-    created_at.verbose_name = 'Tweet Date'
+    created_at.verbose_name = 'tweet date'
     uid = models.CharField(max_length=100, unique=True)
     handle = models.CharField(max_length=100)
     followers = models.IntegerField(blank=True, null=True)
     content = models.CharField(max_length=150)
-    content.verbose_name = 'User\'s Tweet'
+    content.verbose_name = 'user\'s tweet'
     image_url = models.URLField(max_length=255, blank=True, null=True)
     tweeted = models.BooleanField(default=False)
-    tweeted.verbose_name = 'Tweet status'
+    tweeted.verbose_name = 'tweet status'
     approved = models.BooleanField(default=False)
     high_priority = models.BooleanField(default=False)
     deleted = models.BooleanField(default=False)
@@ -47,9 +47,9 @@ class Tweet(models.Model):
     auto_compose = models.ImageField(upload_to='uploads', blank=True, null=True)
     auto_base = models.ImageField(upload_to='uploads', blank=True, null=True)
     notes = models.TextField(blank=True, null=True)
-    notes.verbose_name = 'Internal Notes'
+    notes.verbose_name = 'internal notes'
     account = models.ForeignKey(MarketAccount, blank=True, null=True)
-    account.verbose_name = 'Adidas\' Handle'
+    account.verbose_name = 'adidas\' handle'
     sent_tweet = models.CharField(max_length=140, blank=True, null=True)
     artworker = models.ForeignKey(User, related_name='artworker', blank=True, null=True)
     tweeted_by = models.ForeignKey(User, related_name='tweeter', blank=True, null=True)

@@ -3,7 +3,7 @@ from django.db.models import Q
 
 
 class TwitterImageFilter(SimpleListFilter):
-    title = 'Image source'
+    title = 'image source'
     parameter_name = 'image_url'
 
     def lookups(self, request, model_admin):
@@ -31,7 +31,7 @@ class TwitterImageFilter(SimpleListFilter):
 
 
 class TweetStatusFilter(SimpleListFilter):
-    title = 'Tweet status'
+    title = 'tweet status'
     parameter_name = 'tweeted'
 
     def lookups(self, request, model_admin):
@@ -51,7 +51,7 @@ class TweetStatusFilter(SimpleListFilter):
 
 
 class TongueGraphicFilter(SimpleListFilter):
-    title = 'Has Tongue graphic'
+    title = 'has tongue graphic'
     parameter_name = 'photoshop'
 
     def lookups(self, request, model_admin):
