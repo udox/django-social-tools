@@ -26,9 +26,10 @@ class TweetUserView(TemplateView):
             # otherwise we post a regular Update instead - that is we're
             # not going by the message content!
             if tweet.photoshop:
-                status = api.PostMedia('{!s}'.format(msg), tweet.photoshop.file.name)
+                status = api.PostMedia('{!s}'.format(msg), tweet.photoshop.file.name,
+                    in_reply_to_status_id=tweet.uid)
             else:
-                status = api.PostUpdate('{!s}'.format(msg))
+                status = api.PostUpdate('{!s}'.format(msg), in_reply_to_status_id=tweet.uid)
 
             # Update the tweet itself now
             tweet.tweeted = True
