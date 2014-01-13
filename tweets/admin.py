@@ -89,8 +89,8 @@ class TweetAdmin(BaseAdmin):
         if obj.photoshop:
             if obj.tweet_id:
                 # Open up the actual tweet if it's been sent
-                return mark_safe('<a href="http://twitter.com/{0}/status/{1}" target="_blank"><img src={1} width=100 /></a>'.\
-                    format(obj.account.handle, obj.photoshop.url))
+                return mark_safe('<a href="http://twitter.com/{0}/status/{2}" target="_blank"><img src={1} width=100 /></a>'.\
+                    format(obj.account.handle, obj.photoshop.url, obj.tweet_id))
             else:
                 # Otherwise direct to the local image
                 return mark_safe('<a href="{0}" target="_blank"><img src={0} width=100 /></a>'.format(obj.photoshop.url))
