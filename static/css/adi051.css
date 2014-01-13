@@ -62,3 +62,9 @@ a {
     color: #444;
     margin-right: 20px;
 }
+
+.autoshop img {
+    width: 80px;
+    margin-bottom: 5px;
+    float: left;
+}

@@ -70,16 +70,26 @@ class Command(BaseCommand):
     def autographic(self, tweet):
         """
             Generate an automatic version using imagemagick that may be suitable
-            to ease artworker load
+            to ease artworker load. Also create a blank base with the handle and
+            a fully composed one which may be tweeted back.
         """
         url = tweet.image_url
         tmp_file = os.path.join('/tmp', os.path.basename(url))
         with open(tmp_file, 'wb') as img:
             img.write(requests.get(url).content)
 
-        stan_process = subprocess.Popen(['tweets/scripts/stanify.sh', tmp_file], stdout=subprocess.PIPE)
+        stan_process = subprocess.Popen(['tweets/scripts/stanify.sh', tmp_file, tweet.handle], stdout=subprocess.PIPE)
         out, err = stan_process.communicate()
-        tweet.auto_photoshop.save(os.path.basename(out.strip()), File(open(out.strip())))
+
+        output = out.strip()
+
+        auto_file = os.path.join('/tmp/', 'stan.%s' % output)
+        composed_file = os.path.join('/tmp/', 'composed.stan.%s' % output)
+        base_file = os.path.join('/tmp/', 'base.stan.%s' % output)
+
+        tweet.auto_photoshop.save(os.path.basename(auto_file), File(open(auto_file)))
+        tweet.auto_compose.save(os.path.basename(composed_file), File(open(composed_file)))
+        tweet.auto_base.save(os.path.basename(base_file), File(open(base_file)))
 
         return
 

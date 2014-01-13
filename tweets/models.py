@@ -43,6 +43,8 @@ class Tweet(models.Model):
     deleted = models.BooleanField(default=False)
     photoshop = models.ImageField(upload_to='uploads', blank=True, null=True)
     auto_photoshop = models.ImageField(upload_to='uploads', blank=True, null=True)
+    auto_compose = models.ImageField(upload_to='uploads', blank=True, null=True)
+    auto_base = models.ImageField(upload_to='uploads', blank=True, null=True)
     notes = models.TextField(blank=True, null=True)
     notes.verbose_name = 'Internal Notes'
     account = models.ForeignKey(MarketAccount, blank=True, null=True)

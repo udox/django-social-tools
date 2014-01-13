@@ -42,7 +42,7 @@ class TweetAdmin(BaseAdmin):
         }),
         ('View/change autophotoshop', {
             'classes': ('collapse', ),
-            'fields': ('auto_photoshop', ),
+            'fields': ('auto_photoshop', 'auto_base', 'auto_compose'),
         }),
         ('Tweet data', {
             'classes': ('collapse', ),
@@ -91,7 +91,11 @@ class TweetAdmin(BaseAdmin):
 
     def get_autophotoshop(self, obj):
         if obj.auto_photoshop:
-            return mark_safe('<a href="{0}" target="_blank"><img src={0} width=100 /></a>'.format(obj.auto_photoshop.url))
+            return mark_safe("""
+                <a class="autoshop" href="{0}" target="_blank"><img src={0} /></a><br>
+                <a class="autoshop" href="{1}" target="_blank"><img src={1} /></a><br>
+                <a class="autoshop" href="{2}" target="_blank"><img src={2} /></a><br>
+            """.format(obj.auto_photoshop.url, obj.auto_compose.url, obj.auto_base.url))
         else:
             return mark_safe('N/A')
     get_autophotoshop.short_description = 'Automatic Graphic'
