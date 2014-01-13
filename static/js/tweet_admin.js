@@ -28,7 +28,7 @@
 
             // This is a bit horrible but will grab the account text so we can get
             //the particular id for this to filter messages against
-            var account = $(this).parent().parent().parent().prev().prev().prev().prev().text();
+            var account = $(this).parent().parent().parent().prev().prev().prev().prev().prev().text();
             var account_id = account.match(/\((\d+)\)/)[1];
             tweet_pk = $(this).closest('td').prevAll(':last').find('.action-select').val();
             handle = $(this).closest('td').prevAll(':eq(4)').find('a').text();
