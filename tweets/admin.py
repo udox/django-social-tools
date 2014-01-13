@@ -99,7 +99,7 @@ class TweetAdmin(BaseAdmin):
             base = '<a class="autoshop" href="{0}" target="_blank"><img src={0} /></a><br>'.format(obj.auto_base.url)
 
         if obj.auto_compose:
-            composed = '<a class="autoshop" href="{0}" target="_blank"><img src={0} /></a><br>'.format(obj.auto_photoshop.url)
+            composed = '<a class="autoshop" href="{0}" target="_blank"><img src={0} /></a><br>'.format(obj.auto_compose.url)
 
         return mark_safe("%s<br>%s<br>%s<br>" % (auto, base, composed))
 
