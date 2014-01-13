@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 from models import Tweet, SearchTerm, Message, MarketAccount
-from filters import TwitterImageFilter, TweetStatusFilter
+from filters import TwitterImageFilter, TweetStatusFilter, TongueGraphicFilter
 
 # Register your models here.
 
@@ -30,7 +30,7 @@ class MessageAdmin(BaseAdmin):
 class TweetAdmin(BaseAdmin):
     search_fields = ('handle', 'content',)
     list_display = ('created_at', 'get_handle', 'account', 'get_image', 'get_photoshop', 'content', 'messages', 'tweeted_by', 'artworker', 'notes')
-    list_filter = ('account', TweetStatusFilter, TwitterImageFilter)
+    list_filter = ('account', TweetStatusFilter, TwitterImageFilter, TongueGraphicFilter)
     list_editable = ('notes', )
 
     actions = [mark_deleted, ]

@@ -48,3 +48,23 @@ class TweetStatusFilter(SimpleListFilter):
             return queryset.filter(tweeted=False)
 
         return queryset
+
+
+class TongueGraphicFilter(SimpleListFilter):
+    title = 'Has Tongue graphic'
+    parameter_name = 'photoshop'
+
+    def lookups(self, request, model_admin):
+        return (
+            ('yes', 'Yes'),
+            ('no', 'No'),
+        )
+
+    def queryset(self, request, queryset):
+        if self.value() == 'yes':
+            return queryset.exclude(photoshop='')
+
+        if self.value() == 'no':
+            return queryset.filter(photoshop='')
+
+        return queryset
