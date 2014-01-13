@@ -40,6 +40,7 @@ class Tweet(models.Model):
     tweeted = models.BooleanField(default=False)
     tweeted.verbose_name = 'Tweet status'
     approved = models.BooleanField(default=False)
+    high_priority = models.BooleanField(default=False)
     deleted = models.BooleanField(default=False)
     photoshop = models.ImageField(upload_to='uploads', blank=True, null=True)
     auto_photoshop = models.ImageField(upload_to='uploads', blank=True, null=True)
@@ -60,7 +61,7 @@ class Tweet(models.Model):
 
     class Meta:
         # Tweets should be in ascending date order
-        ordering = ('-created_at', '-followers', 'handle')
+        ordering = ('high_priority', '-created_at', '-followers', 'handle')
 
     # Exclude all deleted tweets - we keep them in so they aren't reimported
     # or added elsewhere
