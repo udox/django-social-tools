@@ -42,6 +42,7 @@ class Tweet(models.Model):
     approved = models.BooleanField(default=False)
     high_priority = models.BooleanField(default=False)
     deleted = models.BooleanField(default=False)
+    first_entry = models.BooleanField(default=True)
     photoshop = models.ImageField(upload_to='uploads', blank=True, null=True)
     auto_photoshop = models.ImageField(upload_to='uploads', blank=True, null=True)
     auto_compose = models.ImageField(upload_to='uploads', blank=True, null=True)

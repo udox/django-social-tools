@@ -93,6 +93,12 @@ class Command(BaseCommand):
 
         return
 
+    def first_entry(self, tweet):
+        """
+            Check if this user has already entered
+        """
+        return Tweet.objects.filter(handle=tweet.user.screen_name).count() == 0
+
     def handle(self, *args, **kwargs):
         """
             Import tweets from twitter for the first stored search term.
@@ -119,6 +125,7 @@ class Command(BaseCommand):
                     image_url=image_url,
                     content=tweet.text,
                     followers=tweet.user.followers_count,
+                    first_entry=self.first_entry(tweet),
                 )
 
                 try:

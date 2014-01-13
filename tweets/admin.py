@@ -31,7 +31,7 @@ class MessageAdmin(BaseAdmin):
 class TweetAdmin(BaseAdmin):
     search_fields = ('handle', 'content',)
     list_display = ('created_at', 'high_priority', 'get_handle', 'account', 'get_image', 'get_autophotoshop', 'get_photoshop', 'content', 'messages', 'tweeted_by', 'artworker', 'notes')
-    list_filter = ('account', 'high_priority', TweetStatusFilter, TwitterImageFilter, TongueGraphicFilter, 'artworker', 'tweeted_by', 'created_at', 'tweeted_at')
+    list_filter = ('account', 'high_priority', TweetStatusFilter, TwitterImageFilter, TongueGraphicFilter, 'artworker', 'tweeted_by', 'created_at', 'tweeted_at', 'first_entry')
     list_editable = ('notes', )
 
     actions = [mark_deleted, ]
@@ -49,7 +49,7 @@ class TweetAdmin(BaseAdmin):
         }),
         ('Tweet data', {
             'classes': ('collapse', ),
-            'fields': ('created_at', 'handle', 'account', 'content', 'image_url', 'uid')
+            'fields': ('created_at', 'handle', 'account', 'content', 'image_url', 'uid', 'first_entry')
         }),
         ('Sent data', {
             'classes': ('collapse', ),
@@ -115,6 +115,8 @@ class TweetAdmin(BaseAdmin):
     get_autophotoshop.short_description = 'Automatic Graphic'
 
     def save_model(self, request, obj, form, change):
+        # TODO: fix bug with this - if a CM edits and saves a tweet directly
+        # this will set the artworker to them
         obj.artworker = request.user
         obj.save()
 
