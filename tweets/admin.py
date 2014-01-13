@@ -41,7 +41,7 @@ class TweetAdmin(BaseAdmin):
             'fields': ('photoshop', ),
         }),
         ('Make high priority', {
-            'fields': ('high_priority', ),
+            'fields': ('high_priority', 'notes'),
         }),
         ('View/change autophotoshop', {
             'classes': ('collapse', ),
@@ -49,7 +49,7 @@ class TweetAdmin(BaseAdmin):
         }),
         ('Tweet data', {
             'classes': ('collapse', ),
-            'fields': ('created_at', 'handle', 'account', 'content', 'image_url', 'notes', )
+            'fields': ('created_at', 'handle', 'account', 'content', 'image_url', )
         }),
         ('Sent data', {
             'classes': ('collapse', ),
