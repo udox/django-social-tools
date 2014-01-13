@@ -14,6 +14,16 @@
         var tweet_pk;
         var handle;
 
+        function checkTweetLength() {
+            var length = $('#tweet-msg').val().length;
+            if(length > 140) {
+                $('#tweet-msg').css({'background-color': '#fcc'});
+            } else {
+                $('#tweet-msg').css({'background-color': '#cfc'});
+            }
+            $('#tweet-length').html(length);
+        }
+
         $('.send_tweet').on('click', function(e) {
 
             // This is a bit horrible but will grab the account text so we can get
@@ -38,8 +48,11 @@
             $('#myModal').modal();
         });
 
+        $('#tweet-msg').on('keyup', checkTweetLength);
+
         $('#tweet-msgs').on('change', function(e) {
             $('#tweet-msg').val('@' + handle + ' ' + $('#tweet-msgs').val());
+            checkTweetLength();
         });
 
         $('.modal-tweet').on('click', function(e) {

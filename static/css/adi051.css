@@ -49,3 +49,10 @@ a {
 #action-btns.navbar-fixed-top {
     top: 80px !important;
 }
+
+#tweet-length {
+    text-align: right;
+    font-weight: bold;
+    font-style: italic;
+    color: #444;
+}
