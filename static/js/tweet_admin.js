@@ -31,7 +31,7 @@
             var account = $(this).parent().parent().parent().prev().prev().prev().prev().prev().text();
             var account_id = account.match(/\((\d+)\)/)[1];
             tweet_pk = $(this).closest('td').prevAll(':last').find('.action-select').val();
-            handle = $(this).closest('td').prevAll(':eq(4)').find('a').text();
+            handle = $(this).closest('td').prevAll(':eq(5)').find('a').text();
 
             // reset modal form
             $('#tweet-msg').val('');
