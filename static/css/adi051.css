@@ -46,8 +46,13 @@ a {
     margin-bottom: 30px;
 }
 
+#action-btns.affix-top.subnav {
+    z-index: 0 !important;
+}
+
 #action-btns.navbar-fixed-top {
     top: 80px !important;
+    z-index: 1 !important;
 }
 
 #tweet-length {
