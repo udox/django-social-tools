@@ -14,11 +14,20 @@ def mark_approved(modeladmin, request, queryset):
 mark_approved.short_description = 'Mark selected tweets as approved'
 
 
-class MessageAdmin(admin.ModelAdmin):
+class BaseAdmin(admin.ModelAdmin):
+
+    class Media:
+        js = ('js/tweet_admin.js', )
+        css = {
+            'all': ('css/adi051.css', )
+        }
+
+
+class MessageAdmin(BaseAdmin):
     list_display = ('account', 'type', 'copy')
 
 
-class TweetAdmin(admin.ModelAdmin):
+class TweetAdmin(BaseAdmin):
     search_fields = ('handle', 'content',)
     list_display = ('created_at', 'get_handle', 'account', 'get_image', 'get_photoshop', 'content', 'messages', 'tweeted_by', 'artworker', 'notes')
     list_filter = ('account', TweetStatusFilter, TwitterImageFilter)
@@ -79,12 +88,6 @@ class TweetAdmin(admin.ModelAdmin):
         obj.artworker = request.user
         obj.save()
 
-    class Media:
-        js = ('js/tweet_admin.js', )
-        css = {
-            'all': ('css/adi051.css', )
-        }
-
     def get_actions(self, request):
         actions = super(TweetAdmin, self).get_actions(request)
         if 'delete_selected' in actions:
@@ -93,6 +96,6 @@ class TweetAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Tweet, TweetAdmin)
-admin.site.register(SearchTerm)
+admin.site.register(SearchTerm, BaseAdmin)
 admin.site.register(Message, MessageAdmin)
-admin.site.register(MarketAccount)
+admin.site.register(MarketAccount, BaseAdmin)
