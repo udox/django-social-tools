@@ -31,7 +31,7 @@ class MessageAdmin(BaseAdmin):
 class TweetAdmin(BaseAdmin):
     search_fields = ('handle', 'content',)
     list_display = ('created_at', 'high_priority', 'get_handle', 'account', 'get_image', 'get_autophotoshop', 'get_photoshop', 'content', 'messages', 'tweeted_by', 'artworker', 'notes')
-    list_filter = ('account', 'high_priority', TweetStatusFilter, TwitterImageFilter, TongueGraphicFilter, 'artworker', 'tweeted_by', 'created_at', 'tweeted_at', 'first_entry')
+    list_filter = ('account', 'high_priority', TweetStatusFilter, TwitterImageFilter, TongueGraphicFilter, 'artworker', 'tweeted_by', 'created_at', 'tweeted_at', 'entry_allowed')
     list_editable = ('notes', )
 
     actions = [mark_deleted, ]

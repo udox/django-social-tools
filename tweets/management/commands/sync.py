@@ -8,6 +8,7 @@ from dateutil.parser import parse as date_parse
 from django.core.management.base import BaseCommand
 from django.db.utils import IntegrityError
 from django.core.files import File
+from django.conf import settings
 
 from tweets.models import Tweet, SearchTerm, MarketAccount
 
@@ -93,11 +94,11 @@ class Command(BaseCommand):
 
         return
 
-    def first_entry(self, tweet):
+    def entry_allowed(self, tweet):
         """
-            Check if this user has already entered
+            Check if this tweet is allowed to enter
         """
-        return Tweet.objects.filter(handle=tweet.user.screen_name).count() == 0
+        return Tweet.objects.filter(handle=tweet.user.screen_name).count() < settings.MAX_ENTRIES
 
     def handle(self, *args, **kwargs):
         """
@@ -125,7 +126,7 @@ class Command(BaseCommand):
                     image_url=image_url,
                     content=tweet.text,
                     followers=tweet.user.followers_count,
-                    first_entry=self.first_entry(tweet),
+                    entry_allowed=self.entry_allowed(tweet),
                 )
 
                 try:
