@@ -21,7 +21,7 @@
             } else {
                 $('#tweet-msg').css({'background-color': '#cfc'});
             }
-            $('#tweet-length').html(length);
+            $('#tweet-length').html('Length: ' + length);
         }
 
         $('.send_tweet').on('click', function(e) {
