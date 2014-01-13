@@ -25,6 +25,7 @@ class BaseAdmin(admin.ModelAdmin):
 
 class MessageAdmin(BaseAdmin):
     list_display = ('account', 'type', 'copy')
+    list_filter = ('account', 'type')
 
 
 class TweetAdmin(BaseAdmin):
