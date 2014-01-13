@@ -61,7 +61,7 @@ class Tweet(models.Model):
 
     class Meta:
         # Tweets should be in ascending date order
-        ordering = ('high_priority', '-created_at', '-followers', 'handle')
+        ordering = ('-high_priority', '-created_at', '-followers', 'handle')
 
     # Exclude all deleted tweets - we keep them in so they aren't reimported
     # or added elsewhere
