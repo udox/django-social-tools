@@ -90,14 +90,19 @@ class TweetAdmin(BaseAdmin):
     get_photoshop.short_description = 'Tongue Graphic'
 
     def get_autophotoshop(self, obj):
+        auto, base, composed = "N/A", "N/A", "N/A"
+
         if obj.auto_photoshop:
-            return mark_safe("""
-                <a class="autoshop" href="{0}" target="_blank"><img src={0} /></a><br>
-                <a class="autoshop" href="{1}" target="_blank"><img src={1} /></a><br>
-                <a class="autoshop" href="{2}" target="_blank"><img src={2} /></a><br>
-            """.format(obj.auto_photoshop.url, obj.auto_compose.url, obj.auto_base.url))
-        else:
-            return mark_safe('N/A')
+            auto = '<a class="autoshop" href="{0}" target="_blank"><img src={0} /></a><br>'.format(obj.auto_photoshop.url)
+
+        if obj.auto_base:
+            base = '<a class="autoshop" href="{0}" target="_blank"><img src={0} /></a><br>'.format(obj.auto_base.url)
+
+        if obj.auto_compose:
+            composed = '<a class="autoshop" href="{0}" target="_blank"><img src={0} /></a><br>'.format(obj.auto_photoshop.url)
+
+        return mark_safe("%s<br>%s<br>%s<br>" % (auto, base, composed))
+
     get_autophotoshop.short_description = 'Automatic Graphic'
 
     def save_model(self, request, obj, form, change):
