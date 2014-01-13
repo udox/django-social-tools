@@ -46,7 +46,7 @@ class Command(BaseCommand):
             try:
                 expanded_url = tweet.urls[0].expanded_url
 
-                if 'twitpic' in expanded_url:
+                if 'twitpic' in expanded_url or 'pbs.twimg.com' in expanded_url:
                     source, image_url = 'twitpic', tweet.urls[0].expanded_url
                 else:
                     image_url = None
