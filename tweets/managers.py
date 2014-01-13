@@ -7,4 +7,5 @@ class TweetManager(models.Manager):
         from models import MarketAccount
 
         accounts = MarketAccount.objects.all().values_list('handle', flat=True)
-        return super(TweetManager, self).get_queryset().exclude(handle__in=accounts).exclude(deleted=True)
+        return super(TweetManager, self).get_queryset().exclude(handle__in=accounts)\
+            .exclude(deleted=True).exclude(content__contains='RT ')
