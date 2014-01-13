@@ -1,15 +1,17 @@
 import twitter
 from django.views.generic import TemplateView
 from rest_framework import viewsets
-from models import Message, MarketAccount
+from models import Message, MarketAccount, Tweet
 from serializers import MessageSerializer, MarketAccountSerializer
 
 class TweetUserView(TemplateView):
     template_name = 'tweet_user.html'
 
     def send_tweet(self):
+        tweet_pk = self.request.GET['tweet_pk']
         msg = self.request.GET['msg']
-        target = self.request.GET['target']
+
+        tweet = Tweet.objects.get(pk=tweet_pk)
 
         try:
             api = twitter.Api(
@@ -18,14 +20,31 @@ class TweetUserView(TemplateView):
                 access_token_key='2272873393-Ig34VvEWmD4HN66bgNlZrRE7JfFmcndZvxzB116',
                 access_token_secret='ZqMNHKhNQNLfikntnbP6MevM7I1aftHeBtBR0W2Rkibrx',
             )
-            tweet = api.PostUpdate('@{!s} {!s}'.format(target, msg))
+
+            # If we have an included media file then attach and send that
+            # otherwise we post a regular Update instead - that is we're
+            # not going by the message content!
+            if tweet.photoshop:
+                status = api.PostMedia('{!s}'.format(msg), tweet.photoshop.file.name)
+            else:
+                status = api.PostUpdate('{!s}'.format(msg))
+
+            # Update the tweet itself now
+            tweet.tweeted = True
+            tweet.tweet_id = status.id
+            tweet.send_tweet = msg
+            tweet.tweeted_by = self.request.user
+            tweet.save()
+
         except twitter.TwitterError:
-            tweet = None
-        return tweet
+            status = None
+
+        return status
 
     def get_context_data(self, **kwargs):
         context = super(TweetUserView, self).get_context_data(**kwargs)
         context['tweet'] = self.send_tweet()
+        return context
 
     def get(self, *args, **kwargs):
         return super(TweetUserView, self).get(*args, **kwargs)

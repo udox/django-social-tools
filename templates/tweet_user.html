@@ -1,5 +1,5 @@
 {% if tweet %}
-    Sent (id: <a href="http://twitter.com/{{ tweet.GetUser.name }}/status/{{ tweet.id }}">{{ tweet.id }}</a>)
+    Sent (id: <a href="http://twitter.com/{{ tweet.GetUser.name }}/status/{{ tweet.id }}" target="_blank" alt="Open tweet in new window">{{ tweet.id }}</a>)
 {% else %}
     Tweet could not be sent - please try again in <a href="https://dev.twitter.com/docs/rate-limiting/1.1">15 minutes</a>
 {% endif %}
