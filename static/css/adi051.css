@@ -45,3 +45,7 @@ a {
 #content h1 {
     margin-bottom: 30px;
 }
+
+#action-btns.navbar-fixed-top {
+    top: 80px !important;
+}

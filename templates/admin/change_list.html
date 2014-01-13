@@ -91,7 +91,6 @@ I'm mainly adding in modals here.
         {{ cl.formset.non_form_errors }}
     {% endif %}
 
-    <form id="changelist-form" action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %} {% if action_form and actions_on_top and cl.full_result_count %}class="with-top-actions"{% endif %}>{% csrf_token %}
 
     <div class="module{% if cl.has_filters %} filtered{% endif %}" id="changelist">
       <div class="navbar subnav">
@@ -136,7 +135,11 @@ I'm mainly adding in modals here.
             </div><!-- /.nav-collapse -->
           </div>
         </div><!-- /navbar-inner -->
+      </div>
 
+    <form id="changelist-form" action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %} {% if action_form and actions_on_top and cl.full_result_count %}class="with-top-actions"{% endif %}>{% csrf_token %}
+
+      <div class="subnav" id="action-btns">
               {% if action_form and actions_on_top and cl.full_result_count %}
                   <div class="well">
                       <span class="label label-inverse pull-left info-counter">
@@ -157,8 +160,7 @@ I'm mainly adding in modals here.
                       {% admin_actions %}
                   </div>
               {% endif %}
-
-      </div>
+        </div>
 
           {% if cl.formset %}
               <div>{{ cl.formset.management_form }}</div>
