@@ -5,6 +5,10 @@ from managers import TweetManager
 
 class MarketAccount(models.Model):
     handle = models.CharField(max_length=100)
+    consumer_secret = models.CharField(max_length=100)
+    consumer_key = models.CharField(max_length=100)
+    access_token_secret = models.CharField(max_length=100)
+    access_token_key = models.CharField(max_length=100)
 
     def __unicode__(self):
         return u'{0} ({1})'.format(self.handle, self.pk)
