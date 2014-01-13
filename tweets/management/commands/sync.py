@@ -57,7 +57,7 @@ class Command(BaseCommand):
             can be found we default to a particular one.
         """
         for account in self.accounts:
-            if account.handle in tweet.text:
+            if account.handle.lower() in tweet.text.lower():
                 return account
 
         return self.primary_account
