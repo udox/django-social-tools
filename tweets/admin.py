@@ -29,7 +29,7 @@ class MessageAdmin(BaseAdmin):
 
 class TweetAdmin(BaseAdmin):
     search_fields = ('handle', 'content',)
-    list_display = ('created_at', 'get_handle', 'account', 'get_image', 'get_photoshop', 'content', 'messages', 'tweeted_by', 'artworker', 'notes')
+    list_display = ('created_at', 'get_handle', 'account', 'get_image', 'get_autophotoshop', 'get_photoshop', 'content', 'messages', 'tweeted_by', 'artworker', 'notes')
     list_filter = ('account', TweetStatusFilter, TwitterImageFilter, TongueGraphicFilter)
     list_editable = ('notes', )
 
@@ -38,6 +38,10 @@ class TweetAdmin(BaseAdmin):
     fieldsets = (
         ('Attach your photoshop', {
             'fields': ('photoshop', ),
+        }),
+        ('View/change autophotoshop', {
+            'classes': ('collapse', ),
+            'fields': ('auto_photoshop', ),
         }),
         ('Tweet data', {
             'classes': ('collapse', ),
@@ -83,6 +87,13 @@ class TweetAdmin(BaseAdmin):
         else:
             return mark_safe('<a class="btn btn-warning" href="/tweets/tweet/{}">Upload</a>'.format(obj.id))
     get_photoshop.short_description = 'Tongue Graphic'
+
+    def get_autophotoshop(self, obj):
+        if obj.auto_photoshop:
+            return mark_safe('<a href="{0}" target="_blank"><img src={0} width=100 /></a>'.format(obj.auto_photoshop.url))
+        else:
+            return mark_safe('N/A')
+    get_autophotoshop.short_description = 'Automatic Graphic'
 
     def save_model(self, request, obj, form, change):
         obj.artworker = request.user

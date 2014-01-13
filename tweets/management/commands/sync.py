@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 import twitter
-import sys
+import os
+import requests
+import subprocess
 from dateutil.parser import parse as date_parse
 
 from django.core.management.base import BaseCommand
 from django.db.utils import IntegrityError
+from django.core.files import File
 
 from tweets.models import Tweet, SearchTerm, MarketAccount
 
@@ -34,22 +37,24 @@ class Command(BaseCommand):
             the offical twitter attached entity, failing that look for twitpic
         """
 
+        source = None
+
         try:
-            image_url = tweet.media[0]['media_url']
+            source, image_url = 'twitter', tweet.media[0]['media_url']
 
         except IndexError:
             try:
                 expanded_url = tweet.urls[0].expanded_url
 
                 if 'twitpic' in expanded_url:
-                    image_url = tweet.urls[0].expanded_url
+                    source, image_url = 'twitpic', tweet.urls[0].expanded_url
                 else:
                     image_url = None
 
             except IndexError:
                 image_url = None
 
-        return image_url
+        return source, image_url
 
     def get_account(self, tweet):
         """
@@ -62,6 +67,21 @@ class Command(BaseCommand):
 
         return self.primary_account
 
+    def autographic(self, tweet):
+        """
+            Generate an automatic version using imagemagick that may be suitable
+            to ease artworker load
+        """
+        url = tweet.image_url
+        tmp_file = os.path.join('/tmp', os.path.basename(url))
+        with open(tmp_file, 'wb') as img:
+            img.write(requests.get(url).content)
+
+        stan_process = subprocess.Popen(['tweets/scripts/stanify.sh', tmp_file], stdout=subprocess.PIPE)
+        out, err = stan_process.communicate()
+        tweet.auto_photoshop.save(os.path.basename(out.strip()), File(open(out.strip())))
+
+        return
 
     def handle(self, *args, **kwargs):
         """
@@ -79,12 +99,14 @@ class Command(BaseCommand):
 
             for tweet in search:
 
+                source, image_url = self.get_image_url(tweet)
+
                 obj = Tweet(
                     created_at=date_parse(tweet.created_at),
                     uid=tweet.id,
                     handle=tweet.user.screen_name,
                     account=self.get_account(tweet),
-                    image_url=self.get_image_url(tweet),
+                    image_url=image_url,
                     content=tweet.text,
                     followers=tweet.user.followers_count,
                 )
@@ -92,5 +114,9 @@ class Command(BaseCommand):
                 try:
                     obj.save()
                     self.stdout.write("Added %s (%d)" % (obj.uid, obj.id))
+
+                    if source == 'twitter':
+                        self.autographic(obj)
+
                 except IntegrityError:
                     self.stdout.write("Tweet already exists %s" % obj.uid)

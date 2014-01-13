@@ -18,3 +18,5 @@ GREEN=2e8058
 
 convert $1 -posterize $PRE_LEVELS -threshold $THRESHOLD -gaussian-blur $BLUR_RADIUS \
     -posterize $POST_LEVELS +level-colors "#$GREEN", /tmp/stan.`basename $1`;
+
+echo /tmp/stan.`basename $1`;
