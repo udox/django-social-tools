@@ -1,5 +1,5 @@
 Django==1.6.1
-Pillow==2.2.1
+Pillow
 bootstrap-admin==0.3.0
 django-countries==1.5
 django-filter==0.7

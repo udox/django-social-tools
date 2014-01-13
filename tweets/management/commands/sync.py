@@ -11,6 +11,11 @@ from tweets.models import Tweet, SearchTerm, MarketAccount
 
 class Command(BaseCommand):
 
+    def __init__(self):
+        super(Command, self).__init__()
+        self.accounts = MarketAccount.objects.all()
+        self.primary_account = MarketAccount.objects.get(handle='adidasoriginals')
+
     def get_api(self):
         """
             Get a twitter api object to work with
@@ -51,7 +56,11 @@ class Command(BaseCommand):
             Check for the presence of a tracked account in the tweet. If nothing
             can be found we default to a particular one.
         """
-        return None
+        for account in self.accounts:
+            if account.handle in tweet.text:
+                return account
+
+        return self.primary_account
 
 
     def handle(self, *args, **kwargs):
@@ -66,7 +75,7 @@ class Command(BaseCommand):
             self.stdout.write("\nImporting %s tweets" % term.term)
 
             api = self.get_api()
-            search = api.GetSearch(term=term.term)
+            search = api.GetSearch(term=term.term, result_type='recent', count=30)
 
             for tweet in search:
 
