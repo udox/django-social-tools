@@ -87,7 +87,13 @@ class TweetAdmin(BaseAdmin):
 
     def get_photoshop(self, obj):
         if obj.photoshop:
-            return mark_safe('<a href="{0}" target="_blank"><img src={0} width=100 /></a>'.format(obj.photoshop.url))
+            if obj.tweet_id:
+                # Open up the actual tweet if it's been sent
+                return mark_safe('<a href="http://twitter.com/{0}/status/{1}" target="_blank"><img src={0} width=100 /></a>'.\
+                    format(obj.account.handle, obj.photoshop.url))
+            else:
+                # Otherwise direct to the local image
+                return mark_safe('<a href="{0}" target="_blank"><img src={0} width=100 /></a>'.format(obj.photoshop.url))
         else:
             return mark_safe('<a class="btn btn-warning" href="/tweets/tweet/{}">Upload</a>'.format(obj.id))
     get_photoshop.short_description = 'Tongue Graphic'
