@@ -17,7 +17,6 @@ class TweetUserView(TemplateView):
 
         # Reverse the quoting and get the unicode back
         msg = urllib.unquote(msg)
-        print msg
 
         try:
             api = twitter.Api(
