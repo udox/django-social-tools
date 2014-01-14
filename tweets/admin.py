@@ -119,8 +119,8 @@ class TweetAdmin(BaseAdmin):
         args  = [base, ] + auto + composed
 
         return mark_safe("""
-            <table>
-                <tr><td colspan="3">%s</td></tr>
+            <table class="autogen-results">
+                <tr><td colspan="3" align="center" class="base-img">%s</td></tr>
                 <tr><td>%s</td><td>%s</td><td>%s</td></tr>
                 <tr><td>%s</td><td>%s</td><td>%s</td></tr>
             </table>

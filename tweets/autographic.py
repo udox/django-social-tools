@@ -33,8 +33,15 @@ def generator(tweet):
         auto_file = os.path.join('/tmp/', 'stan.%s.png' % output)
         composed_file = os.path.join('/tmp/', 'composed.stan.%s.png' % output)
 
-        getattr(tweet, 'auto_photoshop_%d' % cnt).save(os.path.basename(auto_file), File(open(auto_file)))
-        getattr(tweet, 'auto_compose_%d' % cnt).save(os.path.basename(composed_file), File(open(composed_file)))
+        try:
+            getattr(tweet, 'auto_photoshop_%d' % cnt).save(os.path.basename(auto_file), File(open(auto_file)))
+        except IOError:
+            return False
+
+        try:
+            getattr(tweet, 'auto_compose_%d' % cnt).save(os.path.basename(composed_file), File(open(composed_file)))
+        except IOError:
+            return False
 
         if cnt == 1:
             base_file = os.path.join('/tmp/', 'base.stan.%s.png' % output)
