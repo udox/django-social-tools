@@ -1,4 +1,5 @@
 import twitter
+import urllib
 from datetime import datetime
 from django.views.generic import TemplateView
 from rest_framework import viewsets
@@ -14,6 +15,10 @@ class TweetUserView(TemplateView):
 
         tweet = Tweet.objects.get(pk=tweet_pk)
 
+        # Reverse the quoting and get the unicode back
+        msg = urllib.unquote(msg)
+        print msg
+
         try:
             api = twitter.Api(
                 consumer_key=tweet.account.consumer_key,
@@ -26,10 +31,10 @@ class TweetUserView(TemplateView):
             # otherwise we post a regular Update instead - that is we're
             # not going by the message content!
             if tweet.photoshop:
-                status = api.PostMedia('{!s}'.format(msg), tweet.photoshop.file.name,
+                status = api.PostMedia(u'{!s}'.format(msg), tweet.photoshop.file.name,
                     in_reply_to_status_id=tweet.uid)
             else:
-                status = api.PostUpdate('{!s}'.format(msg), in_reply_to_status_id=tweet.uid)
+                status = api.PostUpdate(u'{!s}'.format(msg), in_reply_to_status_id=tweet.uid)
 
             # Update the tweet itself now
             tweet.tweeted = True

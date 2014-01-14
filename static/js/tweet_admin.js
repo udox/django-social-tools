@@ -59,7 +59,7 @@
             var msg = $('#tweet-msg').val();
             $(this).fadeOut();
             $(this).prev('a').text('Close');
-            $(this).parentsUntil('#modal').find('#tweet-log').load('/send-tweet/?msg=' + escape(msg) + '&tweet_pk=' + tweet_pk);
+            $(this).parentsUntil('#modal').find('#tweet-log').load('/send-tweet/?msg=' + encodeURIComponent(msg) + '&tweet_pk=' + tweet_pk);
         });
 
         var textareaPlaceholder = 'Add an internal note (not public). Remember to click save!';
