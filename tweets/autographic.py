@@ -11,7 +11,13 @@ def generator(tweet):
         a fully composed one which may be tweeted back.
     """
     url = tweet.image_url
-    tmp_file = os.path.join('/tmp', os.path.basename(url))
+
+    try:
+        tmp_file = os.path.join('/tmp', os.path.basename(url))
+    except AttributeError:
+        # Probably dealing with twitpic or whatnot, exit
+        return False
+
     with open(tmp_file, 'wb') as img:
         img.write(requests.get(url).content)
 
@@ -34,3 +40,4 @@ def generator(tweet):
             base_file = os.path.join('/tmp/', 'base.stan.%s.png' % output)
             tweet.auto_base.save(os.path.basename(base_file), File(open(base_file)))
 
+    return True

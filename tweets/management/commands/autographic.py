@@ -17,5 +17,8 @@ class Command(BaseCommand):
         """
 
         for tweet in Tweet.objects.exclude(deleted=True):
-            generator(tweet)
-            self.stdout.write("Generated Entry %d versions" % tweet.pk)
+            result = generator(tweet)
+            if result:
+                self.stdout.write("Generated Entry %d versions" % tweet.pk)
+            else:
+                self.stdout.write("Skipping %d" % tweet.pk)
