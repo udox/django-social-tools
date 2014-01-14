@@ -16,7 +16,8 @@ THRESHOLD=50%
 BLUR_RADIUS=4
 GREEN=009e5b
 
-OUT=/tmp/stan.`basename $1`
+# Append PNG to end so all images preserve transparancy
+OUT=/tmp/stan.`basename $1`.png
 CROP=/tmp/crop.`basename $OUT`
 COMPOSE=/tmp/composed.`basename $OUT`
 BASE=/tmp/base.`basename $OUT`

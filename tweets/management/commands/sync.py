@@ -84,9 +84,9 @@ class Command(BaseCommand):
 
         output = out.strip()
 
-        auto_file = os.path.join('/tmp/', 'stan.%s' % output)
-        composed_file = os.path.join('/tmp/', 'composed.stan.%s' % output)
-        base_file = os.path.join('/tmp/', 'base.stan.%s' % output)
+        auto_file = os.path.join('/tmp/', 'stan.%s.png' % output)
+        composed_file = os.path.join('/tmp/', 'composed.stan.%s.png' % output)
+        base_file = os.path.join('/tmp/', 'base.stan.%s.png' % output)
 
         tweet.auto_photoshop.save(os.path.basename(auto_file), File(open(auto_file)))
         tweet.auto_compose.save(os.path.basename(composed_file), File(open(composed_file)))
