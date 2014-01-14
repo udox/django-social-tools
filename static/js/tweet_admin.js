@@ -1,6 +1,13 @@
+window.reloader = null;
+
 (function($) {
 
     $(document).ready(function() {
+
+        var TIMEOUT_DELAY = 10;  // seconds
+        var tweet_pk;
+        var handle;
+        var started = new Date().getTime();
 
         function setSelectOptions(data) {
             $('#tweet-msgs').html('<option></option>');
@@ -11,8 +18,21 @@
             }
         }
 
-        var tweet_pk;
-        var handle;
+        function pageReloader() {
+            console.log("Starting page reload request");
+            $('#load-overlay').fadeIn();
+            $('div#changelist').load(window.location.href + ' div#changelist', setupPage);
+        }
+
+        function setupPage() {
+            $('#load-overlay').fadeOut();
+            console.log("Setting up page", new Date().getTime() - started);
+
+            setupHandlers();
+            initElements();
+            clearTimeout(window.reloader);
+            window.reloader = window.setTimeout(pageReloader, TIMEOUT_DELAY * 1000);
+        }
 
         function checkTweetLength() {
             var length = $('#tweet-msg').val().length;
@@ -24,46 +44,69 @@
             $('#tweet-length').html('Length: ' + length);
         }
 
-        $('.send_tweet').on('click', function(e) {
+        function setupHandlers() {
+            console.log("Setting up handlers");
 
-            // This is a bit horrible but will grab the account text so we can get
-            //the particular id for this to filter messages against
-            var account = $(this).parent().parent().parent().prev().prev().prev().prev().prev().text();
-            var account_id = account.match(/\((\d+)\)/)[1];
-            tweet_pk = $(this).closest('td').prevAll(':last').find('.action-select').val();
-            handle = $(this).closest('td').prevAll(':eq(5)').find('a').text();
+            $('.send_tweet').on('click', function(e) {
 
-            // reset modal form
-            $('#tweet-msg').val('');
-            $('#tweet-log').html('');
-            $('.modal-tweet').val('Send').show();
+                // This is a bit horrible but will grab the account text so we can get
+                //the particular id for this to filter messages against
+                var account = $(this).parent().parent().parent().prev().prev().prev().prev().prev().text();
+                var account_id = account.match(/\((\d+)\)/)[1];
+                tweet_pk = $(this).closest('td').prevAll(':last').find('.action-select').val();
+                handle = $(this).closest('td').prevAll(':eq(5)').find('a').text();
 
-            // TODO: you should be ashamed! pass as obj instead and undupe this!
-            if($(this).data('msgtype') == 'tryagain') {
-                $.getJSON('/api/messages/?type=f&account=' + account_id, setSelectOptions);
-            } else {
-                $.getJSON('/api/messages/?type=s&account=' + account_id, setSelectOptions);
-            }
+                // reset modal form
+                $('#tweet-msg').val('');
+                $('#tweet-log').html('');
+                $('.modal-tweet').val('Send').show();
 
-            $('#myModal').modal();
-        });
+                // TODO: you should be ashamed! pass as obj instead and undupe this!
+                if($(this).data('msgtype') == 'tryagain') {
+                    $.getJSON('/api/messages/?type=f&account=' + account_id, setSelectOptions);
+                } else {
+                    $.getJSON('/api/messages/?type=s&account=' + account_id, setSelectOptions);
+                }
 
-        $('#tweet-msg').on('keyup', checkTweetLength);
+                $('#myModal').modal();
+            });
 
-        $('#tweet-msgs').on('change', function(e) {
-            $('#tweet-msg').val('@' + handle + ' ' + $('#tweet-msgs').val());
-            checkTweetLength();
-        });
+            $('#tweet-msg').on('keyup', checkTweetLength);
 
-        $('.modal-tweet').on('click', function(e) {
-            var msg = $('#tweet-msg').val();
-            $(this).fadeOut();
-            $(this).prev('a').text('Close');
-            $(this).parentsUntil('#modal').find('#tweet-log').load('/send-tweet/?msg=' + encodeURIComponent(msg) + '&tweet_pk=' + tweet_pk);
-        });
+            $('#tweet-msgs').on('change', function(e) {
+                $('#tweet-msg').val('@' + handle + ' ' + $('#tweet-msgs').val());
+                checkTweetLength();
+            });
 
-        var textareaPlaceholder = 'Add an internal note (not public). Remember to click save!';
-        $('#result_list .vLargeTextField').attr('placeholder', textareaPlaceholder);
+            $('.modal-tweet').on('click', function(e) {
+                var msg = $('#tweet-msg').val();
+                $(this).fadeOut();
+                $(this).prev('a').text('Close');
+                $(this).parentsUntil('#modal').find('#tweet-log').load('/send-tweet/?msg=' + encodeURIComponent(msg) + '&tweet_pk=' + tweet_pk);
+            });
+
+        }
+
+        function initElements() {
+            console.log("Initializing elements and page layout");
+
+            // Notes placeholders
+            var textareaPlaceholder = 'Add an internal note (not public). Remember to click save!';
+            $('#result_list .vLargeTextField').attr('placeholder', textareaPlaceholder);
+
+            // Set background color if item has been tweeted
+            $('tbody tr').each(function() {
+
+                if($('td:eq(9)', this).text() !== '(None)') {
+                    $('td, th', this).css({'background': '#fef'});
+                } else {
+                    $('td, th', this).css({'background': '#eff'});
+                }
+
+            });
+        }
+
+        setupPage();
 
     });
 
