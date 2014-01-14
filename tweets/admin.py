@@ -34,6 +34,8 @@ class TweetAdmin(BaseAdmin):
     list_filter = ('account', 'high_priority', TweetStatusFilter, TwitterImageFilter, TongueGraphicFilter, 'artworker', 'tweeted_by', 'created_at', 'tweeted_at', 'entry_allowed')
     list_editable = ('notes', )
 
+    list_per_page = 25
+
     actions = [mark_deleted, ]
 
     fieldsets = (
