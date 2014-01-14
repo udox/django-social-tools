@@ -119,7 +119,9 @@ class TweetAdmin(BaseAdmin):
     def save_model(self, request, obj, form, change):
         # TODO: fix bug with this - if a CM edits and saves a tweet directly
         # this will set the artworker to them
-        obj.artworker = request.user
+        if 'photoshop' in form.changed_data:
+            obj.artworker = request.user
+
         obj.save()
 
     def get_actions(self, request):
