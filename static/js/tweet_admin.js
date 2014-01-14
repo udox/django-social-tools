@@ -4,7 +4,7 @@ window.reloader = null;
 
     $(document).ready(function() {
 
-        var TIMEOUT_DELAY = 10;  // seconds
+        var TIMEOUT_DELAY = 30;  // seconds
         var tweet_pk;
         var handle;
         var started = new Date().getTime();
