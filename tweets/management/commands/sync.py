@@ -79,18 +79,24 @@ class Command(BaseCommand):
         with open(tmp_file, 'wb') as img:
             img.write(requests.get(url).content)
 
-        stan_process = subprocess.Popen(['tweets/scripts/stanify.sh', tmp_file, tweet.handle], stdout=subprocess.PIPE)
-        out, err = stan_process.communicate()
+        # Generate various adjustments - this is a little clunky but works ok (ideally)
+        # we would make the attributes a FK now on the model rather than _1, _2 etc
+        for cnt in range(1, 4):
 
-        output = out.strip()
+            stan_process = subprocess.Popen(['tweets/scripts/stanify_%d.sh' % cnt, tmp_file, tweet.handle], stdout=subprocess.PIPE)
+            out, err = stan_process.communicate()
 
-        auto_file = os.path.join('/tmp/', 'stan.%s.png' % output)
-        composed_file = os.path.join('/tmp/', 'composed.stan.%s.png' % output)
-        base_file = os.path.join('/tmp/', 'base.stan.%s.png' % output)
+            output = out.strip()
 
-        tweet.auto_photoshop.save(os.path.basename(auto_file), File(open(auto_file)))
-        tweet.auto_compose.save(os.path.basename(composed_file), File(open(composed_file)))
-        tweet.auto_base.save(os.path.basename(base_file), File(open(base_file)))
+            auto_file = os.path.join('/tmp/', 'stan.%s.png' % output)
+            composed_file = os.path.join('/tmp/', 'composed.stan.%s.png' % output)
+
+            getattr(tweet, 'auto_photoshop_%d' % cnt).save(os.path.basename(auto_file), File(open(auto_file)))
+            getattr(tweet, 'auto_compose_%d' % cnt).save(os.path.basename(composed_file), File(open(composed_file)))
+
+            if cnt == 1:
+                base_file = os.path.join('/tmp/', 'base.stan.%s.png' % output)
+                tweet.auto_base.save(os.path.basename(base_file), File(open(base_file)))
 
         return
 

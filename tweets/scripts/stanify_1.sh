@@ -10,10 +10,10 @@
 # 6. New layer with correct Stan Smith green, set to Screen
 #
 
-PRE_LEVELS=10
+PRE_LEVELS=15
 POST_LEVELS=2
 THRESHOLD=50%
-BLUR_RADIUS=4
+BLUR_RADIUS=2
 GREEN=009e5b
 
 # Append PNG to end so all images preserve transparancy
@@ -33,7 +33,7 @@ convert $1 -posterize $PRE_LEVELS -threshold $THRESHOLD -gaussian-blur $BLUR_RAD
 # think they can work with the most
 convert $OUT -resize '340x290^' -gravity center -crop '340x290+0+0' +repage $CROP;
 convert assets/base.png -fill "#$GREEN" -pointsize 39.68 -font assets/Anthem-Bold.ttf -gravity center -draw "translate 0,240 text 0,0 '@$2'" $BASE;
-convert $BASE $CROP -compose Multiply -geometry '+36+250' -composite $COMPOSE;
+convert $BASE $CROP -compose Multiply -geometry '+36+260' -composite $COMPOSE;
 
 # Echo out the saved file, we'll use this back in the python code to generate
 # the filenames as above for assigning to a tweet object

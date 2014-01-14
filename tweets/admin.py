@@ -47,7 +47,7 @@ class TweetAdmin(BaseAdmin):
         }),
         ('View/change autophotoshop', {
             'classes': ('collapse', ),
-            'fields': ('auto_photoshop', 'auto_base', 'auto_compose'),
+            'fields': ('auto_base', ('auto_photoshop_1', 'auto_compose_1'), ('auto_photoshop_2', 'auto_compose_2'), ('auto_photoshop_3', 'auto_compose_3')),
         }),
         ('Tweet data', {
             'classes': ('collapse', ),
@@ -101,18 +101,30 @@ class TweetAdmin(BaseAdmin):
     get_photoshop.short_description = 'Tongue Graphic'
 
     def get_autophotoshop(self, obj):
-        auto, base, composed = "N/A", "N/A", "N/A"
-
-        if obj.auto_photoshop:
-            auto = '<a class="autoshop" href="{0}" target="_blank"><img src={0} /></a><br>'.format(obj.auto_photoshop.url)
+        auto, base, composed = ["N/A", ] * 3, "N/A", ["N/A", ] * 3
 
         if obj.auto_base:
             base = '<a class="autoshop" href="{0}" target="_blank"><img src={0} /></a><br>'.format(obj.auto_base.url)
 
-        if obj.auto_compose:
-            composed = '<a class="autoshop" href="{0}" target="_blank"><img src={0} /></a><br>'.format(obj.auto_compose.url)
+        num_of_files = 3
+        files = range(1, num_of_files + 1)
+        for cnt in files:
 
-        return mark_safe("%s<br>%s<br>%s<br>" % (auto, base, composed))
+            if getattr(obj, 'auto_photoshop_%d' % cnt):
+                auto[cnt - 1] = '<a class="autoshop" href="{0}" target="_blank"><img src={0} /></a>'.format(getattr(obj, 'auto_photoshop_%d' % cnt).url)
+
+            if getattr(obj, 'auto_compose_%d' % cnt):
+                composed[cnt - 1] = '<a class="autoshop" href="{0}" target="_blank"><img src={0} /></a>'.format(getattr(obj, 'auto_compose_%d' % cnt).url)
+
+        args  = [base, ] + auto + composed
+
+        return mark_safe("""
+            <table>
+                <tr><td colspan="3">%s</td></tr>
+                <tr><td>%s</td><td>%s</td><td>%s</td></tr>
+                <tr><td>%s</td><td>%s</td><td>%s</td></tr>
+            </table>
+        """ % (args[0], args[1], args[2], args[3], args[4], args[5], args[6]))
 
     get_autophotoshop.short_description = 'Automatic Graphic'
 
