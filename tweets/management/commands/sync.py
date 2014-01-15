@@ -76,7 +76,7 @@ class Command(BaseCommand):
         """
             Unlike entry_allowed this checks for the present of any attached graphic
         """
-        return Tweet.objects.filter(handle=tweet.user.screen_name).exclude(photoshop='').count() > 0
+        return Tweet.objects.filter(handle=tweet.user.screen_name).exclude(photoshop='', uid=tweet.id).count() > 0
 
     def handle(self, *args, **kwargs):
         """
@@ -107,14 +107,15 @@ class Command(BaseCommand):
                     entry_allowed=self.entry_allowed(tweet),
                 )
 
-                if self.has_existing_graphic(tweet):
-                    obj.deleted = True
-                    obj.entry_allowed = False
-                    self.stdout.write("%s (%d) has a graphic already, flagging" % (obj.uid, obj.id))
-
                 try:
                     obj.save()
                     self.stdout.write("Added %s (%d)" % (obj.uid, obj.id))
+
+                    if self.has_existing_graphic(tweet):
+                        obj.deleted = True
+                        obj.entry_allowed = False
+                        self.stdout.write("%s (%d) has a graphic already, flagging" % (obj.uid, obj.id))
+                        obj.save()
 
                     if source == 'twitter':
                         self.stdout.write("Generating stans for %s" % obj.image_url)
