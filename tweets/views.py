@@ -6,6 +6,12 @@ from rest_framework import viewsets
 from models import Message, MarketAccount, Tweet
 from serializers import MessageSerializer, MarketAccountSerializer
 
+
+# TODO - tweet and artworker assignments should be returning a JSON
+# response - although having said that we are just swapping out HTML
+# for returned HTML - so maybe not! ~jaymz
+
+
 class TweetUserView(TemplateView):
     template_name = 'tweet_user.html'
 
@@ -57,10 +63,34 @@ class TweetUserView(TemplateView):
         return super(TweetUserView, self).get(*args, **kwargs)
 
 
+class AssignArtworkerView(TemplateView):
+    template_name = 'assign_artworker.html'
+
+    def assign_artworker(self):
+        tweet_pk = self.request.GET['tweet_pk']
+        tweet = Tweet.objects.get(pk=tweet_pk)
+
+        if tweet.artworker is None:
+            tweet.artworker = self.request.user
+            tweet.save()
+            return True
+        else:
+            return tweet.artworker.username
+
+    def get_context_data(self, **kwargs):
+        context = super(AssignArtworkerView, self).get_context_data(**kwargs)
+        context['artworker'] = self.assign_artworker()
+        return context
+
+    def get(self, *args, **kwargs):
+        return super(AssignArtworkerView, self).get(*args, **kwargs)
+
+
 class MessageViewSet(viewsets.ModelViewSet):
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
     filter_fields = ('type', 'account',)
+
 
 class MarketAccountViewSet(viewsets.ModelViewSet):
     queryset = MarketAccount.objects.all()

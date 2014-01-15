@@ -4,7 +4,7 @@ window.reloader = null;
 
     $(document).ready(function() {
 
-        var TIMEOUT_DELAY = 60;  // seconds
+        var TIMEOUT_DELAY = 30;  // seconds
         var tweet_pk;
         var handle;
         var started = new Date().getTime();
@@ -44,6 +44,10 @@ window.reloader = null;
             $('#tweet-length').html('Length: ' + length);
         }
 
+        function get_tweet_pk(elem) {
+            return $(elem).closest('td').prevAll(':last').find('.action-select').val();
+        }
+
         function setupHandlers() {
             console.log("Setting up handlers");
 
@@ -53,7 +57,7 @@ window.reloader = null;
                 //the particular id for this to filter messages against
                 var account = $(this).parent().parent().parent().prev().prev().prev().prev().prev().text();
                 var account_id = account.match(/\((\d+)\)/)[1];
-                tweet_pk = $(this).closest('td').prevAll(':last').find('.action-select').val();
+                tweet_pk = get_tweet_pk(this);
                 handle = $(this).closest('td').prevAll(':eq(5)').find('a').text();
 
                 // reset modal form
@@ -83,6 +87,11 @@ window.reloader = null;
                 $(this).fadeOut();
                 $(this).prev('a').text('Close');
                 $(this).parentsUntil('#modal').find('#tweet-log').load('/send-tweet/?msg=' + encodeURIComponent(msg) + '&tweet_pk=' + tweet_pk);
+            });
+
+            // Inprogress notification
+            $('.assign-artworker').on('click', function(e) {
+                $(this).load('/assign-artworker/?tweet_pk=' + get_tweet_pk(this));
             });
 
         }

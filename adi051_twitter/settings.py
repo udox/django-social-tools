@@ -80,7 +80,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
-if socket.gethostname() == 'koopa':
+if socket.gethostname() in ('koopa', 'bowser'):
     DATABASES = {
         'default': {
             'ENGINE':'django.db.backends.postgresql_psycopg2',

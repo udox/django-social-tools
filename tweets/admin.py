@@ -30,7 +30,7 @@ class MessageAdmin(BaseAdmin):
 
 class TweetAdmin(BaseAdmin):
     search_fields = ('handle', 'content',)
-    list_display = ('created_at', 'high_priority', 'get_handle', 'account', 'get_image', 'get_autophotoshop', 'get_photoshop', 'content', 'messages', 'tweeted_by', 'artworker', 'notes')
+    list_display = ('created_at', 'high_priority', 'get_handle', 'account', 'get_image', 'get_autophotoshop', 'get_photoshop', 'content', 'messages', 'tweeted_by', 'get_artworker', 'notes')
     list_filter = ('account', 'high_priority', TweetStatusFilter, TwitterImageFilter, TongueGraphicFilter, 'artworker', 'tweeted_by', 'created_at', 'tweeted_at', 'entry_allowed')
     list_editable = ('notes', )
 
@@ -127,6 +127,15 @@ class TweetAdmin(BaseAdmin):
         """ % (args[0], args[1], args[2], args[3], args[4], args[5], args[6]))
 
     get_autophotoshop.short_description = 'Automatic Graphic'
+
+    def get_artworker(self, obj):
+        if obj.artworker:
+            return obj.artworker.username
+        else:
+            return mark_safe("""
+                <a class="btn btn-info assign-artworker">Start Working!</a>
+            """)
+    get_autophotoshop.short_description = 'Artworker Status'
 
     def save_model(self, request, obj, form, change):
         # TODO: fix bug with this - if a CM edits and saves a tweet directly
