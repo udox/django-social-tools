@@ -72,6 +72,12 @@ class Command(BaseCommand):
         """
         return Tweet.objects.filter(handle=tweet.user.screen_name).count() < settings.MAX_ENTRIES
 
+    def has_existing_graphic(self, tweet):
+        """
+            Unlike entry_allowed this checks for the present of any attached graphic
+        """
+        return Tweet.objects.filter(handle=tweet.user.screen_name).exclude(photoshop='').count() > 0
+
     def handle(self, *args, **kwargs):
         """
             Import tweets from twitter for the first stored search term.
@@ -101,11 +107,17 @@ class Command(BaseCommand):
                     entry_allowed=self.entry_allowed(tweet),
                 )
 
+                if self.has_existing_graphic(tweet):
+                    obj.deleted = True
+                    obj.entry_allowed = False
+                    self.stdout.write("%d has a graphic already, flagging" % obj.uid)
+
                 try:
                     obj.save()
                     self.stdout.write("Added %s (%d)" % (obj.uid, obj.id))
 
                     if source == 'twitter':
+                        self.stdout.write("Generating stans for %d" % obj.uid)
                         stan_effect(obj)
 
                 except IntegrityError:
