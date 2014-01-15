@@ -76,7 +76,7 @@ class Command(BaseCommand):
         """
             Unlike entry_allowed this checks for the present of any attached graphic
         """
-        return Tweet.objects.filter(handle=tweet.user.screen_name).exclude(photoshop='', uid=tweet.id).count() > 0
+        return Tweet.objects.filter(handle=tweet.user.screen_name).exclude(photoshop='').exclude(uid=tweet.id).count() > 0
 
     def handle(self, *args, **kwargs):
         """
