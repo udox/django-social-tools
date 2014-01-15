@@ -51,7 +51,7 @@ class TweetAdmin(BaseAdmin):
         }),
         ('Tweet data', {
             'classes': ('collapse', ),
-            'fields': ('created_at', 'handle', 'account', 'content', 'image_url', 'uid', 'entry_allowed')
+            'fields': ('created_at', 'handle', 'account', 'content', 'image_url', 'uid', 'entry_allowed', 'disaallowed_reason'),
         }),
         ('Sent data', {
             'classes': ('collapse', ),
