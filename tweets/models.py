@@ -53,6 +53,7 @@ class Tweet(models.Model):
     tweeted_by = models.ForeignKey(User, related_name='tweeter', blank=True, null=True)
     tweeted_at = models.DateTimeField(blank=True, null=True)
     tweet_id = models.CharField(max_length=100, blank=True, null=True)
+    disallowed_reason = models.TextField(blank=True, null=True)
 
     # TODO: Rework into a foreign key model that stores an adjustment with a type
     # for labelling rather than directly on the model

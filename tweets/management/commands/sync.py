@@ -95,6 +95,7 @@ class Command(BaseCommand):
             for tweet in search:
 
                 source, image_url = self.get_image_url(tweet)
+                is_allowed = self.entry_allowed(tweet)
 
                 obj = Tweet(
                     created_at=date_parse(tweet.created_at),
@@ -104,16 +105,21 @@ class Command(BaseCommand):
                     image_url=image_url,
                     content=tweet.text,
                     followers=tweet.user.followers_count,
-                    entry_allowed=self.entry_allowed(tweet),
+                    entry_allowed=is_allowed,
                 )
+
+                if not is_allowed:
+                    obj.disallowed_reason = 'Already entered max times'
 
                 try:
                     obj.save()
-                    self.stdout.write("Added %s (%d)" % (obj.uid, obj.id))
+                    self.stdout.write("Added %s (%d %s)" % (obj.uid, obj.id, obj.handle))
 
                     if self.has_existing_graphic(tweet):
                         obj.deleted = True
                         obj.entry_allowed = False
+                        obj.disallowed_reason = 'Has existing graphic'
+
                         self.stdout.write("%s (%d %s) has a graphic already, flagging" % (obj.uid, obj.id, obj.handle))
                         obj.save()
 
