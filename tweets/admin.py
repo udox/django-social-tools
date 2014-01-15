@@ -135,7 +135,7 @@ class TweetAdmin(BaseAdmin):
             return mark_safe("""
                 <a class="btn btn-info assign-artworker">Start Working!</a>
             """)
-    get_autophotoshop.short_description = 'Artworker Status'
+    get_artworker.short_description = 'Artworker Status'
 
     def save_model(self, request, obj, form, change):
         # TODO: fix bug with this - if a CM edits and saves a tweet directly
