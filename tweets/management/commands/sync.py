@@ -114,7 +114,7 @@ class Command(BaseCommand):
                     if self.has_existing_graphic(tweet):
                         obj.deleted = True
                         obj.entry_allowed = False
-                        self.stdout.write("%s (%d) has a graphic already, flagging" % (obj.uid, obj.id))
+                        self.stdout.write("%s (%d %s) has a graphic already, flagging" % (obj.uid, obj.id, obj.handle))
                         obj.save()
 
                     if source == 'twitter':
@@ -122,4 +122,4 @@ class Command(BaseCommand):
                         stan_effect(obj)
 
                 except IntegrityError:
-                    self.stdout.write("Tweet already exists %s (%d)" % (obj.uid, obj.id))
+                    self.stdout.write("Tweet already exists %s (%s)" % (obj.uid, obj.handle))
