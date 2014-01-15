@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from managers import TweetManager
+from managers import TweetManager, AllTweetManager
 
 
 class MarketAccount(models.Model):
@@ -75,6 +75,7 @@ class Tweet(models.Model):
     # Exclude all deleted tweets - we keep them in so they aren't reimported
     # or added elsewhere
     objects = TweetManager()
+    everything = AllTweetManager()
 
 
 class SearchTerm(models.Model):

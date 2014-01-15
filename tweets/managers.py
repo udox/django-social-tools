@@ -9,3 +9,9 @@ class TweetManager(models.Manager):
         accounts = MarketAccount.objects.all().values_list('handle', flat=True)
         return super(TweetManager, self).get_queryset().exclude(handle__in=accounts)\
             .exclude(deleted=True).exclude(content__contains='RT ').exclude(entry_allowed=False)
+
+
+class AllTweetManager(models.Manager):
+
+    def get_queryset(self):
+        return super(AllTweetManager, self).get_queryset()

@@ -70,13 +70,13 @@ class Command(BaseCommand):
         """
             Check if this tweet is allowed to enter
         """
-        return Tweet.objects.filter(handle=tweet.user.screen_name).count() < settings.MAX_ENTRIES
+        return Tweet.everything.filter(handle=tweet.user.screen_name).count() < settings.MAX_ENTRIES
 
     def has_existing_graphic(self, tweet):
         """
             Unlike entry_allowed this checks for the present of any attached graphic
         """
-        return Tweet.objects.filter(handle=tweet.user.screen_name).exclude(photoshop='').exclude(uid=tweet.id).count() > 0
+        return Tweet.everything.filter(handle=tweet.user.screen_name).exclude(photoshop='').exclude(uid=tweet.id).count() > 0
 
     def handle(self, *args, **kwargs):
         """
