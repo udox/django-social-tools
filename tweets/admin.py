@@ -151,6 +151,11 @@ class TweetAdmin(BaseAdmin):
             del actions['delete_selected']
         return actions
 
+    def get_queryset(self, request):
+        if request.user.is_superuser:
+            return self.model.everything.get_query_set()
+
+        return super(TweetAdmin, self).get_queryset(request)
 
 admin.site.register(Tweet, TweetAdmin)
 admin.site.register(SearchTerm, BaseAdmin)

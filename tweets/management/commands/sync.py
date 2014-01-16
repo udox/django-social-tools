@@ -66,17 +66,11 @@ class Command(BaseCommand):
 
         return self.primary_account
 
-    def entry_allowed(self, tweet):
-        """
-            Check if this tweet is allowed to enter
-        """
-        return Tweet.everything.filter(handle=tweet.user.screen_name).count() < settings.MAX_ENTRIES
-
-    def has_existing_graphic(self, tweet):
-        """
-            Unlike entry_allowed this checks for the present of any attached graphic
-        """
-        return Tweet.everything.filter(handle=tweet.user.screen_name).exclude(photoshop='').exclude(uid=tweet.id).count() > 0
+    def disable(self, tweet, reason='Unknown'):
+        tweet.deleted = True
+        tweet.entry_allowed = False
+        tweet.disallowed_reason = reason
+        tweet.save()
 
     def handle(self, *args, **kwargs):
         """
@@ -95,7 +89,6 @@ class Command(BaseCommand):
             for tweet in search:
 
                 source, image_url = self.get_image_url(tweet)
-                is_allowed = self.entry_allowed(tweet)
 
                 obj = Tweet(
                     created_at=date_parse(tweet.created_at),
@@ -105,23 +98,22 @@ class Command(BaseCommand):
                     image_url=image_url,
                     content=tweet.text,
                     followers=tweet.user.followers_count,
-                    entry_allowed=is_allowed,
                 )
-
-                if not is_allowed:
-                    obj.disallowed_reason = 'Already entered max times'
 
                 try:
                     obj.save()
                     self.stdout.write("Added %s (%d %s)" % (obj.uid, obj.id, obj.handle))
 
-                    if self.has_existing_graphic(tweet):
-                        obj.deleted = True
-                        obj.entry_allowed = False
-                        obj.disallowed_reason = 'Has existing graphic'
-
+                    if obj.has_existing_graphic:
+                        self.disable(obj, reason='Has existing graphic')
                         self.stdout.write("%s (%d %s) has a graphic already, flagging" % (obj.uid, obj.id, obj.handle))
                         obj.save()
+                        continue
+
+                    entry_count = obj.entry_count
+                    if entry_count > settings.MAX_ENTRIES:
+                        self.disable(obj, reason='Already entered max times (%d)' % entry_count)
+                        continue
 
                     if source == 'twitter':
                         self.stdout.write("Generating stans for %s" % obj.image_url)

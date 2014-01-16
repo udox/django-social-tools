@@ -72,6 +72,24 @@ class Tweet(models.Model):
         # Tweets should be in ascending date order
         ordering = ('-high_priority', '-created_at', '-followers', 'handle')
 
+    @property
+    def has_existing_graphic(self):
+        """
+            Check if this tweet already has an attached graphic - we may deny
+            entry if they have already entered and had a response
+        """
+        return Tweet.everything.filter(handle=self.handle).exclude(photoshop='').exclude(uid=self.uid).count() > 0
+
+    @property
+    def entry_count(self):
+        """
+            Return how many times this handle has entered - we're only counting
+            when they tweeted with an image - otherwise we'll exclude just tagged
+            tweets - this isn't perfect - they might tweet something else and
+            attach an image but should be ok
+        """
+        return Tweet.everything.filter(handle=self.handle).exclude(image_url=None).exclude(uid=self.uid).count()
+
     # Exclude all deleted tweets - we keep them in so they aren't reimported
     # or added elsewhere
     objects = TweetManager()
