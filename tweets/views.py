@@ -1,9 +1,13 @@
 import twitter
 import urllib
 from datetime import datetime
-from django.views.generic import TemplateView
+
+from django.db.utils import IntegrityError
+from django.http import HttpResponse
+from django.views.generic import TemplateView, View
 from rest_framework import viewsets
-from models import Message, MarketAccount, Tweet
+
+from models import Message, MarketAccount, Tweet, BannedUser
 from serializers import MessageSerializer, MarketAccountSerializer
 
 
@@ -82,9 +86,6 @@ class AssignArtworkerView(TemplateView):
         context['artworker'] = self.assign_artworker()
         return context
 
-    def get(self, *args, **kwargs):
-        return super(AssignArtworkerView, self).get(*args, **kwargs)
-
 
 class MessageViewSet(viewsets.ModelViewSet):
     queryset = Message.objects.all()
@@ -95,3 +96,23 @@ class MessageViewSet(viewsets.ModelViewSet):
 class MarketAccountViewSet(viewsets.ModelViewSet):
     queryset = MarketAccount.objects.all()
     serializer_class = MarketAccountSerializer
+
+
+class BanUserView(View):
+    template_name = 'assign_artworker.html'
+
+    def ban_user(self):
+        tweet_pk = self.request.GET['tweet_pk']
+
+        tweet = Tweet.everything.get(pk=tweet_pk)
+        hellban = BannedUser(handle=tweet.handle)
+
+        try:
+            hellban.save()
+        except IntegrityError:
+            return "Already banned"
+
+        return "OK"
+
+    def get(self, request, *args, **kwargs):
+        return HttpResponse(self.ban_user())

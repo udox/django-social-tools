@@ -81,8 +81,9 @@ class TweetAdmin(BaseAdmin):
     def messages(self, obj):
         return mark_safe("""
             <ul class="message-btns">
-                <!--<li><a class="btn btn-danger send_tweet" data-msgtype="tryagain">Image doesn't work</a></li>-->
-                <li><a class="btn btn-success send_tweet" data-msgtype="imagelink">Tweet tongue graphic</a></li>
+                <li><a class="btn btn-inverse ban-user">Ban User</a></li>
+                <!--<li><a class="btn btn-danger send-tweet" data-msgtype="tryagain">Image doesn't work</a></li>-->
+                <li><a class="btn btn-success send-tweet" data-msgtype="imagelink">Tweet tongue graphic</a></li>
             </ul>
         """)
     messages.short_description = 'Tweet back to user'

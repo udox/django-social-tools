@@ -51,7 +51,7 @@ window.reloader = null;
         function setupHandlers() {
             console.log("Setting up handlers");
 
-            $('.send_tweet').on('click', function(e) {
+            $('.send-tweet').on('click', function(e) {
 
                 // This is a bit horrible but will grab the account text so we can get
                 //the particular id for this to filter messages against
@@ -92,6 +92,11 @@ window.reloader = null;
             // Inprogress notification
             $('.assign-artworker').on('click', function(e) {
                 $(this).load('/assign-artworker/?tweet_pk=' + get_tweet_pk(this));
+            });
+
+            // Hellban
+            $('.ban-user').on('click', function(e) {
+                $(this).load('/ban-user/?tweet_pk=' + get_tweet_pk(this));
             });
 
         }

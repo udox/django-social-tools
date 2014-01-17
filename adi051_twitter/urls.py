@@ -3,7 +3,8 @@ from django.conf.urls import patterns, include, url, static
 from django.contrib import admin
 from rest_framework import routers
 
-from tweets.views import TweetUserView, MessageViewSet, MarketAccountViewSet, AssignArtworkerView
+from tweets.views import TweetUserView, MessageViewSet, MarketAccountViewSet,\
+    AssignArtworkerView, BanUserView
 
 admin.autodiscover()
 router = routers.DefaultRouter()
@@ -15,4 +16,5 @@ urlpatterns = patterns('',
     url(r'^api/', include(router.urls)),
     url(r'^send-tweet/', TweetUserView.as_view(), name='tweet_user'),
     url(r'^assign-artworker/', AssignArtworkerView.as_view(), name='assign_artworker'),
+    url(r'^ban-user/', BanUserView.as_view(), name='ban_user'),
 ) + static.static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

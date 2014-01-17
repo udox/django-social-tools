@@ -15,6 +15,10 @@ a {
     margin: 0;
 }
 
+.message-btns .btn {
+    width: 80%;
+}
+
 .message-btns li {
     margin-bottom: 0.5em;
 }
@@ -90,3 +94,4 @@ a {
 .base-img {
     text-align: center !important;
 }
+
