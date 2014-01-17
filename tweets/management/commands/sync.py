@@ -98,6 +98,7 @@ class Command(BaseCommand):
                     image_url=image_url,
                     content=tweet.text,
                     followers=tweet.user.followers_count,
+                    user_joined=date_parse(tweet.user.created_at),
                 )
 
                 try:
