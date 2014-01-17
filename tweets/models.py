@@ -28,6 +28,15 @@ class Message(models.Model):
         return u'{0} ({1}...)'.format(self.account, self.copy[:30])
 
 
+class BannedUser(models.Model):
+    handle = models.CharField(max_length=100, unique=True)
+    reason = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __unicode__(self):
+        return self.handle
+
+
 class Tweet(models.Model):
     created_at = models.DateTimeField()
     created_at.verbose_name = 'tweet date'

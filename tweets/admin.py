@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-from models import Tweet, SearchTerm, Message, MarketAccount
+from models import Tweet, SearchTerm, Message, MarketAccount, BannedUser
 from filters import TwitterImageFilter, TweetStatusFilter, TongueGraphicFilter
 
 # Register your models here.
@@ -161,3 +161,4 @@ admin.site.register(Tweet, TweetAdmin)
 admin.site.register(SearchTerm, BaseAdmin)
 admin.site.register(Message, MessageAdmin)
 admin.site.register(MarketAccount, BaseAdmin)
+admin.site.register(BannedUser, BaseAdmin)
