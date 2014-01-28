@@ -7,8 +7,8 @@ from django.core.management.base import BaseCommand
 from django.db.utils import IntegrityError
 from django.conf import settings
 
-from tweets.models import Tweet, SearchTerm, MarketAccount
-from tweets.autographic import generator as stan_effect
+from social.models import SocialPost, SearchTerm
+from brand.models import MarketAccount
 
 
 class Command(BaseCommand):
@@ -66,22 +66,22 @@ class Command(BaseCommand):
 
         return self.primary_account
 
-    def disable(self, tweet, reason='Unknown'):
-        tweet.deleted = True
-        tweet.entry_allowed = False
-        tweet.disallowed_reason = reason
-        tweet.save()
+    def disable(self, post, reason='Unknown'):
+        post.deleted = True
+        post.entry_allowed = False
+        post.disallowed_reason = reason
+        post.save()
 
     def handle(self, *args, **kwargs):
         """
-            Import tweets from twitter for the first stored search term.
+            Import for the first stored search term.
         """
 
         terms = SearchTerm.objects.filter(active=True)
 
         for term in terms:
 
-            self.stdout.write("\nImporting %s tweets" % term.term)
+            self.stdout.write("\nImporting %s posts" % term.term)
 
             api = self.get_api()
             search = api.GetSearch(term=term.term, result_type='recent', count=100)
@@ -90,7 +90,7 @@ class Command(BaseCommand):
 
                 source, image_url = self.get_image_url(tweet)
 
-                obj = Tweet(
+                obj = SocialPost(
                     created_at=date_parse(tweet.created_at),
                     uid=tweet.id,
                     handle=tweet.user.screen_name,
@@ -116,9 +116,5 @@ class Command(BaseCommand):
                         self.disable(obj, reason='Already entered max times (%d)' % entry_count)
                         continue
 
-                    if source == 'twitter':
-                        self.stdout.write("Generating stans for %s" % obj.image_url)
-                        stan_effect(obj)
-
                 except IntegrityError:
-                    self.stdout.write("Tweet already exists %s (%s)" % (obj.uid, obj.handle))
+                    self.stdout.write("Post already exists %s (%s)" % (obj.uid, obj.handle))

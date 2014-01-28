@@ -5,11 +5,8 @@ from datetime import datetime
 from django.db.utils import IntegrityError
 from django.http import HttpResponse
 from django.views.generic import TemplateView, View
-from rest_framework import viewsets
 
-from models import Message, MarketAccount, Tweet, BannedUser
-from serializers import MessageSerializer, MarketAccountSerializer
-
+from models import SocialPost, BannedUser
 
 # TODO - tweet and artworker assignments should be returning a JSON
 # response - although having said that we are just swapping out HTML
@@ -23,7 +20,7 @@ class TweetUserView(TemplateView):
         tweet_pk = self.request.GET['tweet_pk']
         msg = self.request.GET['msg']
 
-        tweet = Tweet.objects.get(pk=tweet_pk)
+        tweet = SocialPost.objects.get(pk=tweet_pk)
 
         # Reverse the quoting and get the unicode back
         msg = urllib.unquote(msg)
@@ -85,17 +82,6 @@ class AssignArtworkerView(TemplateView):
         context = super(AssignArtworkerView, self).get_context_data(**kwargs)
         context['artworker'] = self.assign_artworker()
         return context
-
-
-class MessageViewSet(viewsets.ModelViewSet):
-    queryset = Message.objects.all()
-    serializer_class = MessageSerializer
-    filter_fields = ('type', 'account',)
-
-
-class MarketAccountViewSet(viewsets.ModelViewSet):
-    queryset = MarketAccount.objects.all()
-    serializer_class = MarketAccountSerializer
 
 
 class BanUserView(View):

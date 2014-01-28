@@ -3,8 +3,9 @@ from django.conf.urls import patterns, include, url, static
 from django.contrib import admin
 from rest_framework import routers
 
-from tweets.views import TweetUserView, MessageViewSet, MarketAccountViewSet,\
-    AssignArtworkerView, BanUserView
+from social.views import TweetUserView, AssignArtworkerView, BanUserView
+from brand.views import MessageViewSet, MarketAccountViewSet
+
 
 admin.autodiscover()
 router = routers.DefaultRouter()
