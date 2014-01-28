@@ -64,26 +64,6 @@ class TweetUserView(TemplateView):
         return super(TweetUserView, self).get(*args, **kwargs)
 
 
-class AssignArtworkerView(TemplateView):
-    template_name = 'assign_artworker.html'
-
-    def assign_artworker(self):
-        tweet_pk = self.request.GET['tweet_pk']
-        tweet = Tweet.objects.get(pk=tweet_pk)
-
-        if tweet.artworker is None:
-            tweet.artworker = self.request.user
-            tweet.save()
-            return True
-        else:
-            return tweet.artworker.username
-
-    def get_context_data(self, **kwargs):
-        context = super(AssignArtworkerView, self).get_context_data(**kwargs)
-        context['artworker'] = self.assign_artworker()
-        return context
-
-
 class BanUserView(View):
     template_name = 'assign_artworker.html'
 

@@ -41,12 +41,11 @@ class SocialPost(models.Model):
     image_url = models.URLField(max_length=255, blank=True, null=True)
     messaged = models.BooleanField(default=False)
     messaged.verbose_name = 'Post status'
-    sent_tweet = models.CharField(max_length=140, blank=True, null=True)
+    sent_message = models.CharField(max_length=140, blank=True, null=True)
     # note the FKs: https://docs.djangoproject.com/en/dev/topics/db/models/#be-careful-with-related-name
-    artworker = models.ForeignKey(User, related_name='%(class)s_artworker', blank=True, null=True)
     messaged_by = models.ForeignKey(User, related_name='%(class)s_messenger', blank=True, null=True)
     messaged_at = models.DateTimeField(blank=True, null=True)
-    tweet_id = models.CharField(max_length=100, blank=True, null=True)
+    sent_id = models.CharField(max_length=100, blank=True, null=True)
     disallowed_reason = models.TextField(blank=True, null=True)
 
     # Exclude all deleted tweets - we keep them in so they aren't reimported
@@ -60,14 +59,6 @@ class SocialPost(models.Model):
     class Meta:
         # Content should be in ascending date order
         ordering = ('-high_priority', '-created_at', '-followers', 'handle')
-
-    @property
-    def has_existing_graphic(self):
-        """
-            Check if this tweet already has an attached graphic - we may deny
-            entry if they have already entered and had a response
-        """
-        return SocialPost.everything.filter(handle=self.handle).exclude(photoshop='').exclude(uid=self.uid).count() > 0
 
     @property
     def entry_count(self):

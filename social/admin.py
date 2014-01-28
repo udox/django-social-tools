@@ -25,8 +25,8 @@ class BaseAdmin(admin.ModelAdmin):
 
 class SocialAdmin(BaseAdmin):
     search_fields = ('handle', 'content',)
-    list_display = ('created_at', 'high_priority', 'get_handle', 'account', 'get_image', 'content', 'messages', 'messaged_by', 'get_artworker', 'notes')
-    list_filter = ('account', 'high_priority', SocialPostStatusFilter, SocialPostImageFilter, 'artworker', 'messaged_by', 'created_at', 'messaged_at', 'entry_allowed')
+    list_display = ('created_at', 'high_priority', 'get_handle', 'account', 'get_image', 'content', 'messages', 'messaged_by', 'notes')
+    list_filter = ('account', 'high_priority', SocialPostStatusFilter, SocialPostImageFilter, 'messaged_by', 'created_at', 'messaged_at', 'entry_allowed')
     list_editable = ('notes', )
 
     list_per_page = 25
@@ -34,19 +34,15 @@ class SocialAdmin(BaseAdmin):
     actions = [mark_deleted, ]
 
     fieldsets = (
-        ('Attach your photoshop', {
-            'fields': ('photoshop', ),
+        ('Post data', {
+            'fields': ('created_at', 'handle', 'user_joined', 'account', 'content', 'image_url', 'uid', 'entry_allowed', 'disallowed_reason'),
         }),
         ('Make high priority', {
             'fields': ('high_priority', 'notes'),
         }),
-        ('Tweet data', {
-            'classes': ('collapse', ),
-            'fields': ('created_at', 'handle', 'user_joined', 'account', 'content', 'image_url', 'uid', 'entry_allowed', 'disallowed_reason'),
-        }),
         ('Sent data', {
             'classes': ('collapse', ),
-            'fields': ('artworker', 'messaged_by', 'messaged_at', 'tweet_id', 'sent_tweet', )
+            'fields': ('messaged_by', 'messaged_at', 'sent_id', 'sent_message', )
         }),
     )
 
@@ -73,27 +69,11 @@ class SocialAdmin(BaseAdmin):
         return mark_safe("""
             <ul class="message-btns">
                 <li><a class="btn btn-inverse ban-user">Ban User</a></li>
-                <!--<li><a class="btn btn-danger send-tweet" data-msgtype="tryagain">Image doesn't work</a></li>-->
-                <!--<li><a class="btn btn-success send-tweet" data-msgtype="imagelink">Tweet tongue graphic</a></li>-->
             </ul>
         """)
-    messages.short_description = 'Tweet back to user'
-
-    def get_artworker(self, obj):
-        if obj.artworker:
-            return obj.artworker.username
-        else:
-            return mark_safe("""
-                <a class="btn btn-info assign-artworker">Start Working!</a>
-            """)
-    get_artworker.short_description = 'Artworker Status'
+    messages.short_description = 'Post control'
 
     def save_model(self, request, obj, form, change):
-        # TODO: fix bug with this - if a CM edits and saves a tweet directly
-        # this will set the artworker to them
-        if 'photoshop' in form.changed_data:
-            obj.artworker = request.user
-
         obj.save()
 
     def get_actions(self, request):

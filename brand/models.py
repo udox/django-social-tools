@@ -3,13 +3,13 @@ from django.db import models
 
 class MarketAccount(models.Model):
     ACCOUNT_CHOICES = (
-        ('t', 'Twitter'),
-        ('i', 'Instagram'),
+        ('twitter', 'Twitter'),
+        ('instagram', 'Instagram'),
     )
 
-    type = models.CharField(max_length=1, unique=True, choices=ACCOUNT_CHOICES)
-
+    type = models.CharField(max_length=50, unique=True, choices=ACCOUNT_CHOICES)
     handle = models.CharField(max_length=100)
+    active = models.BooleanField(default=True)
 
     # Instagram
     client_id = models.CharField(max_length=100, blank=True, null=True)
@@ -22,7 +22,7 @@ class MarketAccount(models.Model):
     access_token_key = models.CharField(max_length=100, blank=True, null=True)
 
     def __unicode__(self):
-        return u'{0} ({1})'.format(self.handle, self.pk)
+        return u'{0} ({1})'.format(self.handle, self.type)
 
 
 class Message(models.Model):

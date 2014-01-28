@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import twitter
 
 from dateutil.parser import parse as date_parse
 
@@ -8,6 +7,7 @@ from django.db.utils import IntegrityError
 from django.conf import settings
 
 from social.models import SocialPost, SearchTerm
+from social.facades import SocialSearchFacade
 from brand.models import MarketAccount
 
 
@@ -16,19 +16,6 @@ class Command(BaseCommand):
     def __init__(self):
         super(Command, self).__init__()
         self.accounts = MarketAccount.objects.all()
-        self.primary_account = MarketAccount.objects.get(handle='adidasoriginals')
-
-    def get_api(self):
-        """
-            Get a twitter api object to work with
-        """
-
-        return twitter.Api(
-            consumer_key='aJsLPnXasjoWXW99cbG0lg',
-            consumer_secret='DxW4hggyUqiwGhGfnzldX57BgBcx7RIpB8fBUDRoM',
-            access_token_key='2272873393-Ig34VvEWmD4HN66bgNlZrRE7JfFmcndZvxzB116',
-            access_token_secret='ZqMNHKhNQNLfikntnbP6MevM7I1aftHeBtBR0W2Rkibrx',
-        )
 
     def get_image_url(self, tweet):
         """
@@ -55,17 +42,6 @@ class Command(BaseCommand):
 
         return source, image_url
 
-    def get_account(self, tweet):
-        """
-            Check for the presence of a tracked account in the tweet. If nothing
-            can be found we default to a particular one.
-        """
-        for account in self.accounts:
-            if account.handle.lower() in tweet.text.lower():
-                return account
-
-        return self.primary_account
-
     def disable(self, post, reason='Unknown'):
         post.deleted = True
         post.entry_allowed = False
@@ -81,40 +57,36 @@ class Command(BaseCommand):
 
         for term in terms:
 
-            self.stdout.write("\nImporting %s posts" % term.term)
+            for account in self.accounts:
 
-            api = self.get_api()
-            search = api.GetSearch(term=term.term, result_type='recent', count=100)
+                self.stdout.write("\nImporting %s posts for account %s" % (term.term, account.handle))
 
-            for tweet in search:
+                api = SocialSearchFacade(account)
+                search = api.search(term.term)
 
-                source, image_url = self.get_image_url(tweet)
+                for post in search:
 
-                obj = SocialPost(
-                    created_at=date_parse(tweet.created_at),
-                    uid=tweet.id,
-                    handle=tweet.user.screen_name,
-                    account=self.get_account(tweet),
-                    image_url=image_url,
-                    content=tweet.text,
-                    followers=tweet.user.followers_count,
-                    user_joined=date_parse(tweet.user.created_at),
-                )
+                    source, image_url = self.get_image_url(post)
 
-                try:
-                    obj.save()
-                    self.stdout.write("Added %s (%d %s)" % (obj.uid, obj.id, obj.handle))
+                    obj = SocialPost(
+                        created_at=date_parse(post.created_at),
+                        uid=post.id,
+                        handle=post.user.screen_name,
+                        account=account,
+                        image_url=image_url,
+                        content=post.text,
+                        followers=post.user.followers_count,
+                        user_joined=date_parse(post.user.created_at),
+                    )
 
-                    if obj.has_existing_graphic:
-                        self.disable(obj, reason='Has existing graphic')
-                        self.stdout.write("%s (%d %s) has a graphic already, flagging" % (obj.uid, obj.id, obj.handle))
+                    try:
                         obj.save()
-                        continue
+                        self.stdout.write("Added %s (%d %s)" % (obj.uid, obj.id, obj.handle))
 
-                    entry_count = obj.entry_count
-                    if entry_count > settings.MAX_ENTRIES:
-                        self.disable(obj, reason='Already entered max times (%d)' % entry_count)
-                        continue
+                        entry_count = obj.entry_count
+                        if entry_count > settings.MAX_ENTRIES:
+                            self.disable(obj, reason='Already entered max times (%d)' % entry_count)
+                            continue
 
-                except IntegrityError:
-                    self.stdout.write("Post already exists %s (%s)" % (obj.uid, obj.handle))
+                    except IntegrityError:
+                        self.stdout.write("Post already exists %s (%s)" % (obj.uid, obj.handle))
