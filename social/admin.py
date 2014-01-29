@@ -35,7 +35,7 @@ class SocialAdmin(BaseAdmin):
 
     fieldsets = (
         ('Post data', {
-            'fields': ('created_at', 'handle', 'user_joined', 'account', 'content', 'image_url', 'uid', 'entry_allowed', 'disallowed_reason'),
+            'fields': ('created_at', 'handle', 'user_joined', 'followers', 'post_url', 'account', 'content', 'image_url', 'uid', 'entry_allowed', 'disallowed_reason'),
         }),
         ('Make high priority', {
             'fields': ('high_priority', 'notes'),
@@ -43,6 +43,10 @@ class SocialAdmin(BaseAdmin):
         ('Sent data', {
             'classes': ('collapse', ),
             'fields': ('messaged_by', 'messaged_at', 'sent_id', 'sent_message', )
+        }),
+        ('Raw data', {
+            'classes': ('collapse', ),
+            'fields': ('raw_object', )
         }),
     )
 
@@ -59,10 +63,12 @@ class SocialAdmin(BaseAdmin):
     get_image.short_description = 'Original Image'
 
     def get_handle(self, obj):
+        followers = '<p><em>({} Followers)</em></p>'.format(obj.followers) if obj.followers else ''
         return mark_safe("""
-            <p><a href="http://twitter.com/{0}" target="_blank">{0}</a></p>
-            <p><em>({1} Followers)
-        """.format(obj.handle.encode('utf-8'), obj.followers))
+            <p><a href="http://{3}.com/{0}" target="_blank">{0}</a></p>
+            <p><img src="{2}" /></p>
+            {1}
+        """.format(obj.handle.encode('utf-8'), followers, obj.profile_image, obj.account.type.lower()))
     get_handle.short_description = 'User\'s Handle'
 
     def messages(self, obj):

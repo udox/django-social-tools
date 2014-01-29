@@ -25,10 +25,12 @@ class SocialPost(models.Model):
     created_at = models.DateTimeField()
     created_at.verbose_name = 'Post date'
     uid = models.CharField(max_length=100, unique=True)
+    post_url = models.URLField(max_length=255, null=True, blank=True)
     handle = models.CharField(max_length=100)
     followers = models.IntegerField(blank=True, null=True)
     user_joined = models.DateTimeField(blank=True, null=True)
-    content = models.CharField(max_length=150)
+    profile_image = models.URLField(max_length=255, blank=True, null=True)
+    content = models.CharField(max_length=500)
     approved = models.BooleanField(default=False)
     high_priority = models.BooleanField(default=False)
     deleted = models.BooleanField(default=False)
@@ -48,13 +50,16 @@ class SocialPost(models.Model):
     sent_id = models.CharField(max_length=100, blank=True, null=True)
     disallowed_reason = models.TextField(blank=True, null=True)
 
+    raw_object = models.TextField(blank=True, null=True)
+    raw_object.help_text = 'Pickled string version of the complete API returned content'
+
     # Exclude all deleted tweets - we keep them in so they aren't reimported
     # or added elsewhere
     objects = SocialPostManager()
     everything = AllSocialPostManager()
 
     def __unicode__(self):
-        return u'{0} - {1} ({2})'.format(self.handle, self.account, self.tweeted)
+        return u'{0} - {1} ({2})'.format(self.handle, self.account.type, self.messaged)
 
     class Meta:
         # Content should be in ascending date order

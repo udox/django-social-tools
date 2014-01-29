@@ -8,9 +8,10 @@ class SocialPostImageFilter(SimpleListFilter):
 
     def lookups(self, request, model_admin):
         return (
-            ('any', 'Twitpic or Twitter'),
+            ('any', 'All images'),
             ('twitpic', 'Twitpic only'),
             ('twitter', 'Twitter only'),
+            ('instagram', 'Instagram only'),
             ('none', 'No image'),
         )
 
@@ -21,8 +22,15 @@ class SocialPostImageFilter(SimpleListFilter):
         if self.value() == 'twitpic':
             return queryset.filter(image_url__icontains='twitpic.com')
 
+        if self.value() == 'instagram':
+            return queryset.filter(image_url__icontains='distilleryimage')
+
         if self.value() == 'any':
-            return queryset.filter(Q(image_url__icontains='twitpic.com')|Q(image_url__icontains='pbs.twimg.com'))
+            return queryset.filter(
+                Q(image_url__icontains='twitpic.com')|\
+                Q(image_url__icontains='pbs.twimg.com')|\
+                Q(image_url__icontains='distilleryimage')
+            )
 
         if self.value() == 'none':
             return queryset.filter(image_url=None)
