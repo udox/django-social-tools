@@ -1,3 +1,5 @@
+from rest_framework import filters
+
 from django.contrib.admin import SimpleListFilter
 from django.db.models import Q
 
@@ -56,3 +58,12 @@ class SocialPostStatusFilter(SimpleListFilter):
             return queryset.filter(messaged=False)
 
         return queryset
+
+
+class HasImageFilterBackend(filters.BaseFilterBackend):
+    """
+        Filter for API to exclude posts without images
+    """
+
+    def filter_queryset(self, request, queryset, view):
+        return queryset.exclude(image_url=None)

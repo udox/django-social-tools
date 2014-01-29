@@ -5,8 +5,11 @@ from datetime import datetime
 from django.db.utils import IntegrityError
 from django.http import HttpResponse
 from django.views.generic import TemplateView, View
+from rest_framework import viewsets
 
+from serializers import PostSerializer
 from models import SocialPost, BannedUser
+from filters import HasImageFilterBackend
 
 # TODO - tweet and artworker assignments should be returning a JSON
 # response - although having said that we are just swapping out HTML
@@ -68,9 +71,9 @@ class BanUserView(View):
     template_name = 'assign_artworker.html'
 
     def ban_user(self):
-        tweet_pk = self.request.GET['tweet_pk']
+        post_pk = self.request.GET['post_pk']
 
-        tweet = Tweet.everything.get(pk=tweet_pk)
+        tweet = SocialPost.everything.get(pk=post_pk)
         hellban = BannedUser(handle=tweet.handle)
 
         try:
@@ -82,3 +85,13 @@ class BanUserView(View):
 
     def get(self, request, *args, **kwargs):
         return HttpResponse(self.ban_user())
+
+
+class AllPostFeedViewSet(viewsets.ModelViewSet):
+    queryset = SocialPost.objects.all()
+    serializer_class = PostSerializer
+
+
+class ImagePostFeedViewSet(AllPostFeedViewSet):
+    filter_backends = (HasImageFilterBackend, )
+

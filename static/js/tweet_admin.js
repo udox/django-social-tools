@@ -5,7 +5,7 @@ window.reloader = null;
     $(document).ready(function() {
 
         var TIMEOUT_DELAY = 30;  // seconds
-        var tweet_pk;
+        var post_pk;
         var handle;
         var started = new Date().getTime();
 
@@ -44,7 +44,7 @@ window.reloader = null;
             $('#tweet-length').html('Length: ' + length);
         }
 
-        function get_tweet_pk(elem) {
+        function get_post_pk(elem) {
             return $(elem).closest('td').prevAll(':last').find('.action-select').val();
         }
 
@@ -57,7 +57,7 @@ window.reloader = null;
                 //the particular id for this to filter messages against
                 var account = $(this).parent().parent().parent().prev().prev().prev().prev().prev().text();
                 var account_id = account.match(/\((\d+)\)/)[1];
-                tweet_pk = get_tweet_pk(this);
+                post_pk = get_post_pk(this);
                 handle = $(this).closest('td').prevAll(':eq(5)').find('a').text();
 
                 // reset modal form
@@ -86,17 +86,17 @@ window.reloader = null;
                 var msg = $('#tweet-msg').val();
                 $(this).fadeOut();
                 $(this).prev('a').text('Close');
-                $(this).parentsUntil('#modal').find('#tweet-log').load('/send-tweet/?msg=' + encodeURIComponent(msg) + '&tweet_pk=' + tweet_pk);
+                $(this).parentsUntil('#modal').find('#tweet-log').load('/send-tweet/?msg=' + encodeURIComponent(msg) + '&post_pk=' + post_pk);
             });
 
             // Inprogress notification
             $('.assign-artworker').on('click', function(e) {
-                $(this).load('/assign-artworker/?tweet_pk=' + get_tweet_pk(this));
+                $(this).load('/assign-artworker/?post_pk=' + get_post_pk(this));
             });
 
             // Hellban
             $('.ban-user').on('click', function(e) {
-                $(this).load('/ban-user/?tweet_pk=' + get_tweet_pk(this));
+                $(this).load('/ban-user/?post_pk=' + get_post_pk(this));
             });
 
         }
