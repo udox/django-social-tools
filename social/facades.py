@@ -99,7 +99,10 @@ class InstagramPost(SocialPost):
 
     @property
     def content(self):
-        return self._obj.caption.text
+        try:
+            return self._obj.caption.text
+        except AttributeError:
+            return None
 
     @property
     def post_source(self):
