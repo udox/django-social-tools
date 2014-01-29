@@ -44,10 +44,6 @@ class SocialAdmin(BaseAdmin):
             'classes': ('collapse', ),
             'fields': ('messaged_by', 'messaged_at', 'sent_id', 'sent_message', )
         }),
-        ('Raw data', {
-            'classes': ('collapse', ),
-            'fields': ('raw_object', )
-        }),
     )
 
     def get_image(self, obj):

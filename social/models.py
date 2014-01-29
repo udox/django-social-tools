@@ -50,7 +50,7 @@ class SocialPost(models.Model):
     sent_id = models.CharField(max_length=100, blank=True, null=True)
     disallowed_reason = models.TextField(blank=True, null=True)
 
-    raw_object = models.TextField(blank=True, null=True)
+    raw_object = models.BinaryField(blank=True, null=True)
     raw_object.help_text = 'Pickled string version of the complete API returned content'
 
     # Exclude all deleted tweets - we keep them in so they aren't reimported

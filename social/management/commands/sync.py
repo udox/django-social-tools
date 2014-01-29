@@ -61,7 +61,7 @@ class Command(BaseCommand):
                         uid=post.uid,
                         user_joined=post.user_joined,
                         profile_image=post.profile_image,
-                        #raw_object=pickle.dumps(post._obj),
+                        raw_object=pickle.dumps(post._obj),
                     )
 
                     try:
