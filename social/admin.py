@@ -7,7 +7,7 @@ from filters import SocialPostImageFilter, SocialPostStatusFilter
 
 def mark_deleted(modeladmin, request, queryset):
     queryset.update(deleted=True)
-mark_deleted.short_description = 'Hide selected posts'
+mark_deleted.short_description = 'Hide selected posts
 
 def mark_approved(modeladmin, request, queryset):
     queryset.update(approved=True)

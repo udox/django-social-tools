@@ -27,6 +27,7 @@ class SocialPost(models.Model):
     uid = models.CharField(max_length=100, unique=True)
     post_url = models.URLField(max_length=255, null=True, blank=True)
     handle = models.CharField(max_length=100)
+    post_source = models.CharField(max_length=100, blank=True, null=True)
     followers = models.IntegerField(blank=True, null=True)
     user_joined = models.DateTimeField(blank=True, null=True)
     profile_image = models.URLField(max_length=255, blank=True, null=True)

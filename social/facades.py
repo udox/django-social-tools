@@ -18,6 +18,7 @@ class SocialPost(object):
     followers = None
     user_joined = None
     profile_image = None
+    post_source = None  # This could be inferred but we'll be explicit for now
 
     def __init__(self, obj):
         self._obj = obj
@@ -62,6 +63,10 @@ class TwitterPost(SocialPost):
         return self._obj.text
 
     @property
+    def post_source(self):
+        return 'twitter'
+
+    @property
     def created_at(self):
         return date_parse(self._obj.created_at)
 
@@ -94,7 +99,11 @@ class InstagramPost(SocialPost):
 
     @property
     def content(self):
-        return self._obj.caption
+        return self._obj.caption.text
+
+    @property
+    def post_source(self):
+        return 'instagram'
 
     @property
     def created_at(self):
