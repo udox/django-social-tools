@@ -5,7 +5,7 @@ import pickle
 from optparse import make_option
 
 from django.core.management.base import BaseCommand
-from django.db.utils import IntegrityError
+from django.db.utils import IntegrityError, DataError
 from django.conf import settings
 
 from social.models import SocialPost, SearchTerm
@@ -75,3 +75,6 @@ class Command(BaseCommand):
 
                     except IntegrityError:
                         self.stdout.write("Post already exists %s (%s)" % (obj.uid, obj.handle))
+
+                    except DataError:
+                        self.stdout.write("Skipping %s as content errored on save" % obj.uid)

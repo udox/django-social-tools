@@ -30,7 +30,7 @@ class SocialPost(models.Model):
     followers = models.IntegerField(blank=True, null=True)
     user_joined = models.DateTimeField(blank=True, null=True)
     profile_image = models.URLField(max_length=255, blank=True, null=True)
-    content = models.CharField(max_length=500)
+    content = models.CharField(max_length=1000)
     approved = models.BooleanField(default=False)
     high_priority = models.BooleanField(default=False)
     deleted = models.BooleanField(default=False)
