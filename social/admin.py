@@ -25,7 +25,7 @@ class BaseAdmin(admin.ModelAdmin):
 
 class SocialAdmin(BaseAdmin):
     search_fields = ('handle', 'content',)
-    list_display = ('created_at', 'high_priority', 'get_handle', 'account', 'get_image', 'content', 'messages', 'notes')
+    list_display = ('created_at', 'high_priority', 'get_handle', 'post_source', 'get_image', 'content', 'messages', 'notes')
     list_filter = ('account', 'high_priority', SocialPostStatusFilter, SocialPostImageFilter, 'created_at', 'entry_allowed')
     list_editable = ('notes', )
 
@@ -35,7 +35,7 @@ class SocialAdmin(BaseAdmin):
 
     fieldsets = (
         ('Post data', {
-            'fields': ('created_at', 'handle', 'user_joined', 'followers', 'post_url', 'account', 'content', 'image_url', 'uid', 'entry_allowed', 'disallowed_reason'),
+            'fields': ('created_at', 'handle', 'user_joined', 'followers', 'post_url', 'post_source', 'account', 'content', 'image_url', 'uid', 'entry_allowed', 'disallowed_reason'),
         }),
         ('Make high priority', {
             'fields': ('high_priority', 'notes'),

@@ -61,6 +61,7 @@ class Command(BaseCommand):
                         uid=post.uid,
                         user_joined=post.user_joined,
                         profile_image=post.profile_image,
+                        post_source=post.post_source,
                         raw_object=pickle.dumps(post._obj),
                     )
 
