@@ -25,8 +25,8 @@ class BaseAdmin(admin.ModelAdmin):
 
 class SocialAdmin(BaseAdmin):
     search_fields = ('handle', 'content',)
-    list_display = ('created_at', 'high_priority', 'get_handle', 'account', 'get_image', 'content', 'messages', 'messaged_by', 'notes')
-    list_filter = ('account', 'high_priority', SocialPostStatusFilter, SocialPostImageFilter, 'messaged_by', 'created_at', 'messaged_at', 'entry_allowed')
+    list_display = ('created_at', 'high_priority', 'get_handle', 'account', 'get_image', 'content', 'messages', 'notes')
+    list_filter = ('account', 'high_priority', SocialPostStatusFilter, SocialPostImageFilter, 'created_at', 'entry_allowed')
     list_editable = ('notes', )
 
     list_per_page = 25
