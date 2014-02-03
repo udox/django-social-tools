@@ -5,9 +5,9 @@ from datetime import datetime
 from django.db.utils import IntegrityError
 from django.http import HttpResponse
 from django.views.generic import TemplateView, View
-from rest_framework import viewsets
+from rest_framework import generics
 
-from serializers import PostSerializer
+from serializers import PostSerializer, PaginatedPostSerializer
 from models import SocialPost, BannedUser
 from filters import HasImageFilterBackend
 
@@ -87,11 +87,8 @@ class BanUserView(View):
         return HttpResponse(self.ban_user())
 
 
-class AllPostFeedViewSet(viewsets.ModelViewSet):
+class PaginatedImagePostFeedView(generics.ListAPIView):
     queryset = SocialPost.objects.all()
     serializer_class = PostSerializer
-
-
-class ImagePostFeedViewSet(AllPostFeedViewSet):
+    pagination_serializer_class = PaginatedPostSerializer
     filter_backends = (HasImageFilterBackend, )
-
