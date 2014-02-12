@@ -1,5 +1,6 @@
 import twitter
 import instagram
+import requests
 
 from dateutil.parser import parse as date_parse
 
