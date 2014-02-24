@@ -9,7 +9,7 @@ from rest_framework import generics
 
 from serializers import PostSerializer, PaginatedPostSerializer
 from models import SocialPost, BannedUser
-from filters import HasImageFilterBackend
+from filters import HasImageFilterBackend, OldSchoolRetweet
 
 # TODO - tweet and artworker assignments should be returning a JSON
 # response - although having said that we are just swapping out HTML
@@ -91,4 +91,4 @@ class PaginatedImagePostFeedView(generics.ListAPIView):
     queryset = SocialPost.objects.all()
     serializer_class = PostSerializer
     pagination_serializer_class = PaginatedPostSerializer
-    filter_backends = (HasImageFilterBackend, )
+    filter_backends = (HasImageFilterBackend, OldSchoolRetweet)

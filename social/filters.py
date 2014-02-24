@@ -67,3 +67,13 @@ class HasImageFilterBackend(filters.BaseFilterBackend):
 
     def filter_queryset(self, request, queryset, view):
         return queryset.exclude(image_url=None)
+
+
+class OldSchoolRetweet(filters.BaseFilterBackend):
+    """
+        Filter for API to exclude posts that start "@handle... which is
+        like an old school retweet hence the name.
+    """
+
+    def filter_queryset(self, request, queryset, view):
+        return queryset.exclude(content__startswith='"@')
