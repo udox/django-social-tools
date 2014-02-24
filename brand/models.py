@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class MarketAccount(models.Model):
@@ -38,3 +39,7 @@ class Message(models.Model):
     def __unicode__(self):
         return u'{0} ({1}...)'.format(self.account, self.copy[:30])
 
+
+class TrackedAccounts(models.Model):
+    user = models.ForeignKey(User)
+    accounts = models.ManyToManyField(MarketAccount)

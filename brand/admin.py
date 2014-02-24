@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from models import Message, MarketAccount
+from models import Message, MarketAccount, TrackedAccounts
 from social.admin import BaseAdmin
 
 
@@ -10,3 +10,4 @@ class MessageAdmin(BaseAdmin):
 
 admin.site.register(Message, MessageAdmin)
 admin.site.register(MarketAccount, BaseAdmin)
+admin.site.register(TrackedAccounts, BaseAdmin)
