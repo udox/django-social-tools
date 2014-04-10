@@ -8,8 +8,9 @@ from django.views.generic import TemplateView, View
 from rest_framework import generics
 
 from serializers import PostSerializer, PaginatedPostSerializer
-from models import SocialPost, BannedUser
-from filters import HasImageFilterBackend, OldSchoolRetweet
+from brand.models import TrackedTerms
+from .models import SocialPost, BannedUser
+from .filters import HasImageFilterBackend, OldSchoolRetweet
 
 # TODO - tweet and artworker assignments should be returning a JSON
 # response - although having said that we are just swapping out HTML
@@ -92,3 +93,17 @@ class PaginatedImagePostFeedView(generics.ListAPIView):
     serializer_class = PostSerializer
     pagination_serializer_class = PaginatedPostSerializer
     filter_backends = (HasImageFilterBackend, OldSchoolRetweet)
+
+    def get_queryset(self):
+        queryset = SocialPost.objects.all()
+        user = self.request.QUERY_PARAMS.get('user', None)
+        if user is not None:
+            try:
+                # If we have a user then we need to look up what accounts they are associated
+                # with and then filter on all those (it's M2M)
+                tracked_term = TrackedTerms.objects.get(user__username=user)
+                queryset = queryset.filter(search_term__in=tracked_term.terms.values_list('pk', flat=True))
+            except TrackedTerms.DoesNotExist:
+                # If we can't find the user just carry on
+                pass
+        return queryset

@@ -63,6 +63,7 @@ class Command(BaseCommand):
                         profile_image=post.profile_image,
                         post_source=post.post_source,
                         raw_object=pickle.dumps(post._obj),
+                        search_term=term,
                     )
 
                     try:
@@ -74,7 +75,7 @@ class Command(BaseCommand):
                             self.disable(obj, reason='Already entered max times (%d)' % entry_count)
                             continue
 
-                    except IntegrityError:
+                    except IntegrityError as e:
                         self.stdout.write("Post already exists %s (%s)" % (obj.uid, obj.handle))
 
                     except DataError:

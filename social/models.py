@@ -40,6 +40,7 @@ class SocialPost(models.Model):
     notes.verbose_name = 'internal notes'
     account = models.ForeignKey(MarketAccount, blank=True, null=True)
     account.verbose_name = 'Social source'
+    search_term = models.ForeignKey(SearchTerm)
     content.verbose_name = 'user\'s post'
     image_url = models.URLField(max_length=255, blank=True, null=True)
     messaged = models.BooleanField(default=False)

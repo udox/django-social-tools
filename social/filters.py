@@ -72,8 +72,11 @@ class HasImageFilterBackend(filters.BaseFilterBackend):
 class OldSchoolRetweet(filters.BaseFilterBackend):
     """
         Filter for API to exclude posts that start "@handle... which is
-        like an old school retweet hence the name.
+        like an old school retweet hence the name. \u021c is the left
+        double quote mark.
+
+        (http://www.fileformat.info/info/unicode/char/201C/index.htm)
     """
 
     def filter_queryset(self, request, queryset, view):
-        return queryset.exclude(content__startswith='"@')
+        return queryset.exclude(content__regex=r'[\u201c|"]@')
