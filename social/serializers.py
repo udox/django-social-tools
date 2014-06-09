@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework import pagination
-from models import SocialPost
+from social.models import SocialPost, Message, MarketAccount
 
 
 class PostSerializer(serializers.HyperlinkedModelSerializer):
@@ -16,3 +16,12 @@ class PaginatedPostSerializer(pagination.PaginationSerializer):
     class Meta:
         object_serializer_class = PostSerializer
 
+
+class MessageSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Message
+
+
+class MarketAccountSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = MarketAccount

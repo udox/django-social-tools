@@ -8,6 +8,47 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
+        # Adding model 'MarketAccount'
+        db.create_table(u'social_marketaccount', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('type', self.gf('django.db.models.fields.CharField')(unique=True, max_length=50)),
+            ('handle', self.gf('django.db.models.fields.CharField')(max_length=100)),
+            ('active', self.gf('django.db.models.fields.BooleanField')(default=True)),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'], null=True, blank=True)),
+            ('client_id', self.gf('django.db.models.fields.CharField')(max_length=100, null=True, blank=True)),
+            ('client_secret', self.gf('django.db.models.fields.CharField')(max_length=100, null=True, blank=True)),
+            ('consumer_secret', self.gf('django.db.models.fields.CharField')(max_length=100, null=True, blank=True)),
+            ('consumer_key', self.gf('django.db.models.fields.CharField')(max_length=100, null=True, blank=True)),
+            ('access_token_secret', self.gf('django.db.models.fields.CharField')(max_length=100, null=True, blank=True)),
+            ('access_token_key', self.gf('django.db.models.fields.CharField')(max_length=100, null=True, blank=True)),
+        ))
+        db.send_create_signal(u'social', ['MarketAccount'])
+
+        # Adding model 'Message'
+        db.create_table(u'social_message', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('copy', self.gf('django.db.models.fields.CharField')(max_length=140)),
+            ('account', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['social.MarketAccount'])),
+            ('type', self.gf('django.db.models.fields.CharField')(max_length=1)),
+        ))
+        db.send_create_signal(u'social', ['Message'])
+
+        # Adding model 'TrackedTerms'
+        db.create_table(u'social_trackedterms', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'], unique=True)),
+        ))
+        db.send_create_signal(u'social', ['TrackedTerms'])
+
+        # Adding M2M table for field terms on 'TrackedTerms'
+        m2m_table_name = db.shorten_name(u'social_trackedterms_terms')
+        db.create_table(m2m_table_name, (
+            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
+            ('trackedterms', models.ForeignKey(orm[u'social.trackedterms'], null=False)),
+            ('searchterm', models.ForeignKey(orm[u'social.searchterm'], null=False))
+        ))
+        db.create_unique(m2m_table_name, ['trackedterms_id', 'searchterm_id'])
+
         # Adding model 'BannedUser'
         db.create_table(u'social_banneduser', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
@@ -32,6 +73,7 @@ class Migration(SchemaMigration):
             ('uid', self.gf('django.db.models.fields.CharField')(unique=True, max_length=100)),
             ('post_url', self.gf('django.db.models.fields.URLField')(max_length=255, null=True, blank=True)),
             ('handle', self.gf('django.db.models.fields.CharField')(max_length=100)),
+            ('post_source', self.gf('django.db.models.fields.CharField')(max_length=100, null=True, blank=True)),
             ('followers', self.gf('django.db.models.fields.IntegerField')(null=True, blank=True)),
             ('user_joined', self.gf('django.db.models.fields.DateTimeField')(null=True, blank=True)),
             ('profile_image', self.gf('django.db.models.fields.URLField')(max_length=255, null=True, blank=True)),
@@ -41,7 +83,8 @@ class Migration(SchemaMigration):
             ('deleted', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('entry_allowed', self.gf('django.db.models.fields.BooleanField')(default=True)),
             ('notes', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
-            ('account', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['brand.MarketAccount'], null=True, blank=True)),
+            ('account', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['social.MarketAccount'], null=True, blank=True)),
+            ('search_term', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['social.SearchTerm'])),
             ('image_url', self.gf('django.db.models.fields.URLField')(max_length=255, null=True, blank=True)),
             ('messaged', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('sent_message', self.gf('django.db.models.fields.CharField')(max_length=140, null=True, blank=True)),
@@ -55,6 +98,18 @@ class Migration(SchemaMigration):
 
 
     def backwards(self, orm):
+        # Deleting model 'MarketAccount'
+        db.delete_table(u'social_marketaccount')
+
+        # Deleting model 'Message'
+        db.delete_table(u'social_message')
+
+        # Deleting model 'TrackedTerms'
+        db.delete_table(u'social_trackedterms')
+
+        # Removing M2M table for field terms on 'TrackedTerms'
+        db.delete_table(db.shorten_name(u'social_trackedterms_terms'))
+
         # Deleting model 'BannedUser'
         db.delete_table(u'social_banneduser')
 
@@ -95,19 +150,6 @@ class Migration(SchemaMigration):
             'user_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "u'user_set'", 'blank': 'True', 'to': u"orm['auth.Permission']"}),
             'username': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '30'})
         },
-        u'brand.marketaccount': {
-            'Meta': {'object_name': 'MarketAccount'},
-            'access_token_key': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
-            'access_token_secret': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
-            'active': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
-            'client_id': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
-            'client_secret': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
-            'consumer_key': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
-            'consumer_secret': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
-            'handle': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'type': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '50'})
-        },
         u'contenttypes.contenttype': {
             'Meta': {'ordering': "('name',)", 'unique_together': "(('app_label', 'model'),)", 'object_name': 'ContentType', 'db_table': "'django_content_type'"},
             'app_label': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
@@ -122,6 +164,27 @@ class Migration(SchemaMigration):
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'reason': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'})
         },
+        u'social.marketaccount': {
+            'Meta': {'object_name': 'MarketAccount'},
+            'access_token_key': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
+            'access_token_secret': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
+            'active': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
+            'client_id': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
+            'client_secret': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
+            'consumer_key': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
+            'consumer_secret': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
+            'handle': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'type': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '50'}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']", 'null': 'True', 'blank': 'True'})
+        },
+        u'social.message': {
+            'Meta': {'object_name': 'Message'},
+            'account': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['social.MarketAccount']"}),
+            'copy': ('django.db.models.fields.CharField', [], {'max_length': '140'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'type': ('django.db.models.fields.CharField', [], {'max_length': '1'})
+        },
         u'social.searchterm': {
             'Meta': {'object_name': 'SearchTerm'},
             'active': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
@@ -130,7 +193,7 @@ class Migration(SchemaMigration):
         },
         u'social.socialpost': {
             'Meta': {'ordering': "('-high_priority', '-created_at', '-followers', 'handle')", 'object_name': 'SocialPost'},
-            'account': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['brand.MarketAccount']", 'null': 'True', 'blank': 'True'}),
+            'account': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['social.MarketAccount']", 'null': 'True', 'blank': 'True'}),
             'approved': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'content': ('django.db.models.fields.CharField', [], {'max_length': '1000'}),
             'created_at': ('django.db.models.fields.DateTimeField', [], {}),
@@ -146,13 +209,21 @@ class Migration(SchemaMigration):
             'messaged_at': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'blank': 'True'}),
             'messaged_by': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'socialpost_messenger'", 'null': 'True', 'to': u"orm['auth.User']"}),
             'notes': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
+            'post_source': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
             'post_url': ('django.db.models.fields.URLField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
             'profile_image': ('django.db.models.fields.URLField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
             'raw_object': ('django.db.models.fields.BinaryField', [], {'null': 'True', 'blank': 'True'}),
+            'search_term': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['social.SearchTerm']"}),
             'sent_id': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
             'sent_message': ('django.db.models.fields.CharField', [], {'max_length': '140', 'null': 'True', 'blank': 'True'}),
             'uid': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '100'}),
             'user_joined': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'blank': 'True'})
+        },
+        u'social.trackedterms': {
+            'Meta': {'object_name': 'TrackedTerms'},
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'terms': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['social.SearchTerm']", 'symmetrical': 'False'}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']", 'unique': 'True'})
         }
     }
 

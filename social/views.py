@@ -5,12 +5,12 @@ from datetime import datetime
 from django.db.utils import IntegrityError
 from django.http import HttpResponse
 from django.views.generic import TemplateView, View
-from rest_framework import generics
+from rest_framework import generics, viewsets
 
-from serializers import PostSerializer, PaginatedPostSerializer
-from brand.models import TrackedTerms
-from .models import SocialPost, BannedUser
-from .filters import HasImageFilterBackend, OldSchoolRetweet
+from serializers import PostSerializer, PaginatedPostSerializer, MessageSerializer, MarketAccountSerializer
+
+from social.models import SocialPost, BannedUser, TrackedTerms, Message, MarketAccount
+from social.filters import HasImageFilterBackend, OldSchoolRetweet
 
 # TODO - tweet and artworker assignments should be returning a JSON
 # response - although having said that we are just swapping out HTML
@@ -107,3 +107,14 @@ class PaginatedImagePostFeedView(generics.ListAPIView):
                 # If we can't find the user just carry on
                 pass
         return queryset
+
+
+class MessageViewSet(viewsets.ModelViewSet):
+    queryset = Message.objects.all()
+    serializer_class = MessageSerializer
+    filter_fields = ('type', 'account',)
+
+
+class MarketAccountViewSet(viewsets.ModelViewSet):
+    queryset = MarketAccount.objects.all()
+    serializer_class = MarketAccountSerializer

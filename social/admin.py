@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-from models import SocialPost, SearchTerm, BannedUser
+
+from social.models import SocialPost, SearchTerm, BannedUser, Message, MarketAccount, TrackedTerms
 from filters import SocialPostImageFilter, SocialPostStatusFilter
 
 # Register your models here.
@@ -92,6 +93,15 @@ class SocialAdmin(BaseAdmin):
 
         return super(SocialAdmin, self).get_queryset(request)
 
+
+class MessageAdmin(BaseAdmin):
+    list_display = ('account', 'type', 'copy')
+    list_filter = ('account', 'type')
+
+
 admin.site.register(SocialPost, SocialAdmin)
 admin.site.register(SearchTerm, BaseAdmin)
 admin.site.register(BannedUser, BaseAdmin)
+admin.site.register(Message, MessageAdmin)
+admin.site.register(MarketAccount, BaseAdmin)
+admin.site.register(TrackedTerms, BaseAdmin)

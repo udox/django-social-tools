@@ -8,9 +8,8 @@ from django.core.management.base import BaseCommand
 from django.db.utils import IntegrityError, DataError
 from django.conf import settings
 
-from social.models import SocialPost, SearchTerm
+from social.models import SocialPost, SearchTerm, MarketAccount
 from social.facades import SocialSearchFacade
-from brand.models import MarketAccount
 
 
 class Command(BaseCommand):
