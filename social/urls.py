@@ -3,8 +3,7 @@ from django.conf.urls import patterns, include, url, static
 from django.contrib import admin
 from rest_framework import routers
 
-from social.views import TweetUserView, BanUserView, PaginatedImagePostFeedView
-from brand.views import MessageViewSet, MarketAccountViewSet
+from social.views import TweetUserView, BanUserView, PaginatedImagePostFeedView, MessageViewSet, MarketAccountViewSet
 
 
 admin.autodiscover()

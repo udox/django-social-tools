@@ -1,0 +1,13 @@
+{
+    "folders":
+    [
+            {
+                  "follow_symlinks": true,
+                  "path": "."
+            }
+     ],
+    "settings": {
+        "python_interpreter_path": "/home/mohammad/.virtualenvs/def003-website/bin/python"
+    }
+}
+

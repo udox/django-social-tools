@@ -1,0 +1,338 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"cont",
+				"contributor	statement"
+			],
+			[
+				"T",
+				"Text"
+			],
+			[
+				"ShoeAd",
+				"ShoeAdminForm	class"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 243.0,
+		"selected_items":
+		[
+			[
+				"pacakge",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/mohammad/projects/django-social-tools/MANIFEST.in",
+		"/home/mohammad/projects/django-social-tools/README.rst",
+		"/home/mohammad/projects/django-social-tools/setup.py",
+		"/home/mohammad/Dropbox/work/sublime-text-2/Packages/User/Preferences.sublime-settings",
+		"/home/mohammad/Dropbox/work/sublime-text-2/Packages/Default/Preferences.sublime-settings",
+		"/home/mohammad/projects/django-social-tools/social/management/commands/sync.py",
+		"/home/mohammad/projects/django-social-tools/social/models.py",
+		"/home/mohammad/projects/django-social-tools/social/urls.py",
+		"/home/mohammad/projects/django-social-tools/social/views.py",
+		"/home/mohammad/projects/django-social-tools/social/facades.py",
+		"/home/mohammad/projects/django-social-tools/social/management/commands/dummy.py",
+		"/home/mohammad/projects/django-social-tools/LICENSE",
+		"/home/mohammad/projects/django-social-tools/socialtool/settings.py",
+		"/home/mohammad/projects/django-social-tools/social/migrations/0001_initial.py",
+		"/home/mohammad/projects/django-social-tools/brand/admin.py",
+		"/home/mohammad/projects/django-social-tools/social/admin.py",
+		"/home/mohammad/projects/django-social-tools/brand/models.py",
+		"/home/mohammad/projects/django-social-tools/brand/serializers.py",
+		"/home/mohammad/projects/django-social-tools/social/serializers.py",
+		"/home/mohammad/projects/django-social-tools/brand/tests.py",
+		"/home/mohammad/projects/django-social-tools/brand/fixtures/inital_data.json",
+		"/home/mohammad/projects/def003-website/defected/catalogue/models.py",
+		"/home/mohammad/.virtualenvs/def003-website/src/django-oscar/oscar/apps/catalogue/abstract_models.py",
+		"/home/mohammad/projects/def003-website/defected/catalogue/tests.py",
+		"/home/mohammad/projects/def003-website/defected/templates/catalogue/detail.html",
+		"/home/mohammad/projects/def003-website/defected/templates/catalogue/partials/product/download_tracklisting.html",
+		"/home/mohammad/projects/def003-website/defected/core/vtypes.py",
+		"/home/mohammad/projects/def003-website/defected/catalogue/app.py",
+		"/home/mohammad/projects/def003-website/defected/catalogue/views.py",
+		"/home/mohammad/projects/def003-website/defected/fuga/models.py",
+		"/home/mohammad/.virtualenvs/def003-website/src/django-oscar/oscar/apps/catalogue/app.py",
+		"/home/mohammad/projects/def003-website/defected/catalogue/cloudfront/keyfiles/pk-APKAI7CTO5IF4XGME4PQ.pem",
+		"/home/mohammad/projects/def003-website/defected/core/context_processors.py",
+		"/home/mohammad/projects/def003-website/docs/source/installation.rst",
+		"/home/mohammad/projects/def003-website/fabfile.py",
+		"/home/mohammad/projects/def003-website/defected/defected/settings/production.py",
+		"/home/mohammad/projects/def003-website/requirements/base.txt",
+		"/home/mohammad/projects/def003-website/defected/defected/settings/base.py",
+		"/home/mohammad/projects/def003-website/defected/defected/settings/preproduction.py",
+		"/home/mohammad/projects/def003-website/webserver/nginx/production.conf",
+		"/home/mohammad/projects/def003-website/.gitignore",
+		"/home/mohammad/projects/def003-website/README.md",
+		"/home/mohammad/projects/def003-website/docs/source/index.rst",
+		"/home/mohammad/projects/def003-website/docs/build/html/installation.html",
+		"/home/mohammad/projects/def003-website/fabconfig.py",
+		"/home/mohammad/projects/def003-website/defected/sagepay/settings.py",
+		"/home/mohammad/projects/def003-website/defected/defected/settings/local.py",
+		"/home/mohammad/projects/def003-website/defected/partner/migrations/0007_auto__chg_field_partner_name__del_unique_partner_name.py",
+		"/home/mohammad/projects/def003-website/defected/partner/migrations/0008_auto__del_abstractstockalert__del_field_stockalert_abstractstockalert_.py",
+		"/home/mohammad/projects/def003-website/webserver/nginx/auth.htpasswd",
+		"/home/mohammad/projects/def003-website/webserver/nginx/common.conf",
+		"/home/mohammad/projects/def003-website/webserver/nginx/auth.conf",
+		"/home/mohammad/projects/def003-website/defected/fuga/templatetags/fuga_tags.py",
+		"/home/mohammad/projects/def003-website/defected/fuga/views.py",
+		"/home/mohammad/projects/def003-website/defected/sagepay/views.py",
+		"/home/mohammad/projects/def003-website/defected/templates/catalogue/partials/album_player.html",
+		"/home/mohammad/projects/def003-website/defected/templates/catalogue/partials/product/format_choice.html",
+		"/home/mohammad/projects/def003-website/defected/templates/catalogue/partials/sample_sound.html",
+		"/home/mohammad/projects/def003-website/defected/templates/checkout/thank_you.html",
+		"/home/mohammad/projects/def003-website/defected/sagepay/facade.py",
+		"/home/mohammad/projects/def003-website/defected/sagepay/models.py",
+		"/home/mohammad/projects/def003-website/webserver/nginx/preproduction.conf",
+		"/home/mohammad/projects/def003-website/webserver/nginx/uwsgi_common.conf",
+		"/home/mohammad/projects/def003-website/defected/catalogue/managers.py",
+		"/home/mohammad/projects/def003-website/defected/static/combined.less",
+		"/home/mohammad/projects/def003-website/defected/static/combined.css",
+		"/home/mohammad/projects/def003-website/webserver/bin/restart_preproduction.sh",
+		"/home/mohammad/projects/def003-website/webserver/bin/start_preproduction.sh",
+		"/home/mohammad/projects/def003-website/webserver/bin/stop_preproduction.sh",
+		"/home/mohammad/projects/def003-website/fabfile",
+		"/home/mohammad/projects/def003-website/defected/catalogue/importer/lib.py",
+		"/home/mohammad/projects/def003-website/defected/catalogue/management/commands/load_fuga_products.py",
+		"/home/mohammad/projects/def003-website/webserver/uwsgi/preproduction.ini",
+		"/home/mohammad/projects/def003-website/webserver/uwsgi/production.ini",
+		"/home/mohammad/projects/def003-website/defected/defected/wsgi/preproduction.py",
+		"/home/mohammad/projects/def003-website/webserver/uwsgi/staging.ini",
+		"/home/mohammad/projects/def003-website/webserver/bin/restart_production.sh",
+		"/home/mohammad/projects/def003-website/requirements/production.txt",
+		"/home/mohammad/projects/def003-website/webserver/bin/start_production.sh",
+		"/home/mohammad/projects/def003-website/requirements/test.txt",
+		"/home/mohammad/projects/def003-website/defected/defected/wsgi/production.py",
+		"/home/mohammad/projects/def003-website/webserver/nginx/staging.conf",
+		"/home/mohammad/projects/def003-website/webserver/cron/email_egistics.sh",
+		"/home/mohammad/projects/def003-website/webserver/cron/solr_updateindex.sh",
+		"/home/mohammad/projects/def003-website/webserver/solr/conf/update-script.js",
+		"/home/mohammad/projects/def003-website/defected/defected/settings/staging.py",
+		"/home/mohammad/projects/def003-website/defected/search/search_indexes.py",
+		"/home/mohammad/projects/def003-website/defected/catalogue/management/commands/load_physical_products.py",
+		"/home/mohammad/projects/def003-website/defected/fuga/management/commands/check_email.py",
+		"/home/mohammad/projects/def003-website/defected/sagepay/gateway.py",
+		"/home/mohammad/projects/def003-website/assets/fixtures/dev/site_site.json",
+		"/home/mohammad/projects/def003-website/assets/fixtures/live/site_site.json",
+		"/home/mohammad/projects/def003-website/scripts/update_repos.sh",
+		"/home/mohammad/projects/def003-website/requirements.txt",
+		"/home/mohammad/projects/def003-website/install_packages.sh",
+		"/home/mohammad/.virtualenvs/thbookdata/local/lib/python2.7/site-packages/django_summernote/admin.py",
+		"/home/mohammad/projects/thbookdata/bookdata/models.py",
+		"/home/mohammad/projects/thbookdata/bookdata/admin.py",
+		"/home/mohammad/.virtualenvs/thbookdata/local/lib/python2.7/site-packages/django/contrib/admin/__init__.py",
+		"/home/mohammad/.virtualenvs/thbookdata/local/lib/python2.7/site-packages/django/contrib/admin/options.py",
+		"/home/mohammad/projects/thbookdata/bookdata/untitled.sublime-project",
+		"/home/mohammad/projects/thbookdata.sublime-project",
+		"/home/mohammad/Dropbox/work/sublime-text-2/Packages/Jedi - Python autocompletion/sublime_jedi.sublime-settings",
+		"/home/mohammad/Dropbox/work/sublime-text-2/Packages/User/sublime_jedi.sublime-settings",
+		"/home/mohammad/projects/thbookdata/db.sqlite3"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"/home/mohammad/projects/django-social-tools/social",
+			"/home/mohammad/projects/def003-website/defected",
+			"/home/mohammad/projects/def003-website/defected/templates",
+			"/home/mohammad/projects/def003-website/defected",
+			"/home/mohammad/projects/def003-website/webserver/nginx",
+			"/home/mohammad/projects/def003-website/defected/templates",
+			"/home/mohammad/projects/def003-website/defected",
+			"/home/mohammad/projects/def003-website/defected/templates",
+			"/home/mohammad/projects/def003-website/defected/defected/settings",
+			"/home/mohammad/projects/def003-website/webserver"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"brand.models",
+			"brand import models",
+			"Product",
+			"Contributor",
+			"ProductContributor",
+			"productcontributor_set",
+			"role",
+			"artist",
+			"Tracks</a>",
+			"sl-processed",
+			"tracks",
+			"Tracks",
+			"track",
+			"build_path",
+			"SAGEPAY_NOTIFICATION_URL",
+			"SAGE",
+			"SAGEPAY_FORCE_PRODUCTION_TEST_MODE",
+			"IS_PRODUCTION",
+			"defected",
+			"Authentication",
+			"authentication",
+			"download",
+			"preview_url",
+			"album_player",
+			"progressbar",
+			"HAYSTACK",
+			"wsgi",
+			"preproduction.ini",
+			"uwsgi",
+			"	\n",
+			"web_dir",
+			"def003-website",
+			"            \n",
+			"DEFAULT_DATA_URI",
+			"threadcount",
+			"form = "
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"models.Product"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"default_dir": "/home/mohammad/projects/django-social-tools/social/management",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 112.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 360.0,
+	"status_bar_visible": true
+}
