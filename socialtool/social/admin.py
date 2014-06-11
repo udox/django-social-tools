@@ -1,8 +1,9 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
+from socialtool.loading import get_classes, get_model
 
-from social.models import SocialPost, SearchTerm, BannedUser, Message, MarketAccount, TrackedTerms
-from filters import SocialPostImageFilter, SocialPostStatusFilter
+SocialPostImageFilter, SocialPostStatusFilter = get_classes('social.filters',
+('SocialPostImageFilter', 'SocialPostStatusFilter'))
 
 # Register your models here.
 
@@ -99,9 +100,9 @@ class MessageAdmin(BaseAdmin):
     list_filter = ('account', 'type')
 
 
-admin.site.register(SocialPost, SocialAdmin)
-admin.site.register(SearchTerm, BaseAdmin)
-admin.site.register(BannedUser, BaseAdmin)
-admin.site.register(Message, MessageAdmin)
-admin.site.register(MarketAccount, BaseAdmin)
-admin.site.register(TrackedTerms, BaseAdmin)
+admin.site.register(get_model('social', 'socialpost'), SocialAdmin)
+admin.site.register(get_model('social', 'searchterm'), BaseAdmin)
+admin.site.register(get_model('social', 'banneduser'), BaseAdmin)
+admin.site.register(get_model('social', 'message'), MessageAdmin)
+admin.site.register(get_model('social', 'marketaccount'), BaseAdmin)
+admin.site.register(get_model('social', 'trackedterms'), BaseAdmin)

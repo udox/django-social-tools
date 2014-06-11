@@ -1,11 +1,11 @@
 from rest_framework import serializers
 from rest_framework import pagination
-from social.models import SocialPost, Message, MarketAccount
+from socialtool.loading import get_model
 
 
 class PostSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = SocialPost
+        model = get_model('social', 'socialpost')
         fields = ('image_url', 'post_url', 'handle', 'content', 'post_source', 'created_at')
 
 
@@ -19,9 +19,9 @@ class PaginatedPostSerializer(pagination.PaginationSerializer):
 
 class MessageSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Message
+        model = get_model('social', 'message')
 
 
 class MarketAccountSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = MarketAccount
+        model = get_model('social', 'marketaccount')

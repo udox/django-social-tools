@@ -7,9 +7,9 @@ from optparse import make_option
 from django.core.management.base import BaseCommand
 from django.db.utils import IntegrityError, DataError
 from django.conf import settings
+from socialtool.loading import get_class, get_model
 
-from social.models import SocialPost, SearchTerm, MarketAccount
-from social.facades import SocialSearchFacade
+SocialSearchFacade = get_class('social.facades', 'SocialSearchFacade')
 
 
 class Command(BaseCommand):
@@ -23,7 +23,7 @@ class Command(BaseCommand):
 
     def __init__(self):
         super(Command, self).__init__()
-        self.accounts = MarketAccount.objects.all()
+        self.accounts = get_model('social', 'marketaccount').objects.all()
 
     def disable(self, post, reason='Unknown'):
         post.deleted = True
@@ -36,7 +36,7 @@ class Command(BaseCommand):
             Import for the first stored search term.
         """
 
-        terms = SearchTerm.objects.filter(active=True)
+        terms = get_model('social', 'searchterm').objects.filter(active=True)
 
         for term in terms:
 
@@ -49,7 +49,7 @@ class Command(BaseCommand):
 
                 for post in search:
 
-                    obj = SocialPost(
+                    obj = get_model('social', 'socialpost')(
                         account=account,
                         content=post.content,
                         created_at=post.created_at,

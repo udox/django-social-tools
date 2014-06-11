@@ -1,11 +1,12 @@
 from django.db import models
 from django.db.models import Q
-
+from socialtool.loading import get_model
 
 class SocialPostManager(models.Manager):
 
     def get_queryset(self):
-        from models import MarketAccount, BannedUser
+        MarketAccount = get_model('social', 'marketaccount')
+        BannedUser = get_model('social', 'banneduser')
 
         accounts = MarketAccount.objects.all().values_list('handle', flat=True)
         banned_users = BannedUser.objects.all().values_list('handle', flat=True)

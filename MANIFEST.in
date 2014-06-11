@@ -1,6 +1,7 @@
 include LICENSE
 include README.rst
-recursive-include social/management *
-recursive-include social/migrations *
-recursive-include social/static *
-recursive-include social/templates *
+recursive-include socialtool/social *
+recursive-include socialtool/social/management *
+recursive-include socialtool/social/migrations *
+recursive-include socialtool/social/static *
+recursive-include socialtool/social/templates *

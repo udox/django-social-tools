@@ -1,9 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
-from managers import SocialPostManager, AllSocialPostManager
+from socialtool.loading import get_classes
+
+SocialPostManager, AllSocialPostManager = get_classes('social.managers', ('SocialPostManager', 'AllSocialPostManager'))
 
 
-class MarketAccount(models.Model):
+class AbstractMarketAccount(models.Model):
     """
         This model allows us to actual query the social networks and interact
         with them.
@@ -33,22 +35,28 @@ class MarketAccount(models.Model):
     def __unicode__(self):
         return u'{0} ({1})'.format(self.handle, self.type)
 
+    class Meta:
+        abstract = True
 
-class Message(models.Model):
+
+class AbstractMessage(models.Model):
     MESSAGE_TYPES = (
         ('f', 'Fail'),
         ('s', 'Success'),
     )
 
     copy = models.CharField(max_length=140)
-    account = models.ForeignKey(MarketAccount)
+    account = models.ForeignKey('social.MarketAccount')
     type = models.CharField(max_length=1, choices=MESSAGE_TYPES)
 
     def __unicode__(self):
         return u'{0} ({1}...)'.format(self.account, self.copy[:30])
 
+    class Meta:
+        abstract = True
 
-class TrackedTerms(models.Model):
+
+class AbstractTrackedTerms(models.Model):
     """
         Associate a particular user with various search terms. We can then
         filter on these to give a particular feed
@@ -60,10 +68,11 @@ class TrackedTerms(models.Model):
         return u'{} ({})'.format(self.user, ','.join(self.terms.values_list('term', flat=True)))
 
     class Meta:
+	abstract = True
         verbose_name_plural = 'Tracked Terms'
 
 
-class BannedUser(models.Model):
+class AbstractBannedUser(models.Model):
     handle = models.CharField(max_length=100, unique=True)
     reason = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -71,16 +80,22 @@ class BannedUser(models.Model):
     def __unicode__(self):
         return self.handle
 
+    class Meta:
+        abstract = True
 
-class SearchTerm(models.Model):
+
+class AbstractSearchTerm(models.Model):
     active = models.BooleanField(default=False)
     term = models.CharField(max_length=100)
 
     def __unicode__(self):
         return u'{0} ({1})'.format(self.term, self.active)
 
+    class Meta:
+        abstract = True
 
-class SocialPost(models.Model):
+
+class AbstractSocialPost(models.Model):
     created_at = models.DateTimeField()
     created_at.verbose_name = 'Post date'
     uid = models.CharField(max_length=100, unique=True)
@@ -97,9 +112,9 @@ class SocialPost(models.Model):
     entry_allowed = models.BooleanField(default=True)
     notes = models.TextField(blank=True, null=True)
     notes.verbose_name = 'internal notes'
-    account = models.ForeignKey(MarketAccount, blank=True, null=True)
+    account = models.ForeignKey('social.MarketAccount', blank=True, null=True)
     account.verbose_name = 'Social source'
-    search_term = models.ForeignKey(SearchTerm)
+    search_term = models.ForeignKey('social.SearchTerm')
     content.verbose_name = 'user\'s post'
     image_url = models.URLField(max_length=255, blank=True, null=True)
     messaged = models.BooleanField(default=False)
@@ -123,6 +138,7 @@ class SocialPost(models.Model):
         return u'{0} - {1} ({2})'.format(self.handle, self.account.type, self.messaged)
 
     class Meta:
+	abstract = True
         # Content should be in ascending date order
         ordering = ('-high_priority', '-created_at', '-followers', 'handle')
 
@@ -135,3 +151,5 @@ class SocialPost(models.Model):
             attach an image but should be ok
         """
         return SocialPost.everything.filter(handle=self.handle).exclude(image_url=None).exclude(uid=self.uid).count()
+
+

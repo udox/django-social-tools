@@ -2,8 +2,12 @@ from django.conf import settings
 from django.conf.urls import patterns, include, url, static
 from django.contrib import admin
 from rest_framework import routers
+from socialtool.loading import get_classes
 
-from social.views import TweetUserView, BanUserView, PaginatedImagePostFeedView, MessageViewSet, MarketAccountViewSet
+TweetUserView, BanUserView, PaginatedImagePostFeedView, \
+MessageViewSet, MarketAccountViewSet = get_classes('social.views',
+('TweetUserView', 'BanUserView', 'PaginatedImagePostFeedView',
+'MessageViewSet', 'MarketAccountViewSet'))
 
 
 admin.autodiscover()

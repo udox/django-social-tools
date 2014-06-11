@@ -7,10 +7,13 @@ from django.http import HttpResponse
 from django.views.generic import TemplateView, View
 from rest_framework import generics, viewsets
 
-from serializers import PostSerializer, PaginatedPostSerializer, MessageSerializer, MarketAccountSerializer
+from socialtool.loading import get_classes, get_model
 
-from social.models import SocialPost, BannedUser, TrackedTerms, Message, MarketAccount
-from social.filters import HasImageFilterBackend, OldSchoolRetweet
+
+PostSerializer, PaginatedPostSerializer, MessageSerializer, \
+MarketAccountSerializer = get_classes('social.serializers', ('PostSerializer', 'PaginatedPostSerializer', 'MessageSerializer', 'MarketAccountSerializer'))
+
+HasImageFilterBackend, OldSchoolRetweet = get_classes('social.filters', ('HasImageFilterBackend', 'OldSchoolRetweet'))
 
 # TODO - tweet and artworker assignments should be returning a JSON
 # response - although having said that we are just swapping out HTML
@@ -24,7 +27,7 @@ class TweetUserView(TemplateView):
         tweet_pk = self.request.GET['tweet_pk']
         msg = self.request.GET['msg']
 
-        tweet = SocialPost.objects.get(pk=tweet_pk)
+        tweet = get_model('social', 'socialpost').objects.get(pk=tweet_pk)
 
         # Reverse the quoting and get the unicode back
         msg = urllib.unquote(msg)
@@ -74,8 +77,8 @@ class BanUserView(View):
     def ban_user(self):
         post_pk = self.request.GET['post_pk']
 
-        tweet = SocialPost.everything.get(pk=post_pk)
-        hellban = BannedUser(handle=tweet.handle)
+        tweet = get_model('social', 'socialpost').everything.get(pk=post_pk)
+        hellban = get_model('social', 'banneduser')(handle=tweet.handle)
 
         try:
             hellban.save()
@@ -89,32 +92,32 @@ class BanUserView(View):
 
 
 class PaginatedImagePostFeedView(generics.ListAPIView):
-    queryset = SocialPost.objects.all()
+    queryset = get_model('social', 'socialpost').objects.all()
     serializer_class = PostSerializer
     pagination_serializer_class = PaginatedPostSerializer
     filter_backends = (HasImageFilterBackend, OldSchoolRetweet)
 
     def get_queryset(self):
-        queryset = SocialPost.objects.all()
+        queryset = get_model('social', 'socialpost').objects.all()
         user = self.request.QUERY_PARAMS.get('user', None)
         if user is not None:
             try:
                 # If we have a user then we need to look up what accounts they are associated
                 # with and then filter on all those (it's M2M)
-                tracked_term = TrackedTerms.objects.get(user__username=user)
+                tracked_term = get_model('social', 'trackedterms').objects.get(user__username=user)
                 queryset = queryset.filter(search_term__in=tracked_term.terms.values_list('pk', flat=True))
-            except TrackedTerms.DoesNotExist:
+            except get_model('social', 'trackedterms').DoesNotExist:
                 # If we can't find the user just carry on
                 pass
         return queryset
 
 
 class MessageViewSet(viewsets.ModelViewSet):
-    queryset = Message.objects.all()
+    queryset = get_model('social', 'message').objects.all()
     serializer_class = MessageSerializer
     filter_fields = ('type', 'account',)
 
 
 class MarketAccountViewSet(viewsets.ModelViewSet):
-    queryset = MarketAccount.objects.all()
+    queryset = get_model('social', 'marketaccount').objects.all()
     serializer_class = MarketAccountSerializer
