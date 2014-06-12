@@ -150,6 +150,6 @@ class AbstractSocialPost(models.Model):
             tweets - this isn't perfect - they might tweet something else and
             attach an image but should be ok
         """
-        return SocialPost.everything.filter(handle=self.handle).exclude(image_url=None).exclude(uid=self.uid).count()
+        return AbstractSocialPost.everything.filter(handle=self.handle).exclude(image_url=None).exclude(uid=self.uid).count()
 
 
