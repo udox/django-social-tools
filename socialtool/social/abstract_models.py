@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from socialtool.loading import get_classes
+from socialtool.loading import get_classes, get_model
 
 SocialPostManager, AllSocialPostManager = get_classes('social.managers', ('SocialPostManager', 'AllSocialPostManager'))
 
@@ -150,6 +150,6 @@ class AbstractSocialPost(models.Model):
             tweets - this isn't perfect - they might tweet something else and
             attach an image but should be ok
         """
-        return AbstractSocialPost.everything.filter(handle=self.handle).exclude(image_url=None).exclude(uid=self.uid).count()
+        return get_model('social','socialpost').everything.filter(handle=self.handle).exclude(image_url=None).exclude(uid=self.uid).count()
 
 
