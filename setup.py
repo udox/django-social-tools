@@ -21,9 +21,9 @@ setup(
 	  'requests==2.1.0',
 	  'requests-oauthlib==0.4.0',
 	  'simplejson==3.3.1',
-	  'python-twitter>=1.1.3.1',
+	  'python-twitter>=2.0',
     ],
-    dependency_links = ['http://github.com/udox/python-twitter.git@master#egg=python-twitter-1.1.3.1'],
+    dependency_links = ['http://github.com/udox/python-twitter.git@master#egg=python-twitter-2.0'],
     license='BSD License',  # example license
     description='Django app that scrapes social posts from instagram and twitter.',
     long_description=README,
