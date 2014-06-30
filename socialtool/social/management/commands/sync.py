@@ -67,7 +67,7 @@ class Command(BaseCommand):
                     )
 
                     try:
-                        post = get_model('social', 'socialpost').objects.get(uid=obj.uid)
+                        post = get_model('social', 'socialpost').everything.get(uid=obj.uid)
                     except ObjectDoesNotExist:
                         obj.save()
                         self.stdout.write("Added %s (%d %s)" % (obj.uid, obj.id, obj.handle))
