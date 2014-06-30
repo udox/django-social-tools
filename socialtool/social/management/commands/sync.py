@@ -6,6 +6,7 @@ from optparse import make_option
 
 from django.core.management.base import BaseCommand
 from django.db.utils import IntegrityError, DataError
+from django.core.exceptions import ObjectDoesNotExist
 from django.conf import settings
 from socialtool.loading import get_class, get_model
 
@@ -66,6 +67,8 @@ class Command(BaseCommand):
                     )
 
                     try:
+                        post = get_model('social', 'socialpost').objects.get(uid=obj.uid)
+                    except ObjectDoesNotExist:
                         obj.save()
                         self.stdout.write("Added %s (%d %s)" % (obj.uid, obj.id, obj.handle))
 
@@ -73,9 +76,7 @@ class Command(BaseCommand):
                         if entry_count > settings.MAX_ENTRIES:
                             self.disable(obj, reason='Already entered max times (%d)' % entry_count)
                             continue
+                    else:
+                        self.stdout.write("Post already exists %s (%d %s)" % (post.uid, post.id, post.handle))
 
-                    except IntegrityError as e:
-                        self.stdout.write("Post already exists %s (%s)" % (obj.uid, obj.handle))
 
-                    except DataError:
-                        self.stdout.write("Skipping %s as content errored on save" % obj.uid)
