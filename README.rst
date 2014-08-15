@@ -9,16 +9,18 @@ that can be configured through the admin screen.
 Quick start
 -----------
 
-1. Add "social" to your INSTALLED_APPS setting like this::
+1. pip install --process-dependency-links -e git://github.com/udox/django-social-tools.git@master#egg=django-social-tools 
+
+2. Add "socialtool.social" to your INSTALLED_APPS setting like this::
 
     INSTALLED_APPS = (
         ...
-        'polls',
+        'socialtool.social',
     )
 
 2. Include the social URLconf in your project urls.py like this::
 
-    url(r'^social/', include('social.urls')),
+    url(r'^social/', include('socialtool.social.urls')),
 
 3. Run `python manage.py migrate` to create the social models.
 
